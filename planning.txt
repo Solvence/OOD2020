@@ -1,0 +1,40 @@
+
+
+
+AnimationModel
+-Hashmap<String, Animated>
+Methods:
+void create(String name, Shape s)
+-render(based on time)
+void move(String s, int startTime, int endTime, Position end) throws IAE [if interval overlaps with another, or if shape doesnt]
+-changeColor(String s, int startTime, int endTime, Color endColor)
+-changeSize(...)
+
+Animated object
+-Shape field
+-commands field
+-render
+-addcommand
+-runcommand
+-update
+
+Shape object
+-size
+-position
+-color
+-setPosition
+-setSize
+-setColor
+
+interface AnimationObjectCommand
+-class changeSize 
+-class changeColor
+-class move
+-canCall
+
+Design choices:
+- store commands
+- where should position be stored
+
+Invariants:
+- time cant be negative
