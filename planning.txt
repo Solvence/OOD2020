@@ -36,5 +36,8 @@ Design choices:
 - store commands
 - where should position be stored
 
+Design choices Decisions to make:
+- how to get a shape at a given time?
+
 Invariants:
 - time cant be negative
