@@ -5,7 +5,7 @@ AnimationModel
 -Hashmap<String, Animated>
 Methods:
 void create(String name, Shape s)
--render(based on time)
+-render(time) // def need time here
 void move(String s, int startTime, int endTime, Position end) throws IAE [if interval overlaps with another, or if shape doesnt]
 -changeColor(String s, int startTime, int endTime, Color endColor)
 -changeSize(...)
