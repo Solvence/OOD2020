@@ -19,10 +19,13 @@ public interface AnimatedObjectCommand {
   Shape apply(Shape s, int time) throws IllegalArgumentException;
 
   /**
-   * Can this command be applied based on given time
+   * Can this command be applied based on given time and the given shape.
+   *
    * @param time  - time of interest
-   * @return true if time is valid, false if time is less than command interval.
+   * @param shape - a given shapen
+   * @return true if time is valid and command can be run on given shape, false if time is less than
+   * command interval.
    */
-  boolean appliable(int time);
+  boolean applicable(int time, Shape s);
 
 }

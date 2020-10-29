@@ -41,3 +41,4 @@ Design choices Decisions to make:
 
 Invariants:
 - time cant be negative
+- endTime > startTime

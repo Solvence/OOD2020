@@ -1,5 +1,10 @@
 package model;
 
+import java.awt.Color;
+import java.util.List;
+import model.position2d.Position2D;
+import model.shape.Shape;
+
 /**
  * Represents the model component for a animation that displays shapes.
  */
@@ -14,13 +19,13 @@ public interface AnimatorModel {
   void create(String name, Shape s);
 
   /**
-   * Returns a List of copies of the shapes currently being animated by this Model at the given
+   * Returns a List of copies of the shapes being animated by this Model at the given
    * time.
    *
    * @param time time frame to be rendered
    * @return List of copies of shapes
    */
-  List<Shape> getCurrentState(int time);
+  List<Shape> getStateAt(int time);
 
   /**
    * Move a shape with the given name to a given point during the given interval of time.
