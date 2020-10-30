@@ -10,6 +10,18 @@ import model.position2d.Position2D;
 public interface Shape {
 
   /**
+   * Creates a new Shape with the given fields
+   * @param position - the position of the Shape
+   * @param color - the color of the Shape
+   * @param size - a map of dimensions representing the size f the shape
+   * @throws IllegalArgumentException - if any of the parameters are null, or if the dimensions
+   * given in the size are invalid
+   * @return a new Shape constructed with the given arguments
+   */
+  Shape build(Position2D position, Color color, Map<String, Integer> size)
+      throws IllegalArgumentException;
+
+  /**
    * Getter for position of a shape.
    * @return the position of the shape
    */

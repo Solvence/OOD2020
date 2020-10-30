@@ -25,10 +25,26 @@ public class Rectangle implements Shape {
    * @param position position of rectangle
    */
   Rectangle(int width, int height, Color color, Position2D position) {
+    if (width < 0 || height < 0) {
+      throw new IllegalArgumentException("can't have negative dimensions");
+    }
     this.width = width;
     this.height = height;
     this.color = color;
     this.position = position;
+  }
+
+  /**
+   * A Rectangle's dimensions are invalid if the size does not specify "width" and "height"
+   * and nothing else
+   */
+  @Override
+  public Shape build(Position2D position, Color color, Map<String, Integer> size)
+      throws IllegalArgumentException {
+    if (size.size() != 2 || size.get("width") == null || size.get("height") == null) {
+      throw new IllegalArgumentException("invalid dimensions");
+    }
+    return new Rectangle(size.get("width"), size.get("height"), color, position);
   }
 
   @Override

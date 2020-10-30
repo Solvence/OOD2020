@@ -42,3 +42,7 @@ Design choices Decisions to make:
 Invariants:
 - time cant be negative
 - endTime > startTime
+- AnimatedObjects commands is always sorted by startTime
+
+TODO:
+-think about toString in commands/model for the view

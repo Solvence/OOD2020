@@ -1,15 +1,12 @@
 package model.animatedObjectCommand;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.Objects;
-import model.position2d.Position2D;
 import model.shape.Shape;
 
-public class ChangeSize implements AnimatedObjectCommand {
+public class ChangeSize extends AbstractCommand {
 
-  private final int startTime;
-  private final int endTime;
   private final Map<String, Integer> startSize;
   private final Map<String, Integer> endSize;
 
@@ -17,15 +14,17 @@ public class ChangeSize implements AnimatedObjectCommand {
    * Construct a Move Command.
    * @param startTime            Beginning of time interval for running command
    * @param endTime              End of time interval for running command
-   * @param startSize        Beginning Position before Move Command
-   * @param endSize          End Position after move Command
-   * @throws IllegalArgumentException
+   * @param startSize        Beginning size before Move Command
+   * @param endSize          End size after move Command
+   * @throws IllegalArgumentException - if time interval is invalid, sizes are null, sizes do
+   * not have the same keys, or the dimensions are negative
    */
   ChangeSize(int startTime, int endTime, Map<String, Integer> startSize,
       Map<String, Integer> endSize)
       throws IllegalArgumentException {
-    if (endTime - startTime <= 0 || startSize == null || endSize == null) {
-      throw new IllegalArgumentException("Invalid inputs");
+    super(startTime, endTime);
+    if (startSize == null || endSize == null) {
+      throw new IllegalArgumentException("Invalid size inputs");
     }
     if (endSize.size() != startSize.size()) {
       throw new IllegalArgumentException("given maps do not have the same number of elements");
@@ -39,31 +38,29 @@ public class ChangeSize implements AnimatedObjectCommand {
         throw new IllegalArgumentException("dimensions cannot be negative");
       }
     }
-    this.startTime = startTime;
-    this.endTime = endTime;
     this.startSize = startSize;
     this.endSize = endSize;
   }
 
   @Override
   public Shape apply(Shape s, int time) throws IllegalArgumentException {
-    if (time < this.startTime) {
+    if (!this.applicable(time, s)) {
       throw new IllegalArgumentException("Invalid time");
     } else if (time >= this.endTime) {
-      return s.build(s.getPosition(), s.getColor(), s.getSize());
+      return s.build(s.getPosition(), s.getColor(), this.endSize);
     }
-    keys=width, hegith
-
-    int distX = this.endSize.get("width") - this.startSize.get("width");
-    int distY = this.endSize.getY() - this.startSize.getY();
-
-    int timeFromStart = time - startTime;
+    Map<String, Integer> newSize = new HashMap<String, Integer>();
+    int timeFromStart = time - this.startTime;
     int totalTimeFrame = this.endTime - this.startTime;
 
-    int newX = (timeFromStart * distX) / (totalTimeFrame) + this.startSize.getX();
-    int newY = (timeFromStart * distY) / (totalTimeFrame) + this.startSize.getY();
+    for (Entry<String, Integer> e : this.startSize.entrySet()) {
+      String currentKey = e.getKey();
+      int totalSizeChange = endSize.get(currentKey) - this.startSize.get(currentKey);
+      newSize.put(currentKey, (timeFromStart * totalSizeChange) / totalTimeFrame
+          + this.startSize.get(currentKey));
+    }
 
-    return s.build(new Position2D(newX,newY), s.getColor(), s.getSize());
+    return s.build(s.getPosition(), s.getColor(), newSize);
   }
 
   @Override
@@ -80,5 +77,10 @@ public class ChangeSize implements AnimatedObjectCommand {
       }
     }
     return s.getSize().size() == startSize.size();
+  }
+
+  @Override
+  public boolean sameType(AnimatedObjectCommand other) {
+    return other instanceof ChangeSize;
   }
 }

@@ -1,13 +1,10 @@
 package model.animatedObjectCommand;
 
-import java.util.Objects;
 import model.position2d.Position2D;
 import model.shape.Shape;
 
-public class Move implements AnimatedObjectCommand {
+public class Move extends AbstractCommand {
 
-  private final int startTime;
-  private final int endTime;
   private final Position2D startPosition;
   private final Position2D endPosition;
 
@@ -17,22 +14,21 @@ public class Move implements AnimatedObjectCommand {
    * @param endTime              End of time interval for running command
    * @param startPosition        Beginning Position before Move Command
    * @param endPosition          End Position after move Command
-   * @throws IllegalArgumentException
+   * @throws IllegalArgumentException - if time interval is invalid or positions are null
    */
   Move(int startTime, int endTime, Position2D startPosition, Position2D endPosition)
       throws IllegalArgumentException {
-    if (endTime - startTime <= 0 || startPosition == null || endPosition == null) {
-      throw new IllegalArgumentException("Invalid time interval");
+    super(startTime, endTime);
+    if (startPosition == null || endPosition == null) {
+      throw new IllegalArgumentException("Invalid position inputs");
     }
-    this.startTime = startTime;
-    this.endTime = endTime;
     this.startPosition = startPosition;
     this.endPosition = endPosition;
   }
 
   @Override
   public Shape apply(Shape s, int time) throws IllegalArgumentException {
-    if (time < this.startTime) {
+    if (!this.applicable(time, s)) {
       throw new IllegalArgumentException("Invalid time");
     } else if (time >= this.endTime) {
       return s.build(this.endPosition, s.getColor(), s.getSize());
@@ -55,5 +51,10 @@ public class Move implements AnimatedObjectCommand {
       return false;
     }
     return startPosition.equals(s.getPosition());
+  }
+
+  @Override
+  public boolean sameType(AnimatedObjectCommand other) {
+    return other instanceof Move;
   }
 }

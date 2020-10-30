@@ -17,7 +17,8 @@ public interface AnimatedObject {
   Shape getShape(int time);
 
   /**
-   * Adds a animation command to preform on a animated object.
+   * Adds a animation command to the collection of commands on a animated object based off of its
+   * start time.
    *
    * @param command command object
    * @throws IllegalArgumentException if command is null or if interval overlaps with current

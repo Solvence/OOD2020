@@ -22,10 +22,29 @@ public interface AnimatedObjectCommand {
    * Can this command be applied based on given time and the given shape.
    *
    * @param time  - time of interest
-   * @param shape - a given shapen
+   * @param s - a given shape
    * @return true if time is valid and command can be run on given shape, false if time is less than
    * command interval.
    */
   boolean applicable(int time, Shape s);
+
+  /**
+   * Returns the time at which this command starts running
+   * @return - the time at which this command starts running
+   */
+  int getStartTime();
+
+  /**
+   * Returns the time at which this command finishes running
+   * @return - the time at which this command finishes running
+   */
+  int getEndTime();
+
+  /**
+   * Are these two commands of the same type
+   * @param other - the command that this command is being compared to
+   * @return - whether this command is of the same type os the other command
+   */
+  boolean sameType(AnimatedObjectCommand other);
 
 }
