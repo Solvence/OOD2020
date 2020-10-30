@@ -2,7 +2,9 @@ package model.shape;
 
 import java.awt.Color;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import model.position2d.Position2D;
 
 /**
@@ -40,10 +42,10 @@ public class Rectangle implements Shape {
   }
 
   @Override
-  public List<Integer> getSize() {
-    List<Integer> size = new ArrayList<Integer>();
-    size.add(this.width);
-    size.add(this.height);
+  public Map<String, Integer> getSize() {
+    Map<String, Integer> size = new HashMap<String, Integer>();
+    size.put("width", this.width);
+    size.put("height", this.height);
     return size;
   }
 }

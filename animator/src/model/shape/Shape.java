@@ -1,7 +1,7 @@
 package model.shape;
 
 import java.awt.Color;
-import java.util.List;
+import java.util.Map;
 import model.position2d.Position2D;
 
 /**
@@ -22,8 +22,8 @@ public interface Shape {
   Color getColor();
 
   /**
-   * Getter for size of a shape.
+   * Getter for a map representing the size dimensions of a shape.
    * @return size of a shape
    */
-  List<Integer> getSize();
+  Map<String, Integer> getSize();
 }
