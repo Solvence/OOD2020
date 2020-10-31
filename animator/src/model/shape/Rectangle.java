@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import model.dimension2D.Dimension2D;
 import model.position2d.Position2D;
 
 /**
@@ -34,17 +35,10 @@ public class Rectangle implements Shape {
     this.position = position;
   }
 
-  /**
-   * A Rectangle's dimensions are invalid if the size does not specify "width" and "height"
-   * and nothing else
-   */
   @Override
-  public Shape build(Position2D position, Color color, Map<String, Integer> size)
+  public Shape build(Position2D position, Color color, Dimension2D size)
       throws IllegalArgumentException {
-    if (size.size() != 2 || size.get("x-direction") == null || size.get("y-direction") == null) {
-      throw new IllegalArgumentException("invalid dimensions");
-    }
-    return new Rectangle(size.get("x-direction"), size.get("y-direction"), color, position);
+    return new Rectangle(size.getXDir(), size.getYDir(), color, position);
   }
 
   @Override
@@ -58,10 +52,7 @@ public class Rectangle implements Shape {
   }
 
   @Override
-  public Map<String, Integer> getSize() {
-    Map<String, Integer> size = new HashMap<String, Integer>();
-    size.put("x-direction", this.width);
-    size.put("y-direction", this.height);
-    return size;
+  public Dimension2D getSize() {
+    return new Dimension2D(this.width, this.height);
   }
 }

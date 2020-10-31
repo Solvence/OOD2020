@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import model.dimension2D.Dimension2D;
 import model.position2d.Position2D;
 
 /**
@@ -35,17 +36,10 @@ class Ellipse implements Shape {
     this.position = position;
   }
 
-  /**
-   * A Ellipse's dimensions are invalid if the size does not specify "x-radius" and "y-radius"
-   * and nothing else
-   */
   @Override
-  public Shape build(Position2D position, Color color, Map<String, Integer> size)
+  public Shape build(Position2D position, Color color, Dimension2D size)
       throws IllegalArgumentException {
-    if (size.size() != 2 || size.get("x-direction") == null || size.get("y-direction") == null) {
-      throw new IllegalArgumentException("invalid dimensions");
-    }
-    return new Rectangle(size.get("x-direction"), size.get("y-direction"), color, position);
+    return new Rectangle(size.getXDir(), size.getYDir(), color, position);
   }
 
   @Override
@@ -59,10 +53,7 @@ class Ellipse implements Shape {
   }
 
   @Override
-  public Map<String, Integer> getSize() {
-    Map<String, Integer> size = new HashMap<String, Integer>();
-    size.put("x-direction", this.xRad);
-    size.put("y-direction", this.yRad);
-    return size;
+  public Dimension2D getSize() {
+    return new Dimension2D(this.xRad, this.yRad);
   }
 }

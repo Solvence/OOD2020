@@ -3,12 +3,13 @@ package model.animatedObjectCommand;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
+import model.dimension2D.Dimension2D;
 import model.shape.Shape;
 
 public class ChangeSize extends AbstractCommand {
 
-  private final Map<String, Integer> startSize;
-  private final Map<String, Integer> endSize;
+  private final Dimension2D startSize;
+  private final Dimension2D endSize;
 
   /**
    * Construct a Move Command.
@@ -16,27 +17,18 @@ public class ChangeSize extends AbstractCommand {
    * @param endTime              End of time interval for running command
    * @param startSize        Beginning size before Move Command
    * @param endSize          End size after move Command
-   * @throws IllegalArgumentException - if time interval is invalid, sizes are null, sizes do
-   * not have the same keys, or the dimensions are negative
+   * @throws IllegalArgumentException - if time interval is invalid or the dimensions are negative
    */
-  public ChangeSize(int startTime, int endTime, Map<String, Integer> startSize,
-      Map<String, Integer> endSize)
+  public ChangeSize(int startTime, int endTime, Dimension2D startSize,
+      Dimension2D endSize)
       throws IllegalArgumentException {
     super(startTime, endTime);
     if (startSize == null || endSize == null) {
       throw new IllegalArgumentException("Invalid size inputs");
     }
-    if (endSize.size() != startSize.size()) {
-      throw new IllegalArgumentException("given maps do not have the same number of elements");
-    }
-    for (Entry<String, Integer> e : startSize.entrySet()) {
-      if (endSize.get(e.getKey()) == null) {
-        throw new IllegalArgumentException("given maps do not have the same keys");
-      }
-      //TODO: 0 size allowed?
-      if (e.getValue() < 0 || endSize.get(e.getKey()) < 0) {
-        throw new IllegalArgumentException("dimensions cannot be negative");
-      }
+    if (startSize.getXDir() < 0 || startSize.getYDir() < 0 ||
+        endSize.getXDir() < 0 || endSize.getYDir() < 0) {
+      throw new IllegalArgumentException("dimensions cannot be negative");
     }
     this.startSize = startSize;
     this.endSize = endSize;
@@ -49,18 +41,17 @@ public class ChangeSize extends AbstractCommand {
     } else if (time >= this.endTime) {
       return s.build(s.getPosition(), s.getColor(), this.endSize);
     }
-    Map<String, Integer> newSize = new HashMap<String, Integer>();
     int timeFromStart = time - this.startTime;
     int totalTimeFrame = this.endTime - this.startTime;
+    int totalXChange = endSize.getXDir() - this.startSize.getXDir();
+    int totalYChange = endSize.getYDir() - this.startSize.getYDir();
+    int currentXDir = (timeFromStart * totalXChange) / totalTimeFrame
+        + this.startSize.getXDir();
+    int currentYDir = (timeFromStart * totalYChange) / totalTimeFrame
+        + this.startSize.getYDir();
 
-    for (Entry<String, Integer> e : this.startSize.entrySet()) {
-      String currentKey = e.getKey();
-      int totalSizeChange = endSize.get(currentKey) - this.startSize.get(currentKey);
-      newSize.put(currentKey, (timeFromStart * totalSizeChange) / totalTimeFrame
-          + this.startSize.get(currentKey));
-    }
 
-    return s.build(s.getPosition(), s.getColor(), newSize);
+    return s.build(s.getPosition(), s.getColor(), new Dimension2D(currentXDir, currentYDir));
   }
 
   @Override
@@ -68,15 +59,7 @@ public class ChangeSize extends AbstractCommand {
     if (time < this.startTime) {
       return false;
     }
-    for (Entry<String, Integer> e : startSize.entrySet()) {
-      if (s.getSize().get(e.getKey()) == null) {
-        return false;
-      }
-      if (!e.getValue().equals(s.getSize().get(e.getKey()))) {
-        return false;
-      }
-    }
-    return s.getSize().size() == startSize.size();
+    return startSize.equals(s.getSize());
   }
 
   @Override

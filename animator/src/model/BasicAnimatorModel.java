@@ -8,6 +8,7 @@ import model.animatedObject.BasicAnimatedObject;
 import model.animatedObjectCommand.ChangeColor;
 import model.animatedObjectCommand.ChangeSize;
 import model.animatedObjectCommand.Move;
+import model.dimension2D.Dimension2D;
 import model.position2d.Position2D;
 import model.shape.Shape;
 
@@ -62,15 +63,10 @@ public class BasicAnimatorModel implements AnimatorModel {
   }
 
   @Override
-  public void changeSize(String s, int startTime, int endTime, int startHeight, int startWidth,
-      int endHeight, int endWidth) throws IllegalArgumentException {
-    Map<String, Integer> startSize = new HashMap<>();
-    startSize.put("x-direction", startWidth);
-    startSize.put("y-direction", startHeight);
-    Map<String, Integer> endSize = new HashMap<>();
-    startSize.put("x-direction", endWidth);
-    startSize.put("y-direction", endHeight);
-    this.animatedObjects.get(s).addCommand(new ChangeSize(startTime, endTime, startSize, endSize));
+  public void changeSize(String s, int startTime, int endTime, Dimension2D startDimensions,
+      Dimension2D endDimensions) throws IllegalArgumentException {
+    this.animatedObjects.get(s).addCommand(new ChangeSize(startTime, endTime, startDimensions,
+        endDimensions));
   }
 
 

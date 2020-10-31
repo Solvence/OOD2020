@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.util.List;
 import java.util.Map;
 import model.animatedObject.AnimatedObject;
+import model.dimension2D.Dimension2D;
 import model.position2d.Position2D;
 import model.shape.Shape;
 
@@ -60,18 +61,18 @@ public interface AnimatorModel {
 
   /**
    * Change the size of a shape with the given name during the given interval of time.
+   * Resizes (stretches) the bounding box of the shape
    *
    * @param s             - name of shape who's color will change
    * @param startTime     - time when size change should begin
    * @param endTime       - time when size change should end
-   * @param startHeight    - start height parameter of shape
-   * @param startWidth     - start width parameter of shape
-   * @param endHeight      - new height parameter of shape
-   * @param endWidth       - new width parameter of shape
+   * @param startDimensions - the size of the shape in the beginning
+   * @param endDimensions  - the size of the shape after the transformation
    * @throws IllegalArgumentException if given shape doesn't exist, if height or width are negative,
    *                                  or if time interval is invalid
    */
-  void changeSize(String s, int startTime, int endTime, int startHeight, int startWidth, int endHeight, int endWidth)
+  void changeSize(String s, int startTime, int endTime, Dimension2D startDimensions,
+      Dimension2D endDimensions)
       throws IllegalArgumentException;
 
   /**
