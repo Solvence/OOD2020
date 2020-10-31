@@ -8,6 +8,7 @@ import java.util.Map;
 import model.AnimatorModel;
 import model.animatedObject.AnimatedObject;
 import model.animatedObjectCommand.AnimatedObjectCommand;
+import model.dimension2D.Dimension2D;
 import model.shape.Shape;
 
 /**
@@ -61,19 +62,19 @@ public class BasicTextualAnimatorView implements AnimatorView {
         int endTime = times.get(i);
         Shape startShape = animated.getShape(startTime);
         Shape endShape = animated.getShape(endTime);
-        Map<String, Integer> startSize = startShape.getSize();
-        Map<String, Integer> endSize = endShape.getSize();
+        Dimension2D startSize = startShape.getSize();
+        Dimension2D endSize = endShape.getSize();
         Color startColor = startShape.getColor();
         Color endColor = endShape.getColor();
 
         currentRow.append(String.format("Motion %s %02d %03d %03d %02d %03d %03d %03d %03d",
             name, startTime, startShape.getPosition().getX(), startShape.getPosition().getY(),
-            startSize.get("x-direction"), startSize.get("y-direction"), startColor.getRed(),
+            startSize.getXDir(), startSize.getYDir(), startColor.getRed(),
             startColor.getGreen(), startColor.getBlue()));
 
         currentRow.append(String.format("      %02d %03d %03d %02d %03d %03d %03d %03d\n",
             endTime, endShape.getPosition().getX(), endShape.getPosition().getY(),
-            endSize.get("x-direction"), endSize.get("y-direction"), endColor.getRed(),
+            endSize.getXDir(), endSize.getYDir(), endColor.getRed(),
             endColor.getGreen(), endColor.getBlue()));
       }
       table.append(currentRow);
