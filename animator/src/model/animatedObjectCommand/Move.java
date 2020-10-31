@@ -16,7 +16,7 @@ public class Move extends AbstractCommand {
    * @param endPosition          End Position after move Command
    * @throws IllegalArgumentException - if time interval is invalid or positions are null
    */
-  Move(int startTime, int endTime, Position2D startPosition, Position2D endPosition)
+  public Move(int startTime, int endTime, Position2D startPosition, Position2D endPosition)
       throws IllegalArgumentException {
     super(startTime, endTime);
     if (startPosition == null || endPosition == null) {

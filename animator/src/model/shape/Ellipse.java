@@ -25,7 +25,7 @@ class Ellipse implements Shape {
    * @param color      Color of ellipse
    * @param position   Position of ellipse
    */
-  Ellipse(int xRad, int yRad, Color color, Position2D position) {
+  public Ellipse(int xRad, int yRad, Color color, Position2D position) {
     if (xRad < 0 || yRad < 0) {
       throw new IllegalArgumentException("can't have negative dimensions");
     }
@@ -42,10 +42,10 @@ class Ellipse implements Shape {
   @Override
   public Shape build(Position2D position, Color color, Map<String, Integer> size)
       throws IllegalArgumentException {
-    if (size.size() != 2 || size.get("x-radius") == null || size.get("y-radius") == null) {
+    if (size.size() != 2 || size.get("x-direction") == null || size.get("y-direction") == null) {
       throw new IllegalArgumentException("invalid dimensions");
     }
-    return new Rectangle(size.get("x-radius"), size.get("y-radius"), color, position);
+    return new Rectangle(size.get("x-direction"), size.get("y-direction"), color, position);
   }
 
   @Override
@@ -61,8 +61,8 @@ class Ellipse implements Shape {
   @Override
   public Map<String, Integer> getSize() {
     Map<String, Integer> size = new HashMap<String, Integer>();
-    size.put("x-radius", this.xRad);
-    size.put("y-radius", this.yRad);
+    size.put("x-direction", this.xRad);
+    size.put("y-direction", this.yRad);
     return size;
   }
 }

@@ -2,11 +2,13 @@ package model;
 
 import java.awt.Color;
 import java.util.List;
+import java.util.Map;
+import model.animatedObject.AnimatedObject;
 import model.position2d.Position2D;
 import model.shape.Shape;
 
 /**
- * Represents the model component for a animation that displays shapes.
+ * Represents the model component for a animation that animates shapes.
  */
 public interface AnimatorModel {
 
@@ -15,8 +17,9 @@ public interface AnimatorModel {
    *
    * @param name - name of the shape
    * @param s    - type of shape
+   * @throws IllegalArgumentException if s is null or if shape with given name already exists.
    */
-  void create(String name, Shape s);
+  void create(String name, Shape s) throws IllegalStateException;
 
   /**
    * Returns a List of copies of the shapes being animated by this Model at the given
@@ -25,19 +28,20 @@ public interface AnimatorModel {
    * @param time time frame to be rendered
    * @return List of copies of shapes
    */
-  List<Shape> getStateAt(int time);
+  Map<String, Shape> getStateAt(int time);
 
   /**
    * Move a shape with the given name to a given point during the given interval of time.
    *
-   * @param s           - name of shape to be moved
-   * @param startTime   - time when moving should begin
-   * @param endTime     - time when moving should end
-   * @param endPosition - position shape will be after move
+   * @param s             - name of shape to be moved
+   * @param startTime     - time when moving should begin
+   * @param endTime       - time when moving should end
+   * @param startPosition - position shape will be before move
+   * @param endPosition   - position shape will be after move
    * @throws IllegalArgumentException if given shape doesn't exist, if Position is null, or if time
    *                                  interval is invalid
    */
-  void move(String s, int startTime, int endTime, Position2D endPosition)
+  void move(String s, int startTime, int endTime, Position2D startPosition, Position2D endPosition)
       throws IllegalArgumentException;
 
   /**
@@ -46,25 +50,34 @@ public interface AnimatorModel {
    * @param s           - name of shape who's color will change
    * @param startTime   - time when color change should begin
    * @param endTime     - time when color change should end
-   * @param changeColor - color that the shape will be after time interval has passed
+   * @param startColor - color that the shape will be as time interval has begun
+   * @param endColor - color that the shape will be after time interval has passed
    * @throws IllegalArgumentException if given shape doesn't exist, if changeColor is null, or if
    *                                  time interval is invalid
    */
-  void changeColor(String s, int startTime, int endTime, Color changeColor)
+  void changeColor(String s, int startTime, int endTime, Color startColor, Color endColor)
       throws IllegalArgumentException;
 
   /**
    * Change the size of a shape with the given name during the given interval of time.
    *
-   * @param s         - name of shape who's color will change
-   * @param startTime - time when size change should begin
-   * @param endTime   - time when size change should end
-   * @param height    - new height parameter of shape
-   * @param width     - - new width parameter of shape
+   * @param s             - name of shape who's color will change
+   * @param startTime     - time when size change should begin
+   * @param endTime       - time when size change should end
+   * @param startHeight    - start height parameter of shape
+   * @param startWidth     - start width parameter of shape
+   * @param endHeight      - new height parameter of shape
+   * @param endWidth       - new width parameter of shape
    * @throws IllegalArgumentException if given shape doesn't exist, if height or width are negative,
    *                                  or if time interval is invalid
    */
-  void changeSize(String s, int startTime, int endTime, int height, int width)
+  void changeSize(String s, int startTime, int endTime, int startHeight, int startWidth, int endHeight, int endWidth)
       throws IllegalArgumentException;
+
+  /**
+   * Get all the objects being animated within this animator
+   * @return all the objects being animated within this animator
+   */
+  Map<String, AnimatedObject> getAnimatedObjects();
 
 }

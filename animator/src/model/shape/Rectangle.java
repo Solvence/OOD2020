@@ -24,7 +24,7 @@ public class Rectangle implements Shape {
    * @param color    color of rectangle
    * @param position position of rectangle
    */
-  Rectangle(int width, int height, Color color, Position2D position) {
+  public Rectangle(int width, int height, Color color, Position2D position) {
     if (width < 0 || height < 0) {
       throw new IllegalArgumentException("can't have negative dimensions");
     }
@@ -41,10 +41,10 @@ public class Rectangle implements Shape {
   @Override
   public Shape build(Position2D position, Color color, Map<String, Integer> size)
       throws IllegalArgumentException {
-    if (size.size() != 2 || size.get("width") == null || size.get("height") == null) {
+    if (size.size() != 2 || size.get("x-direction") == null || size.get("y-direction") == null) {
       throw new IllegalArgumentException("invalid dimensions");
     }
-    return new Rectangle(size.get("width"), size.get("height"), color, position);
+    return new Rectangle(size.get("x-direction"), size.get("y-direction"), color, position);
   }
 
   @Override
@@ -60,8 +60,8 @@ public class Rectangle implements Shape {
   @Override
   public Map<String, Integer> getSize() {
     Map<String, Integer> size = new HashMap<String, Integer>();
-    size.put("width", this.width);
-    size.put("height", this.height);
+    size.put("x-direction", this.width);
+    size.put("y-direction", this.height);
     return size;
   }
 }

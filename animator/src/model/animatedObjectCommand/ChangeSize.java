@@ -19,7 +19,7 @@ public class ChangeSize extends AbstractCommand {
    * @throws IllegalArgumentException - if time interval is invalid, sizes are null, sizes do
    * not have the same keys, or the dimensions are negative
    */
-  ChangeSize(int startTime, int endTime, Map<String, Integer> startSize,
+  public ChangeSize(int startTime, int endTime, Map<String, Integer> startSize,
       Map<String, Integer> endSize)
       throws IllegalArgumentException {
     super(startTime, endTime);

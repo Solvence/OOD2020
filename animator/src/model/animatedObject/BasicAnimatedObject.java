@@ -5,16 +5,41 @@ import java.util.List;
 import model.animatedObjectCommand.AnimatedObjectCommand;
 import model.shape.Shape;
 
+/**
+ * Represent a Basic implementation of an AnimatedObject.
+ */
 public class BasicAnimatedObject implements AnimatedObject {
   private final Shape baseShape;
   private final List<AnimatedObjectCommand> commands;
 
   // INVARIANT: commands is always sorted by startTime
 
-  BasicAnimatedObject(Shape baseShape) {
+  /**
+   * Loaded Constructor.
+   * @param baseShape   - Shape to be animated
+   * @param commands    - commands to be called on the shape
+   */
+  public BasicAnimatedObject(Shape baseShape, List<AnimatedObjectCommand> commands) {
     this.baseShape = baseShape;
-    this.commands = new ArrayList<AnimatedObjectCommand>();
+    this.commands = commands;
   }
+
+  /**
+   * Default Constructor.
+   * @param baseShape shape to be animated
+   */
+  public BasicAnimatedObject(Shape baseShape) {
+    this(baseShape, new ArrayList<>());
+  }
+
+  /**
+   * Copy Constructor.
+   * @param other some other AnimatedObject
+   */
+  public BasicAnimatedObject(AnimatedObject other) {
+    this(other.getShape(0), other.getCommands());
+  }
+
 
   @Override
   public Shape getShape(int time) {
@@ -51,5 +76,12 @@ public class BasicAnimatedObject implements AnimatedObject {
       startIndex++;
     }
     commands.add(command);
+  }
+
+  // We know returning references to original commands is okay, since we know their fields are
+  // immutable
+  @Override
+  public List<AnimatedObjectCommand> getCommands() {
+    return new ArrayList<>(this.commands);
   }
 }

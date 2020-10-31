@@ -1,5 +1,6 @@
 package model.animatedObject;
 
+import java.util.List;
 import model.animatedObjectCommand.AnimatedObjectCommand;
 import model.shape.Shape;
 
@@ -25,5 +26,11 @@ public interface AnimatedObject {
    *                                  commands
    */
   void addCommand(AnimatedObjectCommand command) throws IllegalArgumentException;
+
+  /**
+   * Get all the commands called on a animatedObject
+   * @return all the commands called on a animatedObject
+   */
+  List<AnimatedObjectCommand> getCommands();
 
 }

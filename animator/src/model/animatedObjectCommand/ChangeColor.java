@@ -18,7 +18,7 @@ public class ChangeColor extends AbstractCommand {
    * @param endColor             End color after move Command
    * @throws IllegalArgumentException - if either color is null or time interval is invalid
    */
-  ChangeColor(int startTime, int endTime, Color startColor, Color endColor)
+  public ChangeColor(int startTime, int endTime, Color startColor, Color endColor)
       throws IllegalArgumentException {
     super(startTime, endTime);
     if (startColor == null || endColor == null) {
