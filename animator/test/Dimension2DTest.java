@@ -87,6 +87,8 @@ public class Dimension2DTest {
     assertTrue(a.equals(a2));
     assertTrue(b.equals(b2));
     assertFalse(a.equals(b2));
+    assertTrue(a.equals(a));
+    assertTrue(b.equals(b));
 
     Dimension2D swapA = new Dimension2D(2,1);
     assertFalse(a.equals(swapA));
