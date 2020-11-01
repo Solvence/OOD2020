@@ -212,4 +212,26 @@ public class ChangeSizeTest {
     assertEquals(this.c3.getEndTime(), 75);
   }
 
+
+  // test equals method.
+  @Test
+  public void testEquals() {
+    assertTrue(this.c1.equals(this.c1));
+    assertTrue(this.c2.equals(this.c2));
+    assertTrue(this.c3.equals(this.c3));
+    assertFalse(this.c1.equals(this.c2));
+    assertFalse(this.c2.equals(this.c1));
+    assertFalse(this.c1.equals(this.c3));
+    assertFalse(this.c1.equals("hello"));
+    assertFalse(this.c1.equals(new Move(1,2,new Position2D(1,1),new Position2D(1,2))));
+    assertFalse(this.c1.equals(new ChangeColor(1,2,new Color(1,1,1),new Color(1,2,1))));
+
+
+    AnimatedObjectCommand otherC1 = new ChangeSize(1, 15, new Dimension2D(1, 1), new Dimension2D(15, 1));
+    AnimatedObjectCommand otherC2  = new ChangeSize(20, 21, new Dimension2D(15, 1), new Dimension2D(6, 1));
+
+    assertTrue(this.c1.equals(otherC1));
+    assertTrue(this.c2.equals(otherC2));
+  }
+
 }

@@ -70,7 +70,7 @@ public class ChangeSize extends AbstractCommand {
 
   @Override
   public boolean equals(Object other) {
-    if (!(other instanceof Move)) {
+    if (!(other instanceof ChangeSize)) {
       return false;
     } else {
       ChangeSize otherChangeSize = (ChangeSize) other;
