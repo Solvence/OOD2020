@@ -20,6 +20,9 @@ public class BasicAnimatedObject implements AnimatedObject {
    * @param commands    - commands to be called on the shape
    */
   public BasicAnimatedObject(Shape baseShape, List<AnimatedObjectCommand> commands) {
+    if (baseShape == null || commands == null ) {
+      throw new IllegalArgumentException("Shape and commands must not be null");
+    }
     this.baseShape = baseShape;
     this.commands = commands;
   }
