@@ -63,13 +63,13 @@ public class ChangeSizeTest {
     AnimatedObjectCommand invalid = new ChangeSize(2, 2, new Dimension2D(1, 1), new Dimension2D(1, 1));
   }
 
-  // test constructor throws exception if startPosition is null.
+  // test constructor throws exception if startDimension is null.
   @Test(expected = IllegalArgumentException.class)
   public void testCommandStartPositionNull() {
     AnimatedObjectCommand invalid = new ChangeSize(2, 2, null, new Dimension2D(1, 1));
   }
 
-  // test constructor throws exception if endPosition is null.
+  // test constructor throws exception if endDimension is null.
   @Test(expected = IllegalArgumentException.class)
   public void testCommandEndPositionNull() {
     AnimatedObjectCommand invalid = new ChangeSize(2, 2, new Dimension2D(1, 1), null);
@@ -85,7 +85,7 @@ public class ChangeSizeTest {
 
   // called apply on not applicable / startcoord don't line up
   @Test(expected = IllegalArgumentException.class)
-  public void testApplyShapeCoordsNotAtStartCoord() {
+  public void testApplyShapeCoordsNotAtStartSize() {
     c2.apply(s1, 20);
   }
 
