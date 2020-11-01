@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import model.dimension2D.Dimension2D;
 import model.position2d.Position2D;
 
@@ -27,8 +28,8 @@ public class Ellipse implements Shape {
    * @param position   Position of ellipse
    */
   public Ellipse(int xRad, int yRad, Color color, Position2D position) {
-    if (xRad < 0 || yRad < 0) {
-      throw new IllegalArgumentException("can't have negative dimensions");
+    if (xRad < 0 || yRad < 0 || color == null || position == null) {
+      throw new IllegalArgumentException("can't have negative dimensions or null values");
     }
     this.xRad = xRad;
     this.yRad = yRad;
@@ -39,7 +40,7 @@ public class Ellipse implements Shape {
   @Override
   public Shape build(Position2D position, Color color, Dimension2D size)
       throws IllegalArgumentException {
-    return new Rectangle(size.getXDir(), size.getYDir(), color, position);
+    return new Ellipse(size.getXDir(), size.getYDir(), color, position);
   }
 
   @Override
@@ -55,5 +56,25 @@ public class Ellipse implements Shape {
   @Override
   public Dimension2D getSize() {
     return new Dimension2D(this.xRad, this.yRad);
+  }
+
+  /**
+   * An Ellipse is equal to an Object if the object is an Ellipse and has the same dimensions,
+   * color, and position as this Ellipse
+   * @param other - the other Object being compared with this Ellipse
+   * @return - true if this Ellipse is equal to the Object, false otherwise
+   */
+  @Override
+  public boolean equals(Object other) {
+    return other instanceof Ellipse
+        && this.xRad == ((Ellipse) other).getSize().getXDir()
+        && this.yRad == ((Ellipse) other).getSize().getYDir()
+        && this.color.equals(((Ellipse) other).getColor())
+        && this.position.equals(((Ellipse) other).getPosition());
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(this.xRad, this.yRad, this.color, this.position);
   }
 }

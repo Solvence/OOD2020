@@ -22,9 +22,6 @@ Shape object
 -size
 -position
 -color
--setPosition
--setSize
--setColor
 
 interface AnimationObjectCommand
 -class changeSize 
@@ -32,17 +29,22 @@ interface AnimationObjectCommand
 -class move
 -canCall
 
-Design choices:
-- store commands
-- where should position be stored
-
-Design choices Decisions to make:
-- how to get a shape at a given time?
-
 Invariants:
 - time cant be negative
 - endTime > startTime
 - AnimatedObjects commands is always sorted by startTime
 
-TODO:
--think about toString in commands/model for the view
+Things to consider:
+- we used java.awt despite Amit's warning against it
+- We decided to allow the width/height of a Shape to be 0
+- Right now, when Shapes are created we require the initial position, color, and size to be
+  inputted. This may require much stress on the controller to determine the initial state.
+
+Questions:
+- should build be static?
+- should constructors for Ellipse/Rectangle take in Dimension2D instead of separate fields?
+
+Stuff to mention:
+- Added equals for Ellipse
+
+

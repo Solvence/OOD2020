@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import model.dimension2D.Dimension2D;
 import model.position2d.Position2D;
 
@@ -26,8 +27,8 @@ public class Rectangle implements Shape {
    * @param position position of rectangle
    */
   public Rectangle(int width, int height, Color color, Position2D position) {
-    if (width < 0 || height < 0) {
-      throw new IllegalArgumentException("can't have negative dimensions");
+    if (width < 0 || height < 0 || color == null || position == null) {
+      throw new IllegalArgumentException("can't have negative dimensions or null inputs");
     }
     this.width = width;
     this.height = height;
@@ -54,5 +55,25 @@ public class Rectangle implements Shape {
   @Override
   public Dimension2D getSize() {
     return new Dimension2D(this.width, this.height);
+  }
+
+  /**
+   * An Rectangle is equal to an Object if the object is an Rectangle and has the same dimensions,
+   * color, and position as this Rectangle
+   * @param other - the other Object being compared with this Rectangle
+   * @return - true if this Rectangle is equal to the Object, false otherwise
+   */
+  @Override
+  public boolean equals(Object other) {
+    return other instanceof Rectangle
+        && this.width == ((Rectangle) other).getSize().getXDir()
+        && this.height == ((Rectangle) other).getSize().getYDir()
+        && this.color.equals(((Rectangle) other).getColor())
+        && this.position.equals(((Rectangle) other).getPosition());
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(this.width, this.height, this.color, this.position);
   }
 }
