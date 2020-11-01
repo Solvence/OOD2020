@@ -12,7 +12,7 @@ import model.position2d.Position2D;
 /**
  * Represents an Ellipse Shape.
  */
-class Ellipse implements Shape {
+public class Ellipse implements Shape {
   final private int xRad;
   final private int yRad;
   private final Color color;

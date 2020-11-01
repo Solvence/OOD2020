@@ -28,6 +28,7 @@ public class ChangeColor extends AbstractCommand {
     this.endColor = endColor;
   }
 
+
   @Override
   public Shape apply(Shape s, int time) throws IllegalArgumentException {
     if (!this.applicable(time, s)) {
