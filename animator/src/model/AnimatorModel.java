@@ -28,8 +28,9 @@ public interface AnimatorModel {
    *
    * @param time time frame to be rendered
    * @return List of copies of shapes
+   * @throws IllegalArgumentException if time is negative
    */
-  Map<String, Shape> getStateAt(int time);
+  Map<String, Shape> getStateAt(int time) throws IllegalArgumentException;
 
   /**
    * Move a shape with the given name to a given point during the given interval of time.

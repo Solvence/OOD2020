@@ -45,7 +45,10 @@ public class BasicAnimatedObject implements AnimatedObject {
 
 
   @Override
-  public Shape getShape(int time) {
+  public Shape getShape(int time) throws IllegalArgumentException {
+    if (time < 0) {
+      throw new IllegalArgumentException("time cannot be negative");
+    }
     int commandIndex = 0;
     Shape currentShape = baseShape.build(baseShape.getPosition(),
         baseShape.getColor(), baseShape.getSize());

@@ -62,4 +62,22 @@ public class ChangeColor extends AbstractCommand {
   public boolean sameType(AnimatedObjectCommand other) {
     return other instanceof ChangeColor;
   }
+
+  @Override
+  public boolean equals(Object other) {
+    if (!(other instanceof Move)) {
+      return false;
+    } else {
+      ChangeColor otherChangeColor = (ChangeColor) other;
+      return this.startTime == otherChangeColor.startTime
+          && this.endTime == otherChangeColor.endTime
+          && this.startColor.equals(otherChangeColor.startColor)
+          && this.endColor.equals(otherChangeColor.endColor);
+    }
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(this.startTime, this.endTime, this.startColor, this.endColor);
+  }
 }

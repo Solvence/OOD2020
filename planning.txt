@@ -35,14 +35,10 @@ Invariants:
 - AnimatedObjects commands is always sorted by startTime
 
 Things to consider:
-- we used java.awt despite Amit's warning against it
+- we used java.awt for Colors despite Amit's warning against it
 - We decided to allow the width/height of a Shape to be 0
 - Right now, when Shapes are created we require the initial position, color, and size to be
   inputted. This may require much stress on the controller to determine the initial state.
-
-Questions:
-- should build be static?
-- should constructors for Ellipse/Rectangle take in Dimension2D instead of separate fields?
 
 Stuff to mention:
 - Added equals for Ellipse

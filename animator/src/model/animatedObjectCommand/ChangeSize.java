@@ -3,6 +3,7 @@ package model.animatedObjectCommand;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Objects;
 import model.dimension2D.Dimension2D;
 import model.shape.Shape;
 
@@ -65,5 +66,23 @@ public class ChangeSize extends AbstractCommand {
   @Override
   public boolean sameType(AnimatedObjectCommand other) {
     return other instanceof ChangeSize;
+  }
+
+  @Override
+  public boolean equals(Object other) {
+    if (!(other instanceof Move)) {
+      return false;
+    } else {
+      ChangeSize otherChangeSize = (ChangeSize) other;
+      return this.startTime == otherChangeSize.startTime
+          && this.endTime == otherChangeSize.endTime
+          && this.startSize.equals(otherChangeSize.startSize)
+          && this.endSize.equals(otherChangeSize.endSize);
+    }
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(this.startTime, this.endTime, this.startSize, this.endSize);
   }
 }

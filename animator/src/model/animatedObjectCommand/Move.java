@@ -1,5 +1,6 @@
 package model.animatedObjectCommand;
 
+import java.util.Objects;
 import model.position2d.Position2D;
 import model.shape.Shape;
 
@@ -56,5 +57,23 @@ public class Move extends AbstractCommand {
   @Override
   public boolean sameType(AnimatedObjectCommand other) {
     return other instanceof Move;
+  }
+
+  @Override
+  public boolean equals(Object other) {
+    if (!(other instanceof Move)) {
+      return false;
+    } else {
+      Move otherMove = (Move) other;
+      return this.startTime == otherMove.startTime
+          && this.endTime == otherMove.endTime
+          && this.startPosition.equals(otherMove.startPosition)
+          && this.endPosition.equals(otherMove.endPosition);
+    }
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(this.startTime, this.endTime, this.startPosition, this.endPosition);
   }
 }

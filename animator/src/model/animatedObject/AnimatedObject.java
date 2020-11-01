@@ -14,8 +14,9 @@ public interface AnimatedObject {
    *
    * @param time time frame
    * @return shape as it would be animated at given time
+   * @throws IllegalArgumentException if time is negative
    */
-  Shape getShape(int time);
+  Shape getShape(int time) throws IllegalArgumentException;
 
   /**
    * Adds a animation command to the collection of commands on a animated object based off of its

@@ -36,7 +36,10 @@ public class BasicAnimatorModel implements AnimatorModel {
   }
 
   @Override
-  public Map<String, Shape> getStateAt(int time) {
+  public Map<String, Shape> getStateAt(int time) throws IllegalArgumentException {
+    if (time < 0) {
+      throw new IllegalArgumentException("time cannot be negative");
+    }
     Map<String, Shape> shapesAtTime = new HashMap<>();
     for (Map.Entry<String, AnimatedObject> e : this.animatedObjects.entrySet()) {
       String currentName = e.getKey();
