@@ -172,4 +172,13 @@ public class EllipseTest {
     assertEquals(e3.hashCode(), e7.hashCode());
     assertEquals(e4.hashCode(), e8.hashCode());
   }
+
+  /**
+   * Tests that the toString method functions correctly
+   */
+  @Test
+  public void testToString() {
+    assertEquals(e1.toString(), "Ellipse");
+    assertEquals(e2.toString(), "Ellipse");
+  }
 }

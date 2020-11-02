@@ -17,7 +17,7 @@ import model.shape.Shape;
  */
 public class BasicAnimatorModel implements AnimatorModel {
 
-  Map<String, AnimatedObject> animatedObjects;
+  private Map<String, AnimatedObject> animatedObjects;
 
   /**
    * Default Constructor for BasicAnimatorModel.

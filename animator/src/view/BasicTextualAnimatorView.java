@@ -23,12 +23,12 @@ public class BasicTextualAnimatorView implements AnimatorView {
    * @param model   - model to be displayed
    * @param log     - log of passed displays
    */
-  BasicTextualAnimatorView(AnimatorModel model, Appendable log) {
+  public BasicTextualAnimatorView(AnimatorModel model, Appendable log) {
     this.model = model;
     this.log = log;
   }
 
-  BasicTextualAnimatorView(AnimatorModel model) {
+  public BasicTextualAnimatorView(AnimatorModel model) {
     this(model, new StringBuilder());
   }
 
@@ -54,8 +54,9 @@ public class BasicTextualAnimatorView implements AnimatorView {
       }
       Collections.sort(times);
 
-      StringBuilder currentRow = new StringBuilder();
-
+      StringBuilder currentShapeOutput = new StringBuilder();
+      currentShapeOutput.append("Shape - " + name
+          + " - " + animated.getShape(0).toString() + "\n");
 
       for (int i = 1; i < times.size(); i++) {
         int startTime = times.get(i - 1);
@@ -67,17 +68,17 @@ public class BasicTextualAnimatorView implements AnimatorView {
         Color startColor = startShape.getColor();
         Color endColor = endShape.getColor();
 
-        currentRow.append(String.format("Motion %s %02d %03d %03d %02d %03d %03d %03d %03d",
+        currentShapeOutput.append(String.format("Motion %s %02d %03d %03d %02d %03d %03d %03d %03d",
             name, startTime, startShape.getPosition().getX(), startShape.getPosition().getY(),
             startSize.getXDir(), startSize.getYDir(), startColor.getRed(),
             startColor.getGreen(), startColor.getBlue()));
 
-        currentRow.append(String.format("      %02d %03d %03d %02d %03d %03d %03d %03d\n",
+        currentShapeOutput.append(String.format("      %02d %03d %03d %02d %03d %03d %03d %03d\n",
             endTime, endShape.getPosition().getX(), endShape.getPosition().getY(),
             endSize.getXDir(), endSize.getYDir(), endColor.getRed(),
             endColor.getGreen(), endColor.getBlue()));
       }
-      table.append(currentRow);
+      table.append(currentShapeOutput);
     }
     return table.toString();
   }

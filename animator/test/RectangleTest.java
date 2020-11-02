@@ -176,4 +176,13 @@ public class RectangleTest {
     assertEquals(r3.hashCode(), r7.hashCode());
     assertEquals(r4.hashCode(), r8.hashCode());
   }
+
+  /**
+   * Tests that the toString method functions correctly
+   */
+  @Test
+  public void testToString() {
+    assertEquals(r1.toString(), "Rectangle");
+    assertEquals(r2.toString(), "Rectangle");
+  }
 }

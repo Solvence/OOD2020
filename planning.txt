@@ -39,8 +39,24 @@ Things to consider:
 - We decided to allow the width/height of a Shape to be 0
 - Right now, when Shapes are created we require the initial position, color, and size to be
   inputted. This may require much stress on the controller to determine the initial state.
+- We don't allow overlap within the same type of command (e.g. moving x-coord from t=1-10 and
+  moving y-coord from t=5-15)
+- Our textual view just goes through the intervals of commands, while it's supposed to represent
+  a textual view of an animation (that should maybe call getStateAt at every frame?)
+- Perhaps we should use a visitor to couple the model to the view for drawing shapes: a shape
+  (let's say a square) has a render method that would take in a view and call
+  view.renderSquare(this)
 
-Stuff to mention:
-- Added equals for Ellipse
+Questions:
+- should we actually have a getAnimatedObjects method in the model? I'm thinking maybe just a
+  getShapeNames method would be better design...
+
+TODO:
+- document invariants before constructors
+- creation outputs in view, probably want the key (bar with w, h, x, y, ...) too
+- make sure the builder/factory implementations are correct
+
+TODO Later:
+- change Color references in model to not use java.awt
 
 

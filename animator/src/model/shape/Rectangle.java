@@ -76,4 +76,9 @@ public class Rectangle implements Shape {
   public int hashCode() {
     return Objects.hash(this.width, this.height, this.color, this.position);
   }
+
+  @Override
+  public String toString() {
+    return "Rectangle";
+  }
 }
