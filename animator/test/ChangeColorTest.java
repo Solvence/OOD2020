@@ -211,4 +211,41 @@ public class ChangeColorTest {
     assertEquals(this.c3.getEndTime(), 75);
   }
 
+  // test equals method.
+  @Test
+  public void testEquals() {
+    assertTrue(this.c1.equals(this.c1));
+    assertTrue(this.c2.equals(this.c2));
+    assertTrue(this.c3.equals(this.c3));
+    assertFalse(this.c1.equals(this.c2));
+    assertFalse(this.c2.equals(this.c1));
+    assertFalse(this.c1.equals(this.c3));
+    assertFalse(this.c1.equals("hello"));
+    assertFalse(this.c1.equals(new Move(1,2,new Position2D(1,1),new Position2D(1,2))));
+    assertFalse(this.c1.equals(new ChangeSize(1,2,new Dimension2D(1,1),new Dimension2D(1,2))));
+
+
+    AnimatedObjectCommand otherC1 = new ChangeColor(1, 15, new Color(10,10,10), new Color(11, 10, 155));
+    AnimatedObjectCommand otherC2  = new ChangeColor(20, 21, new Color(11, 10, 155), new Color(200, 200, 200));
+
+    assertTrue(this.c1.equals(otherC1));
+    assertTrue(this.c2.equals(otherC2));
+  }
+
+  //test hashcode.
+  @Test
+  public void testHashcode() {
+    assertEquals(this.c1.hashCode(), -514783744);
+    assertEquals(this.c2.hashCode(), -499740849);
+    assertEquals(this.c3.hashCode(), -506755936);
+
+    assertEquals(this.c1.hashCode(), this.c1.hashCode());
+    assertEquals(this.c2.hashCode(), this.c2.hashCode());
+    AnimatedObjectCommand otherC1 = new ChangeColor(1, 15, new Color(10,10,10), new Color(11, 10, 155));
+    AnimatedObjectCommand otherC2  = new ChangeColor(20, 21, new Color(11, 10, 155), new Color(200, 200, 200));
+
+    assertEquals(this.c1.hashCode(), otherC1.hashCode());
+    assertEquals(this.c2.hashCode(), otherC2.hashCode());
+  }
+
 }

@@ -65,7 +65,7 @@ public class ChangeColor extends AbstractCommand {
 
   @Override
   public boolean equals(Object other) {
-    if (!(other instanceof Move)) {
+    if (!(other instanceof ChangeColor)) {
       return false;
     } else {
       ChangeColor otherChangeColor = (ChangeColor) other;

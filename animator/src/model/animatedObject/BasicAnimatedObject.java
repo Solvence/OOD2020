@@ -85,7 +85,7 @@ public class BasicAnimatedObject implements AnimatedObject {
   }
 
   // We know returning references to original commands is okay, since we know their fields are
-  // immutable
+  // immutable.
   @Override
   public List<AnimatedObjectCommand> getCommands() {
     return new ArrayList<>(this.commands);
