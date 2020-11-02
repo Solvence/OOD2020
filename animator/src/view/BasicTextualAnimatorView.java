@@ -15,13 +15,15 @@ import model.shape.Shape;
  * Represents a textual translation of an animation
  */
 public class BasicTextualAnimatorView implements AnimatorView {
+
   private final AnimatorModel model;
   private final Appendable log;
 
   /**
    * Loaded Constructor
-   * @param model   - model to be displayed
-   * @param log     - log of passed displays
+   *
+   * @param model - model to be displayed
+   * @param log   - log of passed displays
    */
   public BasicTextualAnimatorView(AnimatorModel model, Appendable log) {
     this.model = model;
@@ -42,8 +44,7 @@ public class BasicTextualAnimatorView implements AnimatorView {
   public String toString() {
     StringBuilder table = new StringBuilder();
 
-
-    for (Map.Entry<String, AnimatedObject> e: this.model.getAnimatedObjects().entrySet()) {
+    for (Map.Entry<String, AnimatedObject> e : this.model.getAnimatedObjects().entrySet()) {
       ArrayList<Integer> times = new ArrayList<>();
       String name = e.getKey();
       AnimatedObject animated = e.getValue();
@@ -55,8 +56,12 @@ public class BasicTextualAnimatorView implements AnimatorView {
       Collections.sort(times);
 
       StringBuilder currentShapeOutput = new StringBuilder();
-      currentShapeOutput.append("Shape - " + name
-          + " - " + animated.getShape(0).toString() + "\n");
+      currentShapeOutput.append("Shape - ").append(name).append(" - ")
+          .append(animated.getShape(0).toString()).append("\n");
+
+      currentShapeOutput.append(
+          "Start: time | x | y | width| height| r | g | b |")
+          .append("      End: time | x | y | width| height| r | g | b |\n");
 
       for (int i = 1; i < times.size(); i++) {
         int startTime = times.get(i - 1);

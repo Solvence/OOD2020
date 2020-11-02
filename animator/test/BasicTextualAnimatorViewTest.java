@@ -67,8 +67,8 @@ public class BasicTextualAnimatorViewTest {
   }
 
   /**
-   * Tests that the textual view behaves as expected when multiple Shapes are created
-   * and multiple commands are given
+   * Tests that the textual view behaves as expected when multiple Shapes are created and multiple
+   * commands are given
    */
   @Test
   public void testAllToString() {
@@ -81,13 +81,19 @@ public class BasicTextualAnimatorViewTest {
     model.create("My Shape", new Rectangle(20, 10, Color.BLUE,
         new Position2D(3, 5)));
 
-    assertEquals(view.toString(), "Shape - My Shape - Rectangle\n");
+    assertEquals(view.toString(), "Shape - My Shape - Rectangle\n"
+        + "Start: time | x | y | width| height| r | g | b |      "
+        + "End: time | x | y | width| height| r | g | b |\n");
 
     model.create("My Other Shape", new Ellipse(15, 12, Color.BLACK,
         new Position2D(7, -3)));
 
     assertEquals(view.toString(), "Shape - My Shape - Rectangle\n"
-        + "Shape - My Other Shape - Ellipse\n");
+        + "Start: time | x | y | width| height| r | g | b |      "
+        + "End: time | x | y | width| height| r | g | b |\n"
+        + "Shape - My Other Shape - Ellipse\n"
+        + "Start: time | x | y | width| height| r | g | b |      "
+        + "End: time | x | y | width| height| r | g | b |\n");
 
     model.move("My Shape", 0, 10, new Position2D(3, 5),
         new Position2D(10, 11));
@@ -106,16 +112,21 @@ public class BasicTextualAnimatorViewTest {
         new Dimension2D(15, 22));
 
     assertEquals(view.toString(), "Shape - My Shape - Rectangle\n"
+        + "Start: time | x | y | width| height| r | g | b |      "
+        + "End: time | x | y | width| height| r | g | b |\n"
         + "Motion My Shape 00 003 005 20 010 000 000 255      05 006 008 20 010 000 000 255\n"
         + "Motion My Shape 05 006 008 20 010 000 000 255      07 007 009 20 010 039 030 216\n"
         + "Motion My Shape 07 007 009 20 010 039 030 216      10 010 011 14 011 098 076 157\n"
         + "Motion My Shape 10 010 011 14 011 098 076 157      16 010 011 00 015 215 169 040\n"
         + "Motion My Shape 16 010 011 00 015 215 169 040      18 010 011 00 015 255 200 000\n"
         + "Shape - My Other Shape - Ellipse\n"
+        + "Start: time | x | y | width| height| r | g | b |      "
+        + "End: time | x | y | width| height| r | g | b |\n"
         + "Motion My Other Shape 03 007 -03 15 012 000 000 000      07 000 -02 15 012 000 000 000\n"
         + "Motion My Other Shape 07 000 -02 15 012 000 000 000      07 000 -02 15 012 000 000 000\n"
         + "Motion My Other Shape 07 000 -02 15 012 000 000 000      12 -10 000 15 014 098 098 098\n"
         + "Motion My Other Shape 12 -10 000 15 014 098 098 098      20 -10 000 15 019 255 255 255\n"
-        + "Motion My Other Shape 20 -10 000 15 019 255 255 255      24 -10 000 15 022 255 255 255\n");
+        + "Motion My Other Shape 20 -10 000 15 019 255 255 255      "
+        + "24 -10 000 15 022 255 255 255\n");
   }
 }
