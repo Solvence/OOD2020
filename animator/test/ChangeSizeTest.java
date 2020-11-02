@@ -234,4 +234,20 @@ public class ChangeSizeTest {
     assertTrue(this.c2.equals(otherC2));
   }
 
+  //test hashcode.
+  @Test
+  public void testHashcode() {
+    assertEquals(this.c1.hashCode(), 999937);
+    assertEquals(this.c2.hashCode(), 1584907);
+    assertEquals(this.c3.hashCode(), 3114037);
+
+    assertEquals(this.c1.hashCode(), this.c1.hashCode());
+    assertEquals(this.c2.hashCode(), this.c2.hashCode());
+    AnimatedObjectCommand otherC1 = new ChangeSize(1, 15, new Dimension2D(1, 1), new Dimension2D(15, 1));
+    AnimatedObjectCommand otherC2  = new ChangeSize(20, 21, new Dimension2D(15, 1), new Dimension2D(6, 1));
+
+    assertEquals(this.c1.hashCode(), otherC1.hashCode());
+    assertEquals(this.c2.hashCode(), otherC2.hashCode());
+  }
+
 }
