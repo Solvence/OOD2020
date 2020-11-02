@@ -54,9 +54,12 @@ Some Utility classes we used for our implementation include:
     
 Invariants in design:
 
+    - BasicAnimatorModel - Can't have two AnimatedObjects with the same name.
+
     - BasicTextualAnimatorView: Field must not be null.
     
-    - BasicAnimatedObject: Field must not be null.
+    - BasicAnimatedObject: Field must not be null. Two or more of the same type of command can't overlap 
+                           time intervals.
     
     - Move: StartPos or EndPos must not be null. Time intervals can't have negative start times or endtime, 
             and endtime must always be greater than starttime.
