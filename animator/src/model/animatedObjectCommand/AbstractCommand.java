@@ -9,6 +9,7 @@ public abstract class AbstractCommand implements AnimatedObjectCommand {
 
   /**
    * Constructs a command on a animated Shape
+   * INVARIANT: endTime > starTime >= 0
    * @param startTime - the time at which this animation command starts to execute
    * @param endTime - the time at which this animation command is finished
    */

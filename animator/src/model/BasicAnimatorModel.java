@@ -21,6 +21,7 @@ public class BasicAnimatorModel implements AnimatorModel {
 
   /**
    * Default Constructor for BasicAnimatorModel.
+   * INVARIANT: animatedObjects cannot contain two objects with the same name key
    */
   public BasicAnimatorModel() {
     this.animatedObjects = new HashMap<>();
@@ -29,7 +30,7 @@ public class BasicAnimatorModel implements AnimatorModel {
 
   @Override
   public void create(String name, Shape s) {
-    if (s == null || this.animatedObjects.containsKey(name)) {
+    if (s == null || this.animatedObjects.containsKey(name) || name == "") {
       throw new IllegalArgumentException("invalid inputs");
     }
     this.animatedObjects.put(name, new BasicAnimatedObject(s));

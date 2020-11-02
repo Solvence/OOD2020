@@ -11,6 +11,7 @@ public class Move extends AbstractCommand {
 
   /**
    * Construct a Move Command.
+   * INVARIANT: startPosition and endPosition cannot be null
    * @param startTime            Beginning of time interval for running command
    * @param endTime              End of time interval for running command
    * @param startPosition        Beginning Position before Move Command

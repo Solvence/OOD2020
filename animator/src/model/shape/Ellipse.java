@@ -22,6 +22,7 @@ public class Ellipse implements Shape {
 
   /**
    * Construct an ellipse.
+   * INVARIANT: xRad and yRad cannot be negative, and color and position cannot be null
    * @param xRad       Radius in x direction
    * @param yRad       Radius in y direction
    * @param color      Color of ellipse

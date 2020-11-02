@@ -14,6 +14,7 @@ public class ChangeSize extends AbstractCommand {
 
   /**
    * Construct a Move Command.
+   * INVARIANT: startSize and endSize cannot be null
    * @param startTime            Beginning of time interval for running command
    * @param endTime              End of time interval for running command
    * @param startSize        Beginning size before Move Command

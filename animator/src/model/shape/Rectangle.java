@@ -21,6 +21,7 @@ public class Rectangle implements Shape {
 
   /**
    * Constructs a Rectangle.
+   * INVARIANT: width and height cannot be negative, and color and position cannot be null
    * @param width    width of rectangle
    * @param height   height of rectangle
    * @param color    color of rectangle

@@ -12,6 +12,7 @@ public class ChangeColor extends AbstractCommand {
 
   /**
    * Construct a ChangeColor Command.
+   * INVARIANT: startColor and endColor cannot be null
    * @param startTime            Beginning of time interval for running command
    * @param endTime              End of time interval for running command
    * @param startColor           Beginning color before Move Command

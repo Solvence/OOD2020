@@ -16,6 +16,8 @@ public class BasicAnimatedObject implements AnimatedObject {
 
   /**
    * Loaded Constructor.
+   * INVARIANT: baseShape and commands cannot be null
+   * INVARIANT: two or more of the same type of command cannot overlap time interval-wise
    * @param baseShape   - Shape to be animated
    * @param commands    - commands to be called on the shape
    */

@@ -10,7 +10,8 @@ public final class Dimension2D {
   private final int yDir;
 
   /**
-   * Initialize this dimension object
+   * Initialize this dimension object.
+   * INVARIANT: xDir and yDir cannot be negative
    */
   public Dimension2D(int xDir, int yDir) {
     if (xDir < 0 || yDir < 0) {
@@ -21,7 +22,7 @@ public final class Dimension2D {
   }
 
   /**
-   * Copy constructor
+   * Copy constructor.
    */
   public Dimension2D(Dimension2D dm) {
     this(dm.xDir, dm.yDir);
