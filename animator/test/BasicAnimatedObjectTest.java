@@ -1,4 +1,5 @@
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotSame;
 
 import java.awt.Color;
@@ -28,8 +29,10 @@ public class BasicAnimatedObjectTest {
 
   @Before
   public void setUp() {
-    this.s1 = new Rectangle(10, 10, new Color(10, 10, 10), new Position2D(0, 0));
-    this.s2 = new Ellipse(2, 6, new Color(14, 100, 22), new Position2D(15, 1));
+    this.s1 = new Rectangle(10, 10, new Color(10, 10, 10),
+        new Position2D(0, 0));
+    this.s2 = new Ellipse(2, 6, new Color(14, 100, 22),
+        new Position2D(15, 1));
     this.ao1 = new BasicAnimatedObject(s1);
     this.ao2 = new BasicAnimatedObject(s2);
   }
@@ -219,6 +222,59 @@ public class BasicAnimatedObjectTest {
     assertNotSame(ao1.getCommands(), testList);
     testList.add(c4);
     assertEquals(ao1.getCommands(), testList);
+  }
+
+  /**
+   * Tests that the equals method functions properly and returns true/false when expected to
+   */
+  @Test
+  public void testEquals() {
+    assertEquals(ao1, new BasicAnimatedObject(
+        new Rectangle(10, 10, new Color(10, 10, 10),
+            new Position2D(0, 0))));
+    assertEquals(ao2, new BasicAnimatedObject(
+        new Ellipse(2, 6, new Color(14, 100, 22),
+            new Position2D(15, 1))));
+
+    BasicAnimatedObject ao3 = new BasicAnimatedObject(
+        new Rectangle(10, 10, new Color(10, 10, 10),
+            new Position2D(0, 0)));
+
+    ao3.addCommand(new Move(0, 10, new Position2D(0, 0), new Position2D(10, -7)));
+
+    assertNotEquals(ao1, ao3);
+    assertNotEquals(ao2, new BasicAnimatedObject(
+        new Ellipse(3, 6, new Color(14, 100, 22),
+            new Position2D(15, 1))));
+    assertNotEquals(ao2, new BasicAnimatedObject(
+        new Ellipse(2, 7, new Color(14, 100, 22),
+            new Position2D(15, 1))));
+    assertNotEquals(ao2, new BasicAnimatedObject(
+        new Ellipse(2, 6, new Color(14, 110, 22),
+            new Position2D(15, 1))));
+    assertNotEquals(ao2, new BasicAnimatedObject(
+        new Ellipse(2, 6, new Color(14, 100, 22),
+            new Position2D(-15, 1))));
+  }
+
+  /**
+   * tests that if two BasicAnimatedObjects are equal, they have the same hashcode
+   */
+  @Test
+  public void testHashCode() {
+    BasicAnimatedObject ao3 = new BasicAnimatedObject(
+        new Rectangle(10, 10, new Color(10, 10, 10),
+            new Position2D(0, 0)));
+
+    BasicAnimatedObject ao4 = new BasicAnimatedObject(
+        new Ellipse(2, 6, new Color(14, 100, 22),
+            new Position2D(15, 1)));
+
+    assertEquals(ao1, ao3);
+    assertEquals(ao2, ao4);
+
+    assertEquals(ao1.hashCode(), ao3.hashCode());
+    assertEquals(ao2.hashCode(), ao4.hashCode());
   }
 
 

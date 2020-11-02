@@ -78,6 +78,7 @@ public class Move extends AbstractCommand {
 
   @Override
   public int hashCode() {
-    return Objects.hash(this.startTime, this.endTime, this.startPosition, this.endPosition);
+    return Objects.hash(this.startTime, this.endTime, this.startPosition, this.endPosition,
+        "Move");
   }
 }

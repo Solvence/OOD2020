@@ -78,14 +78,11 @@ public class Position2DTest {
     assertFalse(a.equals(h));
   }
 
-  // test hashCode method in Position2D.
+  // tests that if two Positon2Ds are equal, they have the same hashCode
   @Test
   public void testHashCode() {
-    assertEquals(a.hashCode(), 994);
     assertEquals(a.hashCode(), a2.hashCode());
     assertEquals(b.hashCode(), b2.hashCode());
-    assertEquals(b.hashCode(), 1040);
-    assertEquals(c.hashCode(), 111085);
   }
 
 

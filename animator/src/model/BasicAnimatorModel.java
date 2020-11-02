@@ -30,7 +30,7 @@ public class BasicAnimatorModel implements AnimatorModel {
 
   @Override
   public void create(String name, Shape s) {
-    if (s == null || this.animatedObjects.containsKey(name) || name == "") {
+    if (s == null || this.animatedObjects.containsKey(name) || name == null) {
       throw new IllegalArgumentException("invalid inputs");
     }
     this.animatedObjects.put(name, new BasicAnimatedObject(s));
@@ -56,7 +56,6 @@ public class BasicAnimatorModel implements AnimatorModel {
     this.animatedObjects.get(s)
         .addCommand(new Move(startTime, endTime, startPosition, endPosition));
   }
-
 
   @Override
   public void changeColor(String s, int startTime, int endTime, Color startColor, Color endColor)

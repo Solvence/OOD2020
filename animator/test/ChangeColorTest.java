@@ -235,9 +235,6 @@ public class ChangeColorTest {
   //test hashcode.
   @Test
   public void testHashcode() {
-    assertEquals(this.c1.hashCode(), -514783744);
-    assertEquals(this.c2.hashCode(), -499740849);
-    assertEquals(this.c3.hashCode(), -506755936);
 
     assertEquals(this.c1.hashCode(), this.c1.hashCode());
     assertEquals(this.c2.hashCode(), this.c2.hashCode());

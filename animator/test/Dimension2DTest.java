@@ -99,11 +99,8 @@ public class Dimension2DTest {
   // test hashCode method in Dimension2D.
   @Test
   public void testHashCode() {
-    assertEquals(a.hashCode(), 994);
     assertEquals(a.hashCode(), a2.hashCode());
     assertEquals(b.hashCode(), b2.hashCode());
-    assertEquals(b.hashCode(), 1040);
-    assertEquals(c.hashCode(), 111085);
   }
 
 

@@ -235,10 +235,6 @@ public class MoveTest {
   //test hashcode.
   @Test
   public void testHashcode() {
-    assertEquals(this.c1.hashCode(), 998944);
-    assertEquals(this.c2.hashCode(), 1584875);
-    assertEquals(this.c3.hashCode(), 3114037);
-
     assertEquals(this.c1.hashCode(), this.c1.hashCode());
     assertEquals(this.c2.hashCode(), this.c2.hashCode());
     AnimatedObjectCommand otherC1 = new Move(1, 15, new Position2D(0, 0), new Position2D(15, 0));

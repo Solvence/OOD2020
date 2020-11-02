@@ -76,7 +76,8 @@ public class Ellipse implements Shape {
 
   @Override
   public int hashCode() {
-    return Objects.hash(this.xRad, this.yRad, this.color, this.position);
+    return Objects.hash(this.xRad, this.yRad, this.color, this.position,
+        "Ellipse");
   }
 
   @Override

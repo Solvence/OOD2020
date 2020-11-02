@@ -66,6 +66,6 @@ public final class Dimension2D {
 
   @Override
   public int hashCode() {
-    return Objects.hash(this.xDir, this.yDir);
+    return Objects.hash(this.xDir, this.yDir, "Dimension2D");
   }
 }

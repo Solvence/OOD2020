@@ -2,6 +2,7 @@ package model.animatedObject;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import model.animatedObjectCommand.AnimatedObjectCommand;
 import model.shape.Shape;
 
@@ -18,6 +19,7 @@ public class BasicAnimatedObject implements AnimatedObject {
    * Loaded Constructor.
    * INVARIANT: baseShape and commands cannot be null
    * INVARIANT: two or more of the same type of command cannot overlap time interval-wise
+   * INVARIANT: commands is sorted by start time of the command interval
    * @param baseShape   - Shape to be animated
    * @param commands    - commands to be called on the shape
    */
@@ -91,5 +93,26 @@ public class BasicAnimatedObject implements AnimatedObject {
   @Override
   public List<AnimatedObjectCommand> getCommands() {
     return new ArrayList<>(this.commands);
+  }
+
+  /**
+   * A BasicAnimatedObject is equal to another Object if that object is also a BasicAnimated object
+   * with equivalent commands (in the same order) and equivalent base shape.
+   * @param other - the Object that this Animated object is being compared to
+   * @return - whether this BasicAnimatedObject is equal to the given object
+   */
+  @Override
+  public boolean equals(Object other) {
+    if (!(other instanceof BasicAnimatedObject)) {
+      return false;
+    }
+    BasicAnimatedObject otherAnimated = (BasicAnimatedObject) other;
+    return this.commands.equals(otherAnimated.commands)
+        && this.baseShape.equals(otherAnimated.baseShape);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(this.baseShape, this.commands, "BasicAnimatedObject");
   }
 }

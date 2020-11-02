@@ -40,7 +40,9 @@ public class BasicTextualAnimatorViewTest {
     model.create("My Shape", new Rectangle(20, 10, Color.BLUE,
         new Position2D(3, 5)));
 
-    assertEquals(view.toString(), "Shape - My Shape - Rectangle\n");
+    assertEquals(view.toString(), "Shape - My Shape - Rectangle\n"
+        + "Start: time | x | y | width| height| r | g | b |      "
+        + "End: time | x | y | width| height| r | g | b |\n");
   }
 
   /**
@@ -57,13 +59,19 @@ public class BasicTextualAnimatorViewTest {
     model.create("My Shape", new Rectangle(20, 10, Color.BLUE,
         new Position2D(3, 5)));
 
-    assertEquals(view.toString(), "Shape - My Shape - Rectangle\n");
+    assertEquals(view.toString(), "Shape - My Shape - Rectangle\n"
+        + "Start: time | x | y | width| height| r | g | b |      "
+        + "End: time | x | y | width| height| r | g | b |\n");
 
     model.create("My Other Shape", new Ellipse(20, 10, Color.BLUE,
         new Position2D(3, 5)));
 
     assertEquals(view.toString(), "Shape - My Shape - Rectangle\n"
-        + "Shape - My Other Shape - Ellipse\n");
+        + "Start: time | x | y | width| height| r | g | b |      "
+        + "End: time | x | y | width| height| r | g | b |\n"
+        + "Shape - My Other Shape - Ellipse\n"
+        + "Start: time | x | y | width| height| r | g | b |      "
+        + "End: time | x | y | width| height| r | g | b |\n");
   }
 
   /**

@@ -62,6 +62,6 @@ public final class Position2D {
 
   @Override
   public int hashCode() {
-    return Objects.hash(this.x, this.y);
+    return Objects.hash(this.x, this.y, "Position2D");
   }
 }

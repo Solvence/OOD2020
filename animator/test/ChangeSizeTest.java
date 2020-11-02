@@ -237,9 +237,6 @@ public class ChangeSizeTest {
   //test hashcode.
   @Test
   public void testHashcode() {
-    assertEquals(this.c1.hashCode(), 999937);
-    assertEquals(this.c2.hashCode(), 1584907);
-    assertEquals(this.c3.hashCode(), 3114037);
 
     assertEquals(this.c1.hashCode(), this.c1.hashCode());
     assertEquals(this.c2.hashCode(), this.c2.hashCode());
