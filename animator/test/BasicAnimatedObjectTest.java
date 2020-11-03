@@ -5,13 +5,13 @@ import static org.junit.Assert.assertNotSame;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
-import model.animatedObject.AnimatedObject;
-import model.animatedObject.BasicAnimatedObject;
-import model.animatedObjectCommand.AnimatedObjectCommand;
-import model.animatedObjectCommand.ChangeColor;
-import model.animatedObjectCommand.ChangeSize;
-import model.animatedObjectCommand.Move;
-import model.dimension2D.Dimension2D;
+import model.animatedobject.AnimatedObject;
+import model.animatedobject.BasicAnimatedObject;
+import model.animatedobjectcommand.AnimatedObjectCommand;
+import model.animatedobjectcommand.ChangeColor;
+import model.animatedobjectcommand.ChangeSize;
+import model.animatedobjectcommand.Move;
+import model.dimension2d.Dimension2D;
 import model.position2d.Position2D;
 import model.shape.Ellipse;
 import model.shape.Rectangle;
@@ -19,6 +19,9 @@ import model.shape.Shape;
 import org.junit.Before;
 import org.junit.Test;
 
+/**
+ * Tests and examples for the BasicAnimatedObject class.
+ */
 public class BasicAnimatedObjectTest {
 
   AnimatedObject ao1;
@@ -225,7 +228,7 @@ public class BasicAnimatedObjectTest {
   }
 
   /**
-   * Tests that the equals method functions properly and returns true/false when expected to
+   * Tests that the equals method functions properly and returns true/false when expected to.
    */
   @Test
   public void testEquals() {
@@ -258,7 +261,7 @@ public class BasicAnimatedObjectTest {
   }
 
   /**
-   * tests that if two BasicAnimatedObjects are equal, they have the same hashcode
+   * tests that if two BasicAnimatedObjects are equal, they have the same hashcode.
    */
   @Test
   public void testHashCode() {

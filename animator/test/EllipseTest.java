@@ -1,17 +1,19 @@
 import java.awt.Color;
-import model.dimension2D.Dimension2D;
+import model.dimension2d.Dimension2D;
 import model.position2d.Position2D;
 import model.shape.Ellipse;
 
 import org.junit.Test;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.fail;
 
 /**
- * Represent various tests for the Ellipse class
+ * Represent various tests for the Ellipse class.
  */
 public class EllipseTest {
+
   private Ellipse e1 = new Ellipse(7, 4, Color.BLUE, new Position2D(50, 75));
   private Ellipse e2 = new Ellipse(0, 4, Color.WHITE, new Position2D(-50, 75));
   private Ellipse e3 = new Ellipse(7, 0, Color.ORANGE, new Position2D(50, -75));
@@ -19,8 +21,8 @@ public class EllipseTest {
       new Position2D(-50, -75));
 
   /**
-   * Tests that the Ellipse constructor throws an exception when negative dimensions are given
-   * or when null values are given
+   * Tests that the Ellipse constructor throws an exception when negative dimensions are given or
+   * when null values are given.
    */
   @Test
   public void testConstructorInvalidInputs() {
@@ -57,7 +59,7 @@ public class EllipseTest {
   }
 
   /**
-   * Tests that the build method functions correctly given proper inputs
+   * Tests that the build method functions correctly given proper inputs.
    */
   @Test
   public void testBuild() {
@@ -71,7 +73,7 @@ public class EllipseTest {
   }
 
   /**
-   * Tests that the getPosition method properly computes the position of the Ellipse
+   * Tests that the getPosition method properly computes the position of the Ellipse.
    */
   @Test
   public void testGetPosition() {
@@ -82,7 +84,7 @@ public class EllipseTest {
   }
 
   /**
-   * Tests that the getColor method properly computes the color of the Ellipse
+   * Tests that the getColor method properly computes the color of the Ellipse.
    */
   @Test
   public void testGetColor() {
@@ -93,7 +95,7 @@ public class EllipseTest {
   }
 
   /**
-   * Tests that the getSize method properly computes the dimensions of the Ellipse
+   * Tests that the getSize method properly computes the dimensions of the Ellipse.
    */
   @Test
   public void testGetSize() {
@@ -104,7 +106,7 @@ public class EllipseTest {
   }
 
   /**
-   * Tests that the equals method properly returns true when we want it to return true
+   * Tests that the equals method properly returns true when we want it to return true.
    */
   @Test
   public void testEqualsTrue() {
@@ -122,7 +124,7 @@ public class EllipseTest {
   }
 
   /**
-   * Tests that the equals method properly returns false when we want it to return false
+   * Tests that the equals method properly returns false when we want it to return false.
    */
   @Test
   public void testEqualsFalse() {
@@ -151,7 +153,7 @@ public class EllipseTest {
   }
 
   /**
-   * Tests that if two Ellipses are equal, they have the same hashcode
+   * Tests that if two Ellipses are equal, they have the same hashcode.
    */
   @Test
   public void testHashCode() {
@@ -174,7 +176,7 @@ public class EllipseTest {
   }
 
   /**
-   * Tests that the toString method functions correctly
+   * Tests that the toString method functions correctly.
    */
   @Test
   public void testToString() {

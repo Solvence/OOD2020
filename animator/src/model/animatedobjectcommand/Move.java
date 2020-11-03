@@ -1,21 +1,24 @@
-package model.animatedObjectCommand;
+package model.animatedobjectcommand;
 
 import java.util.Objects;
 import model.position2d.Position2D;
 import model.shape.Shape;
 
+/**
+ * Represents a command to change the position of an animated Shape.
+ */
 public class Move extends AbstractCommand {
 
   private final Position2D startPosition;
   private final Position2D endPosition;
 
   /**
-   * Construct a Move Command.
-   * INVARIANT: startPosition and endPosition cannot be null
-   * @param startTime            Beginning of time interval for running command
-   * @param endTime              End of time interval for running command
-   * @param startPosition        Beginning Position before Move Command
-   * @param endPosition          End Position after move Command
+   * Construct a Move Command. INVARIANT: startPosition and endPosition cannot be null
+   *
+   * @param startTime     Beginning of time interval for running command
+   * @param endTime       End of time interval for running command
+   * @param startPosition Beginning Position before Move Command
+   * @param endPosition   End Position after move Command
    * @throws IllegalArgumentException - if time interval is invalid or positions are null
    */
   public Move(int startTime, int endTime, Position2D startPosition, Position2D endPosition)
@@ -44,7 +47,7 @@ public class Move extends AbstractCommand {
     int newX = (timeFromStart * distX) / (totalTimeFrame) + this.startPosition.getX();
     int newY = (timeFromStart * distY) / (totalTimeFrame) + this.startPosition.getY();
 
-    return s.build(new Position2D(newX,newY), s.getColor(), s.getSize());
+    return s.build(new Position2D(newX, newY), s.getColor(), s.getSize());
   }
 
   @Override

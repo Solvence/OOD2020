@@ -4,11 +4,11 @@ import static org.junit.Assert.assertTrue;
 
 
 import java.awt.Color;
-import model.animatedObjectCommand.AnimatedObjectCommand;
-import model.animatedObjectCommand.ChangeColor;
-import model.animatedObjectCommand.ChangeSize;;
-import model.animatedObjectCommand.Move;
-import model.dimension2D.Dimension2D;
+import model.animatedobjectcommand.AnimatedObjectCommand;
+import model.animatedobjectcommand.ChangeColor;
+import model.animatedobjectcommand.ChangeSize;
+import model.animatedobjectcommand.Move;
+import model.dimension2d.Dimension2D;
 import model.position2d.Position2D;
 import model.shape.Ellipse;
 import model.shape.Rectangle;
@@ -32,7 +32,7 @@ public class ChangeSizeTest {
   public void setUp() {
     this.c1 = new ChangeSize(1, 15, new Dimension2D(1, 1), new Dimension2D(15, 1));
     this.c2 = new ChangeSize(20, 21, new Dimension2D(15, 1), new Dimension2D(6, 1));
-    this.c3 = new ChangeSize(70, 75,new Dimension2D(2, 2), new Dimension2D(10, 25));
+    this.c3 = new ChangeSize(70, 75, new Dimension2D(2, 2), new Dimension2D(10, 25));
     this.s1 = new Rectangle(1, 1, new Color(10, 10, 10), new Position2D(0, 0));
     this.s2 = new Ellipse(15, 1, new Color(11, 10, 155), new Position2D(15, 0));
     this.s3 = new Rectangle(2, 2, new Color(10, 20, 10), new Position2D(2, 2));
@@ -43,25 +43,29 @@ public class ChangeSizeTest {
   // test constructor throws exception for negative start time.
   @Test(expected = IllegalArgumentException.class)
   public void testCommandNegativeStartTime() {
-    AnimatedObjectCommand invalid = new ChangeSize(-1, 2, new Dimension2D(1, 1), new Dimension2D(2, 1));
+    AnimatedObjectCommand invalid = new ChangeSize(-1, 2, new Dimension2D(1, 1),
+        new Dimension2D(2, 1));
   }
 
   // test constructor throws exception for negative end time.
   @Test(expected = IllegalArgumentException.class)
   public void testCommandNegativeEndTime() {
-    AnimatedObjectCommand invalid = new ChangeSize(2, -2, new Dimension2D(1, 1), new Dimension2D(2, 1));
+    AnimatedObjectCommand invalid = new ChangeSize(2, -2, new Dimension2D(1, 1),
+        new Dimension2D(2, 1));
   }
 
   // test constructor throws exception for endtime before starttime.
   @Test(expected = IllegalArgumentException.class)
   public void testCommandStartTimeBeforeEndTime() {
-    AnimatedObjectCommand invalid = new ChangeSize(2, 1, new Dimension2D(1, 1), new Dimension2D(1, 2));
+    AnimatedObjectCommand invalid = new ChangeSize(2, 1, new Dimension2D(1, 1),
+        new Dimension2D(1, 2));
   }
 
   // test constructor throws exception for zero second interval.
   @Test(expected = IllegalArgumentException.class)
   public void testCommandStartTimeEqualEndTime() {
-    AnimatedObjectCommand invalid = new ChangeSize(2, 2, new Dimension2D(1, 1), new Dimension2D(1, 1));
+    AnimatedObjectCommand invalid = new ChangeSize(2, 2, new Dimension2D(1, 1),
+        new Dimension2D(1, 1));
   }
 
   // test constructor throws exception if startDimension is null.
@@ -93,80 +97,80 @@ public class ChangeSizeTest {
   @Test
   public void testApply() {
     // time is equal to end time
-    assertEquals(s1.getPosition(), new Position2D(0,0));
-    assertEquals(s1.getColor(), new Color(10,10,10));
-    assertEquals(s1.getSize(), new Dimension2D(1,1));
-    Shape newS1 = c1.apply(s1,15);
-    assertEquals(s1.getPosition(), new Position2D(0,0));
-    assertEquals(s1.getColor(), new Color(10,10,10));
-    assertEquals(s1.getSize(), new Dimension2D(1,1));
-    assertEquals(newS1.getPosition(), new Position2D(0,0));
-    assertEquals(newS1.getColor(), new Color(10,10,10));
-    assertEquals(newS1.getSize(), new Dimension2D(15,1));
+    assertEquals(s1.getPosition(), new Position2D(0, 0));
+    assertEquals(s1.getColor(), new Color(10, 10, 10));
+    assertEquals(s1.getSize(), new Dimension2D(1, 1));
+    Shape newS1 = c1.apply(s1, 15);
+    assertEquals(s1.getPosition(), new Position2D(0, 0));
+    assertEquals(s1.getColor(), new Color(10, 10, 10));
+    assertEquals(s1.getSize(), new Dimension2D(1, 1));
+    assertEquals(newS1.getPosition(), new Position2D(0, 0));
+    assertEquals(newS1.getColor(), new Color(10, 10, 10));
+    assertEquals(newS1.getSize(), new Dimension2D(15, 1));
 
     // time is greater than end time
 
-    assertEquals(s2.getPosition(), new Position2D(15,0));
-    assertEquals(s2.getColor(), new Color(11,10,155));
-    assertEquals(s2.getSize(), new Dimension2D(15,1));
-    Shape newS2 = c2.apply(s2,25);
-    assertEquals(s2.getPosition(), new Position2D(15,0));
-    assertEquals(s2.getColor(), new Color(11,10,155));
-    assertEquals(s2.getSize(), new Dimension2D(15,1));
-    assertEquals(newS2.getPosition(), new Position2D(15,0));
-    assertEquals(newS2.getColor(), new Color(11,10,155));
-    assertEquals(newS2.getSize(), new Dimension2D(6,1));
+    assertEquals(s2.getPosition(), new Position2D(15, 0));
+    assertEquals(s2.getColor(), new Color(11, 10, 155));
+    assertEquals(s2.getSize(), new Dimension2D(15, 1));
+    Shape newS2 = c2.apply(s2, 25);
+    assertEquals(s2.getPosition(), new Position2D(15, 0));
+    assertEquals(s2.getColor(), new Color(11, 10, 155));
+    assertEquals(s2.getSize(), new Dimension2D(15, 1));
+    assertEquals(newS2.getPosition(), new Position2D(15, 0));
+    assertEquals(newS2.getColor(), new Color(11, 10, 155));
+    assertEquals(newS2.getSize(), new Dimension2D(6, 1));
 
-    assertEquals(s1.getPosition(), new Position2D(0,0));
-    assertEquals(s1.getColor(), new Color(10,10,10));
-    assertEquals(s1.getSize(), new Dimension2D(1,1));
-    newS1 = c1.apply(s1,46);
-    assertEquals(s1.getPosition(), new Position2D(0,0));
-    assertEquals(s1.getColor(), new Color(10,10,10));
-    assertEquals(s1.getSize(), new Dimension2D(1,1));
-    assertEquals(newS1.getPosition(), new Position2D(0,0));
-    assertEquals(newS1.getColor(), new Color(10,10,10));
-    assertEquals(newS1.getSize(), new Dimension2D(15,1));
+    assertEquals(s1.getPosition(), new Position2D(0, 0));
+    assertEquals(s1.getColor(), new Color(10, 10, 10));
+    assertEquals(s1.getSize(), new Dimension2D(1, 1));
+    newS1 = c1.apply(s1, 46);
+    assertEquals(s1.getPosition(), new Position2D(0, 0));
+    assertEquals(s1.getColor(), new Color(10, 10, 10));
+    assertEquals(s1.getSize(), new Dimension2D(1, 1));
+    assertEquals(newS1.getPosition(), new Position2D(0, 0));
+    assertEquals(newS1.getColor(), new Color(10, 10, 10));
+    assertEquals(newS1.getSize(), new Dimension2D(15, 1));
 
     // time is inbetween intervals
-    assertEquals(s3.getSize(), new Dimension2D(2,2));
-    Shape newS3 = c3.apply(s3,71);
-    assertEquals(newS3.getSize(), new Dimension2D(3,6));
-    newS3 = c3.apply(s3,72);
-    assertEquals(newS3.getSize(), new Dimension2D(5,11));
-    newS3 = c3.apply(s3,73);
-    assertEquals(newS3.getSize(), new Dimension2D(6,15));
-    newS3 = c3.apply(s3,74);
-    assertEquals(newS3.getSize(), new Dimension2D(8,20));
+    assertEquals(s3.getSize(), new Dimension2D(2, 2));
+    Shape newS3 = c3.apply(s3, 71);
+    assertEquals(newS3.getSize(), new Dimension2D(3, 6));
+    newS3 = c3.apply(s3, 72);
+    assertEquals(newS3.getSize(), new Dimension2D(5, 11));
+    newS3 = c3.apply(s3, 73);
+    assertEquals(newS3.getSize(), new Dimension2D(6, 15));
+    newS3 = c3.apply(s3, 74);
+    assertEquals(newS3.getSize(), new Dimension2D(8, 20));
 
-    assertEquals(s1.getSize(), new Dimension2D(1,1));
-    newS1 = c1.apply(s1,10);
-    assertEquals(newS1.getSize(), new Dimension2D(10,1));
-    newS1 = c1.apply(s1,12);
-    assertEquals(newS1.getSize(), new Dimension2D(12,1));
-    newS1 = c1.apply(s1,6);
-    assertEquals(newS1.getSize(), new Dimension2D(6,1));
+    assertEquals(s1.getSize(), new Dimension2D(1, 1));
+    newS1 = c1.apply(s1, 10);
+    assertEquals(newS1.getSize(), new Dimension2D(10, 1));
+    newS1 = c1.apply(s1, 12);
+    assertEquals(newS1.getSize(), new Dimension2D(12, 1));
+    newS1 = c1.apply(s1, 6);
+    assertEquals(newS1.getSize(), new Dimension2D(6, 1));
 
     // time is equal to start
 
-    assertEquals(s3.getSize(), new Dimension2D(2,2));
-    newS3 = c3.apply(s3,70);
-    assertEquals(newS3.getSize(), new Dimension2D(2,2));
+    assertEquals(s3.getSize(), new Dimension2D(2, 2));
+    newS3 = c3.apply(s3, 70);
+    assertEquals(newS3.getSize(), new Dimension2D(2, 2));
 
-    assertEquals(s1.getSize(), new Dimension2D(1,1));
-    newS1 = c1.apply(s1,1);
-    assertEquals(newS1.getSize(), new Dimension2D(1,1));
+    assertEquals(s1.getSize(), new Dimension2D(1, 1));
+    newS1 = c1.apply(s1, 1);
+    assertEquals(newS1.getSize(), new Dimension2D(1, 1));
 
-    assertEquals(s2.getSize(), new Dimension2D(15,1));
-    newS2 = c2.apply(s2,20);
-    assertEquals(newS2.getSize(), new Dimension2D(15,1));
+    assertEquals(s2.getSize(), new Dimension2D(15, 1));
+    newS2 = c2.apply(s2, 20);
+    assertEquals(newS2.getSize(), new Dimension2D(15, 1));
 
     // chaining two ChangeSize commands together together
-    assertEquals(s1.getSize(), new Dimension2D(1,1));
-    newS1 = c1.apply(s1,20);
-    assertEquals(newS1.getSize(), new Dimension2D(15,1));
-    newS2 = c2.apply(newS1,20);
-    assertEquals(newS2.getSize(), new Dimension2D(15,1));
+    assertEquals(s1.getSize(), new Dimension2D(1, 1));
+    newS1 = c1.apply(s1, 20);
+    assertEquals(newS1.getSize(), new Dimension2D(15, 1));
+    newS2 = c2.apply(newS1, 20);
+    assertEquals(newS2.getSize(), new Dimension2D(15, 1));
 
   }
 
@@ -174,13 +178,13 @@ public class ChangeSizeTest {
   // test if applicable works accordingly.
   @Test
   public void testApplicable() {
-    assertTrue(c1.applicable(2,s1));
-    assertTrue(c1.applicable(15,s1));
-    assertTrue(c1.applicable(1,s1));
-    assertFalse(c1.applicable(0,s1));
-    assertFalse(c1.applicable(10,s2));
-    assertFalse(c2.applicable(10,s2));
-    assertTrue(c2.applicable(20,s2));
+    assertTrue(c1.applicable(2, s1));
+    assertTrue(c1.applicable(15, s1));
+    assertTrue(c1.applicable(1, s1));
+    assertFalse(c1.applicable(0, s1));
+    assertFalse(c1.applicable(10, s2));
+    assertFalse(c2.applicable(10, s2));
+    assertTrue(c2.applicable(20, s2));
   }
 
 
@@ -223,12 +227,13 @@ public class ChangeSizeTest {
     assertFalse(this.c2.equals(this.c1));
     assertFalse(this.c1.equals(this.c3));
     assertFalse(this.c1.equals("hello"));
-    assertFalse(this.c1.equals(new Move(1,2,new Position2D(1,1),new Position2D(1,2))));
-    assertFalse(this.c1.equals(new ChangeColor(1,2,new Color(1,1,1),new Color(1,2,1))));
+    assertFalse(this.c1.equals(new Move(1, 2, new Position2D(1, 1), new Position2D(1, 2))));
+    assertFalse(this.c1.equals(new ChangeColor(1, 2, new Color(1, 1, 1), new Color(1, 2, 1))));
 
-
-    AnimatedObjectCommand otherC1 = new ChangeSize(1, 15, new Dimension2D(1, 1), new Dimension2D(15, 1));
-    AnimatedObjectCommand otherC2  = new ChangeSize(20, 21, new Dimension2D(15, 1), new Dimension2D(6, 1));
+    AnimatedObjectCommand otherC1 = new ChangeSize(1, 15, new Dimension2D(1, 1),
+        new Dimension2D(15, 1));
+    AnimatedObjectCommand otherC2 = new ChangeSize(20, 21, new Dimension2D(15, 1),
+        new Dimension2D(6, 1));
 
     assertTrue(this.c1.equals(otherC1));
     assertTrue(this.c2.equals(otherC2));
@@ -240,8 +245,10 @@ public class ChangeSizeTest {
 
     assertEquals(this.c1.hashCode(), this.c1.hashCode());
     assertEquals(this.c2.hashCode(), this.c2.hashCode());
-    AnimatedObjectCommand otherC1 = new ChangeSize(1, 15, new Dimension2D(1, 1), new Dimension2D(15, 1));
-    AnimatedObjectCommand otherC2  = new ChangeSize(20, 21, new Dimension2D(15, 1), new Dimension2D(6, 1));
+    AnimatedObjectCommand otherC1 = new ChangeSize(1, 15, new Dimension2D(1, 1),
+        new Dimension2D(15, 1));
+    AnimatedObjectCommand otherC2 = new ChangeSize(20, 21, new Dimension2D(15, 1),
+        new Dimension2D(6, 1));
 
     assertEquals(this.c1.hashCode(), otherC1.hashCode());
     assertEquals(this.c2.hashCode(), otherC2.hashCode());

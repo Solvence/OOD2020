@@ -3,12 +3,12 @@ package model;
 import java.awt.Color;
 import java.util.HashMap;
 import java.util.Map;
-import model.animatedObject.AnimatedObject;
-import model.animatedObject.BasicAnimatedObject;
-import model.animatedObjectCommand.ChangeColor;
-import model.animatedObjectCommand.ChangeSize;
-import model.animatedObjectCommand.Move;
-import model.dimension2D.Dimension2D;
+import model.animatedobject.AnimatedObject;
+import model.animatedobject.BasicAnimatedObject;
+import model.animatedobjectcommand.ChangeColor;
+import model.animatedobjectcommand.ChangeSize;
+import model.animatedobjectcommand.Move;
+import model.dimension2d.Dimension2D;
 import model.position2d.Position2D;
 import model.shape.Shape;
 
@@ -20,8 +20,8 @@ public class BasicAnimatorModel implements AnimatorModel {
   private Map<String, AnimatedObject> animatedObjects;
 
   /**
-   * Default Constructor for BasicAnimatorModel.
-   * INVARIANT: animatedObjects cannot contain two objects with the same name key
+   * Default Constructor for BasicAnimatorModel. INVARIANT: animatedObjects cannot contain two
+   * objects with the same name key
    */
   public BasicAnimatorModel() {
     this.animatedObjects = new HashMap<>();

@@ -2,31 +2,29 @@ package model.shape;
 
 
 import java.awt.Color;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import java.util.Objects;
-import model.dimension2D.Dimension2D;
+import model.dimension2d.Dimension2D;
 import model.position2d.Position2D;
 
 /**
  * Represents an Ellipse Shape.
  */
 public class Ellipse implements Shape {
-  final private int xRad;
-  final private int yRad;
+
+  private final int xRad;
+  private final int yRad;
   private final Color color;
   private final Position2D position;
 
 
   /**
-   * Construct an ellipse.
-   * INVARIANT: xRad and yRad cannot be negative, and color and position cannot be null
-   * @param xRad       Radius in x direction
-   * @param yRad       Radius in y direction
-   * @param color      Color of ellipse
-   * @param position   Position of ellipse
+   * Construct an ellipse. INVARIANT: xRad and yRad cannot be negative, and color and position
+   * cannot be null.
+   *
+   * @param xRad     Radius in x direction
+   * @param yRad     Radius in y direction
+   * @param color    Color of ellipse
+   * @param position Position of ellipse
    */
   public Ellipse(int xRad, int yRad, Color color, Position2D position) {
     if (xRad < 0 || yRad < 0 || color == null || position == null) {
@@ -61,7 +59,8 @@ public class Ellipse implements Shape {
 
   /**
    * An Ellipse is equal to an Object if the object is an Ellipse and has the same dimensions,
-   * color, and position as this Ellipse
+   * color, and position as this Ellipse.
+   *
    * @param other - the other Object being compared with this Ellipse
    * @return - true if this Ellipse is equal to the Object, false otherwise
    */

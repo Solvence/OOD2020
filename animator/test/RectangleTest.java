@@ -1,18 +1,19 @@
 import java.awt.Color;
-import model.dimension2D.Dimension2D;
+import model.dimension2d.Dimension2D;
 import model.position2d.Position2D;
-import model.shape.Ellipse;
 
 import model.shape.Rectangle;
 import org.junit.Test;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.fail;
 
 /**
- * Represent various tests for the Rectangle class
+ * Represent various tests for the Rectangle class.
  */
 public class RectangleTest {
+
   private Rectangle r1 = new Rectangle(7, 4, Color.BLUE,
       new Position2D(50, 75));
   private Rectangle r2 = new Rectangle(0, 4, Color.WHITE,
@@ -23,8 +24,8 @@ public class RectangleTest {
       new Position2D(-50, -75));
 
   /**
-   * Tests that the Rectangle constructor throws an exception when negative dimensions are given
-   * or when null values are given
+   * Tests that the Rectangle constructor throws an exception when negative dimensions are given or
+   * when null values are given.
    */
   @Test
   public void testConstructorInvalidInputs() {
@@ -61,7 +62,7 @@ public class RectangleTest {
   }
 
   /**
-   * Tests that the build method functions correctly given proper inputs
+   * Tests that the build method functions correctly given proper inputs.
    */
   @Test
   public void testBuild() {
@@ -75,7 +76,7 @@ public class RectangleTest {
   }
 
   /**
-   * Tests that the getPosition method properly computes the position of the Rectangle
+   * Tests that the getPosition method properly computes the position of the Rectangle.
    */
   @Test
   public void testGetPosition() {
@@ -86,7 +87,7 @@ public class RectangleTest {
   }
 
   /**
-   * Tests that the getColor method properly computes the color of the Rectangle
+   * Tests that the getColor method properly computes the color of the Rectangle.
    */
   @Test
   public void testGetColor() {
@@ -97,7 +98,7 @@ public class RectangleTest {
   }
 
   /**
-   * Tests that the getSize method properly computes the dimensions of the Rectangle
+   * Tests that the getSize method properly computes the dimensions of the Rectangle.
    */
   @Test
   public void testGetSize() {
@@ -108,7 +109,7 @@ public class RectangleTest {
   }
 
   /**
-   * Tests that the equals method properly returns true when we want it to return true
+   * Tests that the equals method properly returns true when we want it to return true.
    */
   @Test
   public void testEqualsTrue() {
@@ -126,7 +127,7 @@ public class RectangleTest {
   }
 
   /**
-   * Tests that the equals method properly returns false when we want it to return false
+   * Tests that the equals method properly returns false when we want it to return false.
    */
   @Test
   public void testEqualsFalse() {
@@ -155,7 +156,7 @@ public class RectangleTest {
   }
 
   /**
-   * Tests that if two Ellipses are equal, they have the same hashcode
+   * Tests that if two Ellipses are equal, they have the same hashcode.
    */
   @Test
   public void testHashCode() {
@@ -178,7 +179,7 @@ public class RectangleTest {
   }
 
   /**
-   * Tests that the toString method functions correctly
+   * Tests that the toString method functions correctly.
    */
   @Test
   public void testToString() {

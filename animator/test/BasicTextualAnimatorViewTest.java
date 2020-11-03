@@ -1,7 +1,7 @@
 import java.awt.Color;
 import model.AnimatorModel;
 import model.BasicAnimatorModel;
-import model.dimension2D.Dimension2D;
+import model.dimension2d.Dimension2D;
 import model.position2d.Position2D;
 import model.shape.Ellipse;
 import model.shape.Rectangle;
@@ -11,11 +11,14 @@ import view.BasicTextualAnimatorView;
 
 import static org.junit.Assert.assertEquals;
 
+/**
+ * Tests and Examples for the BasicTextualAnimator class.
+ */
 public class BasicTextualAnimatorViewTest {
 
 
   /**
-   * Tests that the textual view is empty when no Shapes have been created
+   * Tests that the textual view is empty when no Shapes have been created.
    */
   @Test
   public void testStartToString() {
@@ -27,7 +30,7 @@ public class BasicTextualAnimatorViewTest {
   }
 
   /**
-   * Tests that the textual view behaves as expected when one Shape is created
+   * Tests that the textual view behaves as expected when one Shape is created.
    */
   @Test
   public void testCreateOneToString() {
@@ -46,7 +49,7 @@ public class BasicTextualAnimatorViewTest {
   }
 
   /**
-   * Tests that the textual view behaves as expected when multiple Shapes are created
+   * Tests that the textual view behaves as expected when multiple Shapes are created.
    */
   @Test
   public void testCreateMoreToString() {
@@ -76,7 +79,7 @@ public class BasicTextualAnimatorViewTest {
 
   /**
    * Tests that the textual view behaves as expected when multiple Shapes are created and multiple
-   * commands are given
+   * commands are given.
    */
   @Test
   public void testAllToString() {

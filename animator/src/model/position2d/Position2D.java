@@ -3,14 +3,15 @@ package model.position2d;
 import java.util.Objects;
 
 /**
- * This class represents a 2D position
+ * This class represents a 2D position.
  */
 public final class Position2D {
+
   private final int x;
   private final int y;
 
   /**
-   * Initialize this object to the specified position
+   * Initialize this object to the specified position.
    */
   public Position2D(int x, int y) {
     this.x = x;
@@ -18,14 +19,15 @@ public final class Position2D {
   }
 
   /**
-   * Copy constructor
+   * Copy constructor.
    */
   public Position2D(Position2D v) {
     this(v.x, v.y);
   }
 
   /**
-   * Computes the x value of the position
+   * Computes the x value of the position.
+   *
    * @return the x value of the position
    */
   public int getX() {
@@ -33,7 +35,8 @@ public final class Position2D {
   }
 
   /**
-   * Computes the y value of the position
+   * Computes the y value of the position.
+   *
    * @return the y value of the position
    */
   public int getY() {

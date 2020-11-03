@@ -1,22 +1,24 @@
-package model.animatedObjectCommand;
+package model.animatedobjectcommand;
 
 import java.awt.Color;
 import java.util.Objects;
-import model.position2d.Position2D;
 import model.shape.Shape;
 
+/**
+ * Represents a command to change the color of an animated Shape.
+ */
 public class ChangeColor extends AbstractCommand {
 
   private final Color startColor;
   private final Color endColor;
 
   /**
-   * Construct a ChangeColor Command.
-   * INVARIANT: startColor and endColor cannot be null
-   * @param startTime            Beginning of time interval for running command
-   * @param endTime              End of time interval for running command
-   * @param startColor           Beginning color before Move Command
-   * @param endColor             End color after move Command
+   * Construct a ChangeColor Command. INVARIANT: startColor and endColor cannot be null
+   *
+   * @param startTime  Beginning of time interval for running command
+   * @param endTime    End of time interval for running command
+   * @param startColor Beginning color before Move Command
+   * @param endColor   End color after move Command
    * @throws IllegalArgumentException - if either color is null or time interval is invalid
    */
   public ChangeColor(int startTime, int endTime, Color startColor, Color endColor)

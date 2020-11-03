@@ -5,24 +5,24 @@ import java.awt.Color;
 import java.util.HashMap;
 import model.AnimatorModel;
 import model.BasicAnimatorModel;
-import model.animatedObject.BasicAnimatedObject;
-import model.animatedObjectCommand.ChangeColor;
-import model.animatedObjectCommand.ChangeSize;
-import model.animatedObjectCommand.Move;
-import model.dimension2D.Dimension2D;
+import model.animatedobject.BasicAnimatedObject;
+import model.animatedobjectcommand.ChangeColor;
+import model.animatedobjectcommand.ChangeSize;
+import model.animatedobjectcommand.Move;
+import model.dimension2d.Dimension2D;
 import model.position2d.Position2D;
 import model.shape.Ellipse;
 import model.shape.Rectangle;
 import org.junit.Test;
 
 /**
- * Examples and tests for the BasicAnimatorModel class
+ * Examples and tests for the BasicAnimatorModel class.
  */
 public class BasicAnimatorModelTest {
 
   /**
-   * Tests that the create method throws an exception if null inputs are
-   * given or the given name already is assigned to a Shape
+   * Tests that the create method throws an exception if null inputs are given or the given name
+   * already is assigned to a Shape.
    */
   @Test
   public void testCreateException() {
@@ -63,9 +63,9 @@ public class BasicAnimatorModelTest {
   }
 
   /**
-   * Tests that the create method works as intended when proper inputs are given.
-   * Also tests getAnimatedObjects works as intended (since this method must be called if
-   * we wish to test the the expected changes from create occurred).
+   * Tests that the create method works as intended when proper inputs are given. Also tests
+   * getAnimatedObjects works as intended (since this method must be called if we wish to test the
+   * the expected changes from create occurred).
    */
   @Test
   public void testCreate() {
@@ -77,7 +77,7 @@ public class BasicAnimatorModelTest {
         new Position2D(6, 4)));
 
     assertEquals(new BasicAnimatedObject(new Ellipse(20, 15, Color.BLUE,
-        new Position2D(6, 4))),
+            new Position2D(6, 4))),
         model.getAnimatedObjects().get("Pog"));
 
     assertEquals(null, model.getAnimatedObjects().get("Wow"));
@@ -103,15 +103,15 @@ public class BasicAnimatorModelTest {
         Color.PINK);
 
     assertEquals(new ChangeColor(3, 14,
-        Color.ORANGE,
-        Color.PINK),
+            Color.ORANGE,
+            Color.PINK),
         model.getAnimatedObjects().get("Wow").getCommands().get(0));
 
 
   }
 
   /**
-   * Tests that the move method functions properly given proper inputs
+   * Tests that the move method functions properly given proper inputs.
    */
   @Test
   public void testMove() {
@@ -146,14 +146,14 @@ public class BasicAnimatorModelTest {
         new Position2D(0, -10));
 
     assertEquals(new Move(3, 14,
-        new Position2D(-6, -4),
-        new Position2D(0, -10)),
+            new Position2D(-6, -4),
+            new Position2D(0, -10)),
         model.getAnimatedObjects().get("Wow").getCommands().get(0));
   }
 
   /**
    * Tests that the move method functions properly throws an exception if an overlapping move
-   * command is attempted
+   * command is attempted.
    */
   @Test
   public void testMoveException() {
@@ -182,7 +182,7 @@ public class BasicAnimatorModelTest {
   }
 
   /**
-   * Tests that the changeColor method functions properly given proper inputs
+   * Tests that the changeColor method functions properly given proper inputs.
    */
   @Test
   public void testChangeColor() {
@@ -225,7 +225,7 @@ public class BasicAnimatorModelTest {
   }
 
   /**
-   * Tests that the changeSize method functions properly given proper inputs
+   * Tests that the changeSize method functions properly given proper inputs.
    */
   @Test
   public void testChangeSize() {

@@ -1,24 +1,24 @@
-package model.animatedObjectCommand;
+package model.animatedobjectcommand;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Objects;
-import model.dimension2D.Dimension2D;
+import model.dimension2d.Dimension2D;
 import model.shape.Shape;
 
+/**
+ * Represents a command to change the size of an animated Shape.
+ */
 public class ChangeSize extends AbstractCommand {
 
   private final Dimension2D startSize;
   private final Dimension2D endSize;
 
   /**
-   * Construct a Move Command.
-   * INVARIANT: startSize and endSize cannot be null
-   * @param startTime            Beginning of time interval for running command
-   * @param endTime              End of time interval for running command
-   * @param startSize        Beginning size before Move Command
-   * @param endSize          End size after move Command
+   * Construct a Move Command. INVARIANT: startSize and endSize cannot be null
+   *
+   * @param startTime Beginning of time interval for running command
+   * @param endTime   End of time interval for running command
+   * @param startSize Beginning size before Move Command
+   * @param endSize   End size after move Command
    * @throws IllegalArgumentException - if time interval is invalid or the dimensions are negative
    */
   public ChangeSize(int startTime, int endTime, Dimension2D startSize,
@@ -51,7 +51,6 @@ public class ChangeSize extends AbstractCommand {
         + this.startSize.getXDir();
     int currentYDir = (timeFromStart * totalYChange) / totalTimeFrame
         + this.startSize.getYDir();
-
 
     return s.build(s.getPosition(), s.getColor(), new Dimension2D(currentXDir, currentYDir));
   }

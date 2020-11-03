@@ -9,6 +9,7 @@ public interface AnimatorView {
 
   /**
    * Renders current state of model.
+   *
    * @throws IOException if rendering fails for some reason
    */
   void render() throws IOException;

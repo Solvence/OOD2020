@@ -10,6 +10,7 @@ import org.junit.Test;
  * Basic class for testing Position2D class.
  */
 public class Position2DTest {
+
   Position2D a;
   Position2D b;
   Position2D c;
@@ -18,9 +19,9 @@ public class Position2DTest {
 
   @Before
   public void setup() {
-    this.a = new Position2D(1,2);
-    this.b = new Position2D(2,17);
-    this.c = new Position2D(4,110000);
+    this.a = new Position2D(1, 2);
+    this.b = new Position2D(2, 17);
+    this.c = new Position2D(4, 110000);
     this.a2 = new Position2D(a);
     this.b2 = new Position2D(b);
   }
@@ -72,7 +73,7 @@ public class Position2DTest {
     assertTrue(a.equals(a));
     assertTrue(b.equals(b));
 
-    Position2D swapA = new Position2D(2,1);
+    Position2D swapA = new Position2D(2, 1);
     assertFalse(a.equals(swapA));
     String h = "hello";
     assertFalse(a.equals(h));

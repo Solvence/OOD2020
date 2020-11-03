@@ -2,7 +2,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-import model.dimension2D.Dimension2D;
+import model.dimension2d.Dimension2D;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -10,6 +10,7 @@ import org.junit.Test;
  * Basic class for testing Dimension2D class.
  */
 public class Dimension2DTest {
+
   Dimension2D a;
   Dimension2D b;
   Dimension2D c;
@@ -18,9 +19,9 @@ public class Dimension2DTest {
 
   @Before
   public void setup() {
-    this.a = new Dimension2D(1,2);
-    this.b = new Dimension2D(2,17);
-    this.c = new Dimension2D(4,110000);
+    this.a = new Dimension2D(1, 2);
+    this.b = new Dimension2D(2, 17);
+    this.c = new Dimension2D(4, 110000);
     this.a2 = new Dimension2D(a);
     this.b2 = new Dimension2D(b);
   }
@@ -28,19 +29,19 @@ public class Dimension2DTest {
   // test if constructor throws exception when xdir is negative.
   @Test(expected = IllegalArgumentException.class)
   public void testNegativeXDirDimensionConstructor() {
-    Dimension2D invalid = new Dimension2D(-2,1);
+    Dimension2D invalid = new Dimension2D(-2, 1);
   }
 
   // test if constructor throws exception when ydir is negative.
   @Test(expected = IllegalArgumentException.class)
   public void testNegativeYDirDimensionConstructor() {
-    Dimension2D invalid = new Dimension2D(2,-1);
+    Dimension2D invalid = new Dimension2D(2, -1);
   }
 
   // test if constructor throws exception when both dimensions are negative.
   @Test(expected = IllegalArgumentException.class)
   public void testNegativeBothDimensionConstructor() {
-    Dimension2D invalid = new Dimension2D(-2,-1);
+    Dimension2D invalid = new Dimension2D(-2, -1);
   }
 
   // test getXDir works appropriately.
@@ -90,7 +91,7 @@ public class Dimension2DTest {
     assertTrue(a.equals(a));
     assertTrue(b.equals(b));
 
-    Dimension2D swapA = new Dimension2D(2,1);
+    Dimension2D swapA = new Dimension2D(2, 1);
     assertFalse(a.equals(swapA));
     String h = "hello";
     assertFalse(a.equals(h));

@@ -1,15 +1,14 @@
 package model;
 
 import java.awt.Color;
-import java.util.List;
 import java.util.Map;
-import model.animatedObject.AnimatedObject;
-import model.dimension2D.Dimension2D;
+import model.animatedobject.AnimatedObject;
+import model.dimension2d.Dimension2D;
 import model.position2d.Position2D;
 import model.shape.Shape;
 
 /**
- * Represents the model component for a animation that animates shapes.
+ * Represents the model component for an animation application
  */
 public interface AnimatorModel {
 
@@ -23,8 +22,7 @@ public interface AnimatorModel {
   void create(String name, Shape s) throws IllegalStateException;
 
   /**
-   * Returns a List of copies of the shapes being animated by this Model at the given
-   * time.
+   * Returns a List of copies of the shapes being animated by this Model at the given time.
    *
    * @param time time frame to be rendered
    * @return List of copies of shapes
@@ -49,11 +47,11 @@ public interface AnimatorModel {
   /**
    * Change the color of a shape with the given name during the given interval of time.
    *
-   * @param s           - name of shape who's color will change
-   * @param startTime   - time when color change should begin
-   * @param endTime     - time when color change should end
+   * @param s          - name of shape who's color will change
+   * @param startTime  - time when color change should begin
+   * @param endTime    - time when color change should end
    * @param startColor - color that the shape will be as time interval has begun
-   * @param endColor - color that the shape will be after time interval has passed
+   * @param endColor   - color that the shape will be after time interval has passed
    * @throws IllegalArgumentException if given shape doesn't exist, if changeColor is null, or if
    *                                  time interval is invalid
    */
@@ -61,14 +59,14 @@ public interface AnimatorModel {
       throws IllegalArgumentException;
 
   /**
-   * Change the size of a shape with the given name during the given interval of time.
-   * Resizes (stretches) the bounding box of the shape
+   * Change the size of a shape with the given name during the given interval of time. Resizes
+   * (stretches) the bounding box of the shape.
    *
-   * @param s             - name of shape who's color will change
-   * @param startTime     - time when size change should begin
-   * @param endTime       - time when size change should end
+   * @param s               - name of shape who's color will change
+   * @param startTime       - time when size change should begin
+   * @param endTime         - time when size change should end
    * @param startDimensions - the size of the shape in the beginning
-   * @param endDimensions  - the size of the shape after the transformation
+   * @param endDimensions   - the size of the shape after the transformation
    * @throws IllegalArgumentException if given shape doesn't exist, if height or width are negative,
    *                                  or if time interval is invalid
    */
@@ -77,7 +75,8 @@ public interface AnimatorModel {
       throws IllegalArgumentException;
 
   /**
-   * Get all the objects being animated within this animator
+   * Get all the objects being animated within this animator.
+   *
    * @return all the objects being animated within this animator
    */
   Map<String, AnimatedObject> getAnimatedObjects();

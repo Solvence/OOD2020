@@ -1,17 +1,21 @@
-package model.animatedObjectCommand;
+package model.animatedobjectcommand;
 
-import model.position2d.Position2D;
 import model.shape.Shape;
 
+/**
+ * Represents an abstract class of a command and supplies methods and fields that are common to
+ * all commands.
+ */
 public abstract class AbstractCommand implements AnimatedObjectCommand {
+
   protected final int startTime;
   protected final int endTime;
 
   /**
-   * Constructs a command on a animated Shape
-   * INVARIANT: endTime > starTime >= 0
+   * Constructs a command on a animated Shape INVARIANT: endTime > starTime >= 0.
+   *
    * @param startTime - the time at which this animation command starts to execute
-   * @param endTime - the time at which this animation command is finished
+   * @param endTime   - the time at which this animation command is finished
    */
   AbstractCommand(int startTime, int endTime) {
     if (endTime - startTime <= 0 || startTime < 0 || endTime < 0) {

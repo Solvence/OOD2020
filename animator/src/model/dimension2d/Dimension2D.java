@@ -1,17 +1,17 @@
-package model.dimension2D;
+package model.dimension2d;
 
 import java.util.Objects;
 
 /**
- * This class represents a 2D shape's dimensions (bounding box of the shape)
+ * This class represents a 2D shape's dimensions (bounding box of the shape).
  */
 public final class Dimension2D {
+
   private final int xDir;
   private final int yDir;
 
   /**
-   * Initialize this dimension object.
-   * INVARIANT: xDir and yDir cannot be negative
+   * Initialize this dimension object. INVARIANT: xDir and yDir cannot be negative.
    */
   public Dimension2D(int xDir, int yDir) {
     if (xDir < 0 || yDir < 0) {
@@ -29,7 +29,8 @@ public final class Dimension2D {
   }
 
   /**
-   * Computes the dimension in the x direction
+   * Computes the dimension in the x direction.
+   *
    * @return - the dimension in the x direction
    */
   public int getXDir() {
@@ -37,7 +38,8 @@ public final class Dimension2D {
   }
 
   /**
-   * Computes the dimension in the y direction
+   * Computes the dimension in the y direction.
+   *
    * @return - the dimension in the y direction
    */
   public int getYDir() {

@@ -6,13 +6,13 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Map;
 import model.AnimatorModel;
-import model.animatedObject.AnimatedObject;
-import model.animatedObjectCommand.AnimatedObjectCommand;
-import model.dimension2D.Dimension2D;
+import model.animatedobject.AnimatedObject;
+import model.animatedobjectcommand.AnimatedObjectCommand;
+import model.dimension2d.Dimension2D;
 import model.shape.Shape;
 
 /**
- * Represents a textual translation of an animation
+ * Represents a textual translation of an animation.
  */
 public class BasicTextualAnimatorView implements AnimatorView {
 
@@ -20,7 +20,7 @@ public class BasicTextualAnimatorView implements AnimatorView {
   private final Appendable log;
 
   /**
-   * Loaded Constructor
+   * Loaded Constructor.
    *
    * @param model - model to be displayed
    * @param log   - log of passed displays

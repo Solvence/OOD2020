@@ -1,30 +1,31 @@
-package model.animatedObject;
+package model.animatedobject;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import model.animatedObjectCommand.AnimatedObjectCommand;
+import model.animatedobjectcommand.AnimatedObjectCommand;
 import model.shape.Shape;
 
 /**
  * Represent a Basic implementation of an AnimatedObject.
  */
 public class BasicAnimatedObject implements AnimatedObject {
+
   private final Shape baseShape;
   private final List<AnimatedObjectCommand> commands;
 
   // INVARIANT: commands is always sorted by startTime
 
   /**
-   * Loaded Constructor.
-   * INVARIANT: baseShape and commands cannot be null
-   * INVARIANT: two or more of the same type of command cannot overlap time interval-wise
-   * INVARIANT: commands is sorted by start time of the command interval
-   * @param baseShape   - Shape to be animated
-   * @param commands    - commands to be called on the shape
+   * Loaded Constructor. INVARIANT: baseShape and commands cannot be null INVARIANT: two or more of
+   * the same type of command cannot overlap time interval-wise INVARIANT: commands is sorted by
+   * start time of the command interval
+   *
+   * @param baseShape - Shape to be animated
+   * @param commands  - commands to be called on the shape
    */
   public BasicAnimatedObject(Shape baseShape, List<AnimatedObjectCommand> commands) {
-    if (baseShape == null || commands == null ) {
+    if (baseShape == null || commands == null) {
       throw new IllegalArgumentException("Shape and commands must not be null");
     }
     this.baseShape = baseShape;
@@ -33,6 +34,7 @@ public class BasicAnimatedObject implements AnimatedObject {
 
   /**
    * Default Constructor.
+   *
    * @param baseShape shape to be animated
    */
   public BasicAnimatedObject(Shape baseShape) {
@@ -41,6 +43,7 @@ public class BasicAnimatedObject implements AnimatedObject {
 
   /**
    * Copy Constructor.
+   *
    * @param other some other AnimatedObject
    */
   public BasicAnimatedObject(AnimatedObject other) {
@@ -98,6 +101,7 @@ public class BasicAnimatedObject implements AnimatedObject {
   /**
    * A BasicAnimatedObject is equal to another Object if that object is also a BasicAnimated object
    * with equivalent commands (in the same order) and equivalent base shape.
+   *
    * @param other - the Object that this Animated object is being compared to
    * @return - whether this BasicAnimatedObject is equal to the given object
    */

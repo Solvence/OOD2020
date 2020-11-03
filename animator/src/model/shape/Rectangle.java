@@ -1,12 +1,8 @@
 package model.shape;
 
 import java.awt.Color;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import java.util.Objects;
-import model.dimension2D.Dimension2D;
+import model.dimension2d.Dimension2D;
 import model.position2d.Position2D;
 
 /**
@@ -20,8 +16,9 @@ public class Rectangle implements Shape {
   private final Position2D position;
 
   /**
-   * Constructs a Rectangle.
-   * INVARIANT: width and height cannot be negative, and color and position cannot be null
+   * Constructs a Rectangle. INVARIANT: width and height cannot be negative, and color and position
+   * cannot be null.
+   *
    * @param width    width of rectangle
    * @param height   height of rectangle
    * @param color    color of rectangle
@@ -60,7 +57,8 @@ public class Rectangle implements Shape {
 
   /**
    * An Rectangle is equal to an Object if the object is an Rectangle and has the same dimensions,
-   * color, and position as this Rectangle
+   * color, and position as this Rectangle.
+   *
    * @param other - the other Object being compared with this Rectangle
    * @return - true if this Rectangle is equal to the Object, false otherwise
    */

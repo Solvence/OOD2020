@@ -46,6 +46,8 @@ Things to consider:
 - Perhaps we should use a visitor to couple the model to the view for drawing shapes: a shape
   (let's say a square) has a render method that would take in a view and call
   view.renderSquare(this)
+- having a toString in Ellipse and Rectangle that just returns "Rectangle" or "Ellipse" is
+  kinda awkward
 
 Questions:
 - should we actually have a getAnimatedObjects method in the model? I'm thinking maybe just a
