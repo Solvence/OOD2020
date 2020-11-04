@@ -29,7 +29,12 @@ public class BasicAnimatedObject implements AnimatedObject {
       throw new IllegalArgumentException("Shape and commands must not be null");
     }
     this.baseShape = baseShape;
-    this.commands = commands;
+    this.commands = new ArrayList<>();
+
+    // make sure command sequence is valid.
+    for (AnimatedObjectCommand cmd: commands) {
+      this.addCommand(cmd);
+    }
   }
 
   /**

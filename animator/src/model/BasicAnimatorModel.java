@@ -1,6 +1,6 @@
 package model;
 
-import java.awt.Color;
+import model.color.Color;
 import java.util.HashMap;
 import java.util.Map;
 import model.animatedobject.AnimatedObject;

@@ -2,7 +2,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotSame;
 
-import java.awt.Color;
+import model.color.Color;
 import java.util.ArrayList;
 import java.util.List;
 import model.animatedobject.AnimatedObject;

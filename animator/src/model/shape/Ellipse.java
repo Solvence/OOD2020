@@ -1,7 +1,7 @@
 package model.shape;
 
 
-import java.awt.Color;
+import model.color.Color;
 import java.util.Objects;
 import model.dimension2d.Dimension2D;
 import model.position2d.Position2D;
@@ -9,54 +9,29 @@ import model.position2d.Position2D;
 /**
  * Represents an Ellipse Shape.
  */
-public class Ellipse implements Shape {
-
-  private final int xRad;
-  private final int yRad;
-  private final Color color;
-  private final Position2D position;
-
+public class Ellipse extends AbstractShape {
 
   /**
    * Construct an ellipse. INVARIANT: xRad and yRad cannot be negative, and color and position
    * cannot be null.
    *
-   * @param xRad     Radius in x direction
-   * @param yRad     Radius in y direction
+   * @param xDirection     width of bounding box
+   * @param yDirection     height of bounding box
    * @param color    Color of ellipse
    * @param position Position of ellipse
    */
-  public Ellipse(int xRad, int yRad, Color color, Position2D position) {
-    if (xRad < 0 || yRad < 0 || color == null || position == null) {
-      throw new IllegalArgumentException("can't have negative dimensions or null values");
-    }
-    this.xRad = xRad;
-    this.yRad = yRad;
-    this.color = color;
-    this.position = position;
+  public Ellipse(int xDirection, int yDirection, Color color, Position2D position) {
+    super(xDirection, yDirection, color, position);
   }
 
   @Override
   public Shape build(Position2D position, Color color, Dimension2D size)
       throws IllegalArgumentException {
+    if (size == null) {
+      throw new IllegalArgumentException("size can't be null");
+    }
     return new Ellipse(size.getXDir(), size.getYDir(), color, position);
   }
-
-  @Override
-  public Position2D getPosition() {
-    return new Position2D(this.position);
-  }
-
-  @Override
-  public Color getColor() {
-    return new Color(this.color.getRGB());
-  }
-
-  @Override
-  public Dimension2D getSize() {
-    return new Dimension2D(this.xRad, this.yRad);
-  }
-
   /**
    * An Ellipse is equal to an Object if the object is an Ellipse and has the same dimensions,
    * color, and position as this Ellipse.
@@ -67,15 +42,15 @@ public class Ellipse implements Shape {
   @Override
   public boolean equals(Object other) {
     return other instanceof Ellipse
-        && this.xRad == ((Ellipse) other).getSize().getXDir()
-        && this.yRad == ((Ellipse) other).getSize().getYDir()
+        && this.width == ((Ellipse) other).getSize().getXDir()
+        && this.height == ((Ellipse) other).getSize().getYDir()
         && this.color.equals(((Ellipse) other).getColor())
         && this.position.equals(((Ellipse) other).getPosition());
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(this.xRad, this.yRad, this.color, this.position,
+    return Objects.hash(this.width, this.height, this.color, this.position,
         "Ellipse");
   }
 

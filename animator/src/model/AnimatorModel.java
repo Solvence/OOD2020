@@ -1,6 +1,6 @@
 package model;
 
-import java.awt.Color;
+import model.color.Color;
 import java.util.Map;
 import model.animatedobject.AnimatedObject;
 import model.dimension2d.Dimension2D;

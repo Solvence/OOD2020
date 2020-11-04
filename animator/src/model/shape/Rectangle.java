@@ -1,6 +1,6 @@
 package model.shape;
 
-import java.awt.Color;
+import model.color.Color;
 import java.util.Objects;
 import model.dimension2d.Dimension2D;
 import model.position2d.Position2D;
@@ -8,12 +8,7 @@ import model.position2d.Position2D;
 /**
  * Represents a Rectangle Shape.
  */
-public class Rectangle implements Shape {
-
-  private final int width;
-  private final int height;
-  private final Color color;
-  private final Position2D position;
+public class Rectangle extends AbstractShape {
 
   /**
    * Constructs a Rectangle. INVARIANT: width and height cannot be negative, and color and position
@@ -25,36 +20,17 @@ public class Rectangle implements Shape {
    * @param position position of rectangle
    */
   public Rectangle(int width, int height, Color color, Position2D position) {
-    if (width < 0 || height < 0 || color == null || position == null) {
-      throw new IllegalArgumentException("can't have negative dimensions or null inputs");
-    }
-    this.width = width;
-    this.height = height;
-    this.color = color;
-    this.position = position;
+    super(width, height, color, position);
   }
 
   @Override
   public Shape build(Position2D position, Color color, Dimension2D size)
       throws IllegalArgumentException {
+    if (size == null) {
+      throw new IllegalArgumentException("size can't be null");
+    }
     return new Rectangle(size.getXDir(), size.getYDir(), color, position);
   }
-
-  @Override
-  public Position2D getPosition() {
-    return new Position2D(this.position);
-  }
-
-  @Override
-  public Color getColor() {
-    return new Color(this.color.getRGB());
-  }
-
-  @Override
-  public Dimension2D getSize() {
-    return new Dimension2D(this.width, this.height);
-  }
-
   /**
    * An Rectangle is equal to an Object if the object is an Rectangle and has the same dimensions,
    * color, and position as this Rectangle.
