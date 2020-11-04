@@ -8,7 +8,10 @@ import model.position2d.Position2D;
 import model.shape.Shape;
 
 /**
- * Represents the model component for an animation application
+ * Represents the model backend component for an animation application that will draw an animation
+ * according to how it is described in text. The model itself supports operations and observations
+ * that a user who is running an animation will likely want to perform. The model then processes
+ * these operations and maintains the state of the animation.
  */
 public interface AnimatorModel {
 

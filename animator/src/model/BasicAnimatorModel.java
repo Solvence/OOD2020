@@ -21,7 +21,7 @@ public class BasicAnimatorModel implements AnimatorModel {
 
   /**
    * Default Constructor for BasicAnimatorModel. INVARIANT: animatedObjects cannot contain two
-   * objects with the same name key
+   * objects with the same name key. INVARIANT: animatedObjects can't be null
    */
   public BasicAnimatorModel() {
     this.animatedObjects = new HashMap<>();
