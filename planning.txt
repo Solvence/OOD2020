@@ -1,38 +1,17 @@
 
+TODO :
+- Fix constructor BasicAnimator
+
+- make sure the builder/factory implementations are correct
 
 
-AnimationModel
--Hashmap<String, Animated>
-Methods:
-void create(String name, Shape s)
--render(time) // def need time here
-void move(String s, int startTime, int endTime, Position end) throws IAE [if interval overlaps with another, or if shape doesnt]
--changeColor(String s, int startTime, int endTime, Color endColor)
--changeSize(...)
+Changes made:
+Create Color class
+Create Abstract shape and abstracted duplicate code and fields
+Fix BasicAnimatedObject constructor to when given a list of commands, check that building a new
+BasicAnimatedObject with these commands is valid.
 
-Animated object
--Shape field
--commands field
--render
--addcommand
--runcommand
--update
 
-Shape object
--size
--position
--color
-
-interface AnimationObjectCommand
--class changeSize 
--class changeColor
--class move
--canCall
-
-Invariants:
-- time cant be negative
-- endTime > startTime
-- AnimatedObjects commands is always sorted by startTime
 
 Things to consider:
 - we used java.awt for Colors despite Amit's warning against it
@@ -53,12 +32,6 @@ Questions:
 - should we actually have a getAnimatedObjects method in the model? I'm thinking maybe just a
   getShapeNames method would be better design...
 
-TODO:
-- document invariants before constructors
-- creation outputs in view, probably want the key (bar with w, h, x, y, ...) too
-- make sure the builder/factory implementations are correct
 
-TODO Later:
-- change Color references in model to not use java.awt
 
 

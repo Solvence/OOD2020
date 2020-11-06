@@ -1,6 +1,6 @@
 package model.animatedobjectcommand;
 
-import java.awt.Color;
+import model.color.Color;
 import java.util.Objects;
 import model.shape.Shape;
 

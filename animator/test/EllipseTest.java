@@ -1,4 +1,4 @@
-import java.awt.Color;
+import model.color.Color;
 import model.dimension2d.Dimension2D;
 import model.position2d.Position2D;
 import model.shape.Ellipse;

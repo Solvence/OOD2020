@@ -3,7 +3,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 
-import java.awt.Color;
+import model.color.Color;
 import model.animatedobjectcommand.AnimatedObjectCommand;
 import model.animatedobjectcommand.ChangeColor;
 import model.animatedobjectcommand.ChangeSize;

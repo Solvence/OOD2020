@@ -1,6 +1,6 @@
 package view;
 
-import java.awt.Color;
+import model.color.Color;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;

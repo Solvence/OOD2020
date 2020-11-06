@@ -1,4 +1,4 @@
-import java.awt.Color;
+import model.color.Color;
 import model.AnimatorModel;
 import model.BasicAnimatorModel;
 import model.dimension2d.Dimension2D;
