@@ -1,13 +1,13 @@
-import model.color.Color;
-import model.AnimatorModel;
-import model.BasicAnimatorModel;
-import model.dimension2d.Dimension2D;
-import model.position2d.Position2D;
-import model.shape.Ellipse;
-import model.shape.Rectangle;
+import cs3500.animator.model.color.Color;
+import cs3500.animator.model.AnimatorModel;
+import cs3500.animator.model.BasicAnimatorModel;
+import cs3500.animator.model.dimension2d.Dimension2D;
+import cs3500.animator.model.position2d.Position2D;
+import cs3500.animator.model.shape.Ellipse;
+import cs3500.animator.model.shape.Rectangle;
 import org.junit.Test;
-import view.AnimatorView;
-import view.BasicTextualAnimatorView;
+import cs3500.animator.view.AnimatorView;
+import cs3500.animator.view.BasicTextualAnimatorView;
 
 import static org.junit.Assert.assertEquals;
 
@@ -18,7 +18,7 @@ public class BasicTextualAnimatorViewTest {
 
 
   /**
-   * Tests that the textual view is empty when no Shapes have been created.
+   * Tests that the textual cs3500.animator.view is empty when no Shapes have been created.
    */
   @Test
   public void testStartToString() {
@@ -30,7 +30,7 @@ public class BasicTextualAnimatorViewTest {
   }
 
   /**
-   * Tests that the textual view behaves as expected when one Shape is created.
+   * Tests that the textual cs3500.animator.view behaves as expected when one Shape is created.
    */
   @Test
   public void testCreateOneToString() {
@@ -49,7 +49,7 @@ public class BasicTextualAnimatorViewTest {
   }
 
   /**
-   * Tests that the textual view behaves as expected when multiple Shapes are created.
+   * Tests that the textual cs3500.animator.view behaves as expected when multiple Shapes are created.
    */
   @Test
   public void testCreateMoreToString() {
@@ -78,7 +78,7 @@ public class BasicTextualAnimatorViewTest {
   }
 
   /**
-   * Tests that the textual view behaves as expected when multiple Shapes are created and multiple
+   * Tests that the textual cs3500.animator.view behaves as expected when multiple Shapes are created and multiple
    * commands are given.
    */
   @Test

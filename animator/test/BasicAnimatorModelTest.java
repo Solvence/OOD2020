@@ -1,18 +1,18 @@
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
-import model.color.Color;
+import cs3500.animator.model.color.Color;
 import java.util.HashMap;
-import model.AnimatorModel;
-import model.BasicAnimatorModel;
-import model.animatedobject.BasicAnimatedObject;
-import model.animatedobjectcommand.ChangeColor;
-import model.animatedobjectcommand.ChangeSize;
-import model.animatedobjectcommand.Move;
-import model.dimension2d.Dimension2D;
-import model.position2d.Position2D;
-import model.shape.Ellipse;
-import model.shape.Rectangle;
+import cs3500.animator.model.AnimatorModel;
+import cs3500.animator.model.BasicAnimatorModel;
+import cs3500.animator.model.animatedobject.BasicAnimatedObject;
+import cs3500.animator.model.animatedobjectcommand.ChangeColor;
+import cs3500.animator.model.animatedobjectcommand.ChangeSize;
+import cs3500.animator.model.animatedobjectcommand.Move;
+import cs3500.animator.model.dimension2d.Dimension2D;
+import cs3500.animator.model.position2d.Position2D;
+import cs3500.animator.model.shape.Ellipse;
+import cs3500.animator.model.shape.Rectangle;
 import org.junit.Test;
 
 /**

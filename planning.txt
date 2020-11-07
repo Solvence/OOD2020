@@ -20,16 +20,16 @@ Things to consider:
   inputted. This may require much stress on the controller to determine the initial state.
 - We don't allow overlap within the same type of command (e.g. moving x-coord from t=1-10 and
   moving y-coord from t=5-15)
-- Our textual view just goes through the intervals of commands, while it's supposed to represent
-  a textual view of an animation (that should maybe call getStateAt at every frame?)
-- Perhaps we should use a visitor to couple the model to the view for drawing shapes: a shape
-  (let's say a square) has a render method that would take in a view and call
-  view.renderSquare(this)
+- Our textual cs3500.animator.view just goes through the intervals of commands, while it's supposed to represent
+  a textual cs3500.animator.view of an animation (that should maybe call getStateAt at every frame?)
+- Perhaps we should use a visitor to couple the cs3500.animator.model to the cs3500.animator.view for drawing shapes: a shape
+  (let's say a square) has a render method that would take in a cs3500.animator.view and call
+  cs3500.animator.view.renderSquare(this)
 - having a toString in Ellipse and Rectangle that just returns "Rectangle" or "Ellipse" is
   kinda awkward
 
 Questions:
-- should we actually have a getAnimatedObjects method in the model? I'm thinking maybe just a
+- should we actually have a getAnimatedObjects method in the cs3500.animator.model? I'm thinking maybe just a
   getShapeNames method would be better design...
 
 

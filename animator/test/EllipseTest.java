@@ -1,7 +1,7 @@
-import model.color.Color;
-import model.dimension2d.Dimension2D;
-import model.position2d.Position2D;
-import model.shape.Ellipse;
+import cs3500.animator.model.color.Color;
+import cs3500.animator.model.dimension2d.Dimension2D;
+import cs3500.animator.model.position2d.Position2D;
+import cs3500.animator.model.shape.Ellipse;
 
 import org.junit.Test;
 

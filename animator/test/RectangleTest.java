@@ -1,8 +1,8 @@
-import model.color.Color;
-import model.dimension2d.Dimension2D;
-import model.position2d.Position2D;
+import cs3500.animator.model.color.Color;
+import cs3500.animator.model.dimension2d.Dimension2D;
+import cs3500.animator.model.position2d.Position2D;
 
-import model.shape.Rectangle;
+import cs3500.animator.model.shape.Rectangle;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

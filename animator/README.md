@@ -1,6 +1,6 @@
 # HW 05 #
 ## Animator Model Implementation
-For our implementation of the animator model we rely on 5 interfaces.
+For our implementation of the animator cs3500.animator.model we rely on 5 interfaces.
     
     - AnimatorModel: Represents the state of the animation and allows user to create Animated Objects 
                      and command them to do things.

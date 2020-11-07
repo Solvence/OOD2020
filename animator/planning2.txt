@@ -1,3 +1,27 @@
+Changes made:
+Create Color class
+Create Abstract shape and abstracted duplicate code and fields
+Fix BasicAnimatedObject constructor to when given a list of commands, check that building a new
+BasicAnimatedObject with these commands is valid.
+
 View Interface:
+timer, set timer, convert, 
+-convert   (ticks -> time interval) maybe
+-render
+
+TextualView:
+-instead of putting ticks, translate ticks to actual time based on tempo
+
+VisualView (uses Java Swing):
+- create base canvas
+- render full animation
+
+SVGView:
+
+Builder:
 
 
+
+
+Clarify:
+- drawing on negative positions
