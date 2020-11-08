@@ -1,15 +1,16 @@
-Changes made:
-Create Color class
-Create Abstract shape and abstracted duplicate code and fields
+Changes made (don't forget to say why in README):
+-Create Color class
+-Create Abstract shape and abstracted duplicate code and fields
 Fix BasicAnimatedObject constructor to when given a list of commands, check that building a new
 BasicAnimatedObject with these commands is valid.
+-changed getAnimatedObjects method in main model to two separate methods: getCommands and getNames
 
 In Model Interface:
   - Create two new getters getNames() (get all the names of objects in animation) & getCommandsForShape(String name) which will get commands for shape with given name.
   - Get rid of getAnimatedObject as it may reveal too much information which the user wont always need to know.
   - Make getShapesAt -> getShapeAt(String name, int time) as we may not always need to get all the shapes at a given time.
 
-In BAsicTextualView:
+In BasicTextualView:
 Change two string to go threw names of animated objects instead of animatedObjects itself
 use getNames and getCommands(String name)
 View Interface:
@@ -27,6 +28,10 @@ VisualView (uses Java Swing):
 SVGView:
 
 Builder:
+
+TODO:
+-Look over past lectures on views, etc.
+-ask in oh: canvas, timer, getcommands vs getcriticaltimes, shapes popping into existence?, can model keep up (Piazza)?
 
 
 

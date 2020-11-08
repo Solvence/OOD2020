@@ -19,6 +19,7 @@ public abstract class AbstractShape implements Shape {
    * @param height     height of bounding box of shape.
    * @param color      Color of shape.
    * @param position   Position of top left corner of shapes bounding box.
+   * @throws IllegalArgumentException if dimensions are negative or fields are null
    */
   AbstractShape(int width, int height, Color color, Position2D position) {
     if (width < 0 || height < 0 || color == null || position == null) {
