@@ -1,7 +1,10 @@
 package cs3500.animator.model;
 
+import cs3500.animator.model.animatedobjectcommand.AnimatedObjectCommand;
 import cs3500.animator.model.color.Color;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import cs3500.animator.model.animatedobject.AnimatedObject;
 import cs3500.animator.model.animatedobject.BasicAnimatedObject;
@@ -37,17 +40,11 @@ public class BasicAnimatorModel implements AnimatorModel {
   }
 
   @Override
-  public Map<String, Shape> getStateAt(int time) throws IllegalArgumentException {
-    if (time < 0) {
-      throw new IllegalArgumentException("time cannot be negative");
+  public Shape getShapeAt(String name, int time) throws IllegalArgumentException {
+    if (time < 0 || !this.animatedObjects.containsKey(name)) {
+      throw new IllegalArgumentException("Invalid time or shape name");
     }
-    Map<String, Shape> shapesAtTime = new HashMap<>();
-    for (Map.Entry<String, AnimatedObject> e : this.animatedObjects.entrySet()) {
-      String currentName = e.getKey();
-      AnimatedObject current = e.getValue();
-      shapesAtTime.put(currentName, current.getShape(time));
-    }
-    return shapesAtTime;
+    return this.animatedObjects.get(name).getShape(time);
   }
 
   @Override
@@ -72,15 +69,18 @@ public class BasicAnimatorModel implements AnimatorModel {
         endDimensions));
   }
 
+  @Override
+  public List<String> getAllShapeName() {
+    return new ArrayList<>(this.animatedObjects.keySet());
+  }
 
   @Override
-  public Map<String, AnimatedObject> getAnimatedObjects() {
-    Map<String, AnimatedObject> animatedObjects = new HashMap<>();
-    for (Map.Entry<String, AnimatedObject> e : this.animatedObjects.entrySet()) {
-      String currentName = e.getKey();
-      AnimatedObject current = e.getValue();
-      animatedObjects.put(currentName, new BasicAnimatedObject(current));
+  public List<AnimatedObjectCommand> getCommandsForShape(String name) {
+    if (!this.animatedObjects.containsKey(name)) {
+      throw new IllegalArgumentException("No shape with given name exists.");
     }
-    return animatedObjects;
+    return new ArrayList<>(this.animatedObjects.get(name).getCommands());
   }
+
+
 }

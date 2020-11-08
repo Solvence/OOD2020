@@ -1,6 +1,8 @@
 package cs3500.animator.model;
 
+import cs3500.animator.model.animatedobjectcommand.AnimatedObjectCommand;
 import cs3500.animator.model.color.Color;
+import java.util.List;
 import java.util.Map;
 import cs3500.animator.model.animatedobject.AnimatedObject;
 import cs3500.animator.model.dimension2d.Dimension2D;
@@ -25,13 +27,14 @@ public interface AnimatorModel {
   void create(String name, Shape s) throws IllegalStateException;
 
   /**
-   * Returns a List of copies of the shapes being animated by this Model at the given time.
+   * Returns a state of a shape with a given name at the given time.
    *
    * @param time time frame to be rendered
-   * @return List of copies of shapes
-   * @throws IllegalArgumentException if time is negative
+   * @param name name of shape to get state of.
+   * @return a version of a shape after a given time of animation has elapsed.
+   * @throws IllegalArgumentException if time is negative or if shape with given name doesn't exist
    */
-  Map<String, Shape> getStateAt(int time) throws IllegalArgumentException;
+  Shape getShapeAt(String name, int time) throws IllegalArgumentException;
 
   /**
    * Move a shape with the given name to a given point during the given interval of time.
@@ -78,10 +81,17 @@ public interface AnimatorModel {
       throws IllegalArgumentException;
 
   /**
-   * Get all the objects being animated within this animator.
-   *
-   * @return all the objects being animated within this animator
+   * Get all the names of shapes currently in our animation.
+   * @return all the names of shapes currently in our animation.
    */
-  Map<String, AnimatedObject> getAnimatedObjects();
+  List<String> getAllShapeName();
+
+  /**
+   * Get all the commands to be applied on a animated shape with a given name.
+   * @param name      name of shape
+   * @return all commands for shape with given name
+   * @throws IllegalArgumentException if animated shape with given name doesn't exist.
+   */
+  List<AnimatedObjectCommand> getCommandsForShape(String name) throws IllegalArgumentException;
 
 }

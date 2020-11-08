@@ -4,6 +4,14 @@ Create Abstract shape and abstracted duplicate code and fields
 Fix BasicAnimatedObject constructor to when given a list of commands, check that building a new
 BasicAnimatedObject with these commands is valid.
 
+In Model Interface:
+  - Create two new getters getNames() (get all the names of objects in animation) & getCommandsForShape(String name) which will get commands for shape with given name.
+  - Get rid of getAnimatedObject as it may reveal too much information which the user wont always need to know.
+  - Make getShapesAt -> getShapeAt(String name, int time) as we may not always need to get all the shapes at a given time.
+
+In BAsicTextualView:
+Change two string to go threw names of animated objects instead of animatedObjects itself
+use getNames and getCommands(String name)
 View Interface:
 timer, set timer, convert, 
 -convert   (ticks -> time interval) maybe
@@ -25,3 +33,4 @@ Builder:
 
 Clarify:
 - drawing on negative positions
+- getting all essential times for an object or getting all commands for an object
