@@ -42,12 +42,4 @@ public interface AnimatedObjectCommand {
    */
   int getEndTime();
 
-  /**
-   * Are these two commands of the same type.
-   *
-   * @param other - the command that this command is being compared to
-   * @return - whether this command is of the same type os the other command
-   */
-  boolean sameType(AnimatedObjectCommand other);
-
 }
