@@ -15,10 +15,21 @@ Assumptions:
     - commands are inputted in order of start time
 - The minimum valid start tick is 1
 
+AnimatedObject -
+  - changed addCommand to work with new invariants.
+
+AnimatedObjectCommands -
+  - keyframes are allowed at beginning or end of other commands
+
+Shapes -
+  - Add default empty constructor to shapes
+
 In Model Interface:
   - Create two new getters getNames() (get all the names of objects in animation) & getCommandsForShape(String name) which will get commands for shape with given name.
   - Get rid of getAnimatedObject as it may reveal too much information which the user wont always need to know.
   - Make getShapesAt -> getShapeAt(String name, int time) as we may not always need to get all the shapes at a given time.
+
+
 
 In BasicTextualView:
 Change two string to go threw names of animated objects instead of animatedObjects itself

@@ -23,8 +23,8 @@ public interface AnimatedObject {
    * start time.
    *
    * @param command command object
-   * @throws IllegalArgumentException if command is null or if interval overlaps with current
-   *                                  commands
+   * @throws IllegalArgumentException command is null or if startState of given command doesn't
+   * align with endstate of previous commands if they exist.
    */
   void addCommand(AnimatedObjectCommand command) throws IllegalArgumentException;
 

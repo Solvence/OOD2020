@@ -14,19 +14,9 @@ public interface AnimatedObjectCommand {
    * @param s    - the shape
    * @param time - time in interval to apply
    * @return shape which command has been applied on
-   * @throws IllegalArgumentException if time is negative or time is less than current interval
+   * @throws IllegalArgumentException if given time isn't within commands interval.
    */
   Shape apply(Shape s, int time) throws IllegalArgumentException;
-
-  /**
-   * Can this command be applied based on given time and the given shape.
-   *
-   * @param time - time of interest
-   * @param s    - a given shape
-   * @return true if time is valid and command can be run on given shape, false if time is less
-   *         than command interval.
-   */
-  boolean applicable(int time, Shape s);
 
   /**
    * Returns the time at which this command starts running.
@@ -41,5 +31,6 @@ public interface AnimatedObjectCommand {
    * @return - the time at which this command finishes running
    */
   int getEndTime();
+
 
 }

@@ -23,6 +23,13 @@ public class Rectangle extends AbstractShape {
     super(width, height, color, position);
   }
 
+  /**
+   * Default Constructor
+   */
+  public Rectangle() {
+    super();
+  }
+
   @Override
   public Shape build(Position2D position, Color color, Dimension2D size)
       throws IllegalArgumentException {

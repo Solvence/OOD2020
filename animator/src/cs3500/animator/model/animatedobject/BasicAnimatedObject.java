@@ -32,7 +32,7 @@ public class BasicAnimatedObject implements AnimatedObject {
     this.commands = new ArrayList<>();
 
     // make sure command sequence is valid.
-    for (AnimatedObjectCommand cmd: commands) {
+    for (AnimatedObjectCommand cmd : commands) {
       this.addCommand(cmd);
     }
   }
@@ -74,26 +74,23 @@ public class BasicAnimatedObject implements AnimatedObject {
 
   @Override
   public void addCommand(AnimatedObjectCommand command) throws IllegalArgumentException {
-    for (AnimatedObjectCommand cmd : commands) {
-      if ((command.getStartTime() >= cmd.getStartTime()
-          && command.getStartTime() < cmd.getEndTime())
-          || (command.getStartTime() <= cmd.getStartTime()
-          && command.getEndTime() > cmd.getStartTime())) {
-        if (command.sameType(cmd)) {
-          throw new IllegalArgumentException("intervals cannot overlap for "
-              + "commands of the same type");
-        }
-      }
+    if (command == null) {
+      throw new IllegalArgumentException("Command can't be null");
     }
-    int startIndex = 0;
-    while (startIndex < commands.size()) {
-      if (commands.get(startIndex).getStartTime() > command.getStartTime()) {
-        commands.add(startIndex, command);
-        return;
+    else if (commands.size() == 0) {
+      this.commands.add(command);
+    } else {
+      AnimatedObjectCommand lastCommand = this.commands.get(this.commands.size() - 1);
+      Shape endOfLastCommand = lastCommand.apply(this.baseShape, lastCommand.getEndTime());
+      Shape startOfNewCommand = command.apply(this.baseShape, command.getEndTime());
+      ;
+      if (lastCommand.getEndTime() != command.getStartTime() || !endOfLastCommand
+          .equals(startOfNewCommand)) {
+        throw new IllegalArgumentException(
+            "start state of given command is not equal to end state of current command");
       }
-      startIndex++;
+      this.commands.add(command);
     }
-    commands.add(command);
   }
 
   // We know returning references to original commands is okay, since we know their fields are

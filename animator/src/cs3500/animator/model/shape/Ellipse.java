@@ -24,6 +24,13 @@ public class Ellipse extends AbstractShape {
     super(xDirection, yDirection, color, position);
   }
 
+  /**
+   * Default Constructor
+   */
+  public Ellipse() {
+    super();
+  }
+
   @Override
   public Shape build(Position2D position, Color color, Dimension2D size)
       throws IllegalArgumentException {
