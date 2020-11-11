@@ -46,30 +46,18 @@ public class BasicAnimatedObject implements AnimatedObject {
     this(baseShape, new ArrayList<>());
   }
 
-  /**
-   * Copy Constructor.
-   *
-   * @param other some other AnimatedObject
-   */
-  public BasicAnimatedObject(AnimatedObject other) {
-    this(other.getShape(0), other.getCommands());
-  }
-
 
   @Override
   public Shape getShape(int time) throws IllegalArgumentException {
     if (time < 0) {
       throw new IllegalArgumentException("time cannot be negative");
     }
-    int commandIndex = 0;
-    Shape currentShape = baseShape.build(baseShape.getPosition(),
-        baseShape.getColor(), baseShape.getSize());
-    while (commandIndex < commands.size()
-        && commands.get(commandIndex).applicable(time, currentShape)) {
-      currentShape = commands.get(commandIndex).apply(currentShape, time);
-      commandIndex += 1;
+    for (AnimatedObjectCommand command : this.commands) {
+      if (command.getStartTime() <= time && command.getEndTime() >= time) {
+        return command.apply(this.baseShape, time);
+      }
     }
-    return currentShape;
+    return null;
   }
 
   @Override

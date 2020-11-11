@@ -10,10 +10,11 @@ import cs3500.animator.model.shape.Shape;
 public interface AnimatedObject {
 
   /**
-   * Get the shape as it would be animated at given time.
+   * Get the shape as it would be animated at given time. If time doesn't map to a command interval
+   * return null.
    *
    * @param time time frame
-   * @return shape as it would be animated at given time
+   * @return shape as it would be animated at given time or null
    * @throws IllegalArgumentException if time is negative
    */
   Shape getShape(int time) throws IllegalArgumentException;

@@ -1,6 +1,7 @@
 package cs3500.animator.model;
 
 import cs3500.animator.model.animatedobjectcommand.AnimatedObjectCommand;
+import cs3500.animator.model.animatedobjectcommand.BasicCommand;
 import cs3500.animator.model.color.Color;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -20,7 +21,7 @@ import cs3500.animator.model.shape.Shape;
  */
 public class BasicAnimatorModel implements AnimatorModel {
 
-  private Map<String, AnimatedObject> animatedObjects;
+  private final Map<String, AnimatedObject> animatedObjects;
 
   /**
    * Default Constructor for BasicAnimatorModel. INVARIANT: animatedObjects cannot contain two
@@ -48,25 +49,18 @@ public class BasicAnimatorModel implements AnimatorModel {
   }
 
   @Override
-  public void move(String s, int startTime, int endTime, Position2D startPosition,
-      Position2D endPosition) throws IllegalArgumentException {
-    this.animatedObjects.get(s)
-        .addCommand(new Move(startTime, endTime, startPosition, endPosition));
-  }
-
-  @Override
-  public void changeColor(String s, int startTime, int endTime, Color startColor, Color endColor)
-      throws IllegalArgumentException {
-    this.animatedObjects.get(s)
-        .addCommand(new ChangeColor(startTime, endTime, startColor, endColor));
-
-  }
-
-  @Override
-  public void changeSize(String s, int startTime, int endTime, Dimension2D startDimensions,
-      Dimension2D endDimensions) throws IllegalArgumentException {
-    this.animatedObjects.get(s).addCommand(new ChangeSize(startTime, endTime, startDimensions,
-        endDimensions));
+  public void addMotion(String name, int startTime, int endTime, Position2D startPosition,
+      Position2D endPosition, Color startColor, Color endColor, Dimension2D startSize,
+      Dimension2D endSize) throws IllegalArgumentException {
+    if (!this.animatedObjects.containsKey(name) || startTime < 0 || startTime - endTime < 0
+        || startPosition == null
+        || endPosition == null || startColor == null || endColor == null || startSize == null
+        || endSize == null) {
+      throw new IllegalArgumentException("Invalid information for creating motion");
+    }
+    animatedObjects.get(name).addCommand(
+        new BasicCommand(startTime, endTime, startPosition, endPosition, startSize, endSize,
+            startColor, endColor));
   }
 
   @Override
