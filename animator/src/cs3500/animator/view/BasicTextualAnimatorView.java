@@ -41,6 +41,11 @@ public class BasicTextualAnimatorView implements AnimatorView {
   }
 
   @Override
+  public int translateToTick(double time) {
+    return 0;
+  }
+
+  @Override
   public String toString() {
     StringBuilder table = new StringBuilder();
 

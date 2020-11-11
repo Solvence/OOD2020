@@ -32,7 +32,7 @@ public class BasicAnimatedObject implements AnimatedObject {
     this.commands = new ArrayList<>();
 
     // make sure command sequence is valid.
-    for (AnimatedObjectCommand cmd: commands) {
+    for (AnimatedObjectCommand cmd : commands) {
       this.addCommand(cmd);
     }
   }
@@ -46,37 +46,39 @@ public class BasicAnimatedObject implements AnimatedObject {
     this(baseShape, new ArrayList<>());
   }
 
-  /**
-   * Copy Constructor.
-   *
-   * @param other some other AnimatedObject
-   */
-  public BasicAnimatedObject(AnimatedObject other) {
-    this(other.getShape(0), other.getCommands());
-  }
-
 
   @Override
   public Shape getShape(int time) throws IllegalArgumentException {
     if (time < 0) {
       throw new IllegalArgumentException("time cannot be negative");
     }
-    int commandIndex = 0;
-    Shape currentShape = baseShape.build(baseShape.getPosition(),
-        baseShape.getColor(), baseShape.getSize());
-    while (commandIndex < commands.size()
-        && commands.get(commandIndex).applicable(time, currentShape)) {
-      currentShape = commands.get(commandIndex).apply(currentShape, time);
-      commandIndex += 1;
+    for (AnimatedObjectCommand command : this.commands) {
+      if (command.getStartTime() <= time && command.getEndTime() >= time) {
+        return command.apply(this.baseShape, time);
+      }
     }
-    return currentShape;
+    return null;
   }
 
   @Override
   public void addCommand(AnimatedObjectCommand command) throws IllegalArgumentException {
-
-
-    commands.add(command);
+    if (command == null) {
+      throw new IllegalArgumentException("Command can't be null");
+    }
+    else if (commands.size() == 0) {
+      this.commands.add(command);
+    } else {
+      AnimatedObjectCommand lastCommand = this.commands.get(this.commands.size() - 1);
+      Shape endOfLastCommand = lastCommand.apply(this.baseShape, lastCommand.getEndTime());
+      Shape startOfNewCommand = command.apply(this.baseShape, command.getEndTime());
+      ;
+      if (lastCommand.getEndTime() != command.getStartTime() || !endOfLastCommand
+          .equals(startOfNewCommand)) {
+        throw new IllegalArgumentException(
+            "start state of given command is not equal to end state of current command");
+      }
+      this.commands.add(command);
+    }
   }
 
   // We know returning references to original commands is okay, since we know their fields are

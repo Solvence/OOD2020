@@ -31,6 +31,16 @@ public abstract class AbstractShape implements Shape {
     this.position = position;
   }
 
+  /**
+   * Default Constructor
+   */
+  AbstractShape() {
+    this.width = -1;
+    this.height = -1;
+    this.color = null;
+    this.position = null;
+  }
+
   public abstract Shape build(Position2D position, Color color, Dimension2D size)
       throws IllegalArgumentException;
 

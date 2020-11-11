@@ -13,4 +13,11 @@ public interface AnimatorView {
    * @throws IOException if rendering fails for some reason
    */
   void render() throws IOException;
+
+  /**
+   * translate the given time in seconds to a tick value
+   * @param time time in seconds
+   * @return tick value equivalent to time based on some tick rate.
+   */
+  int translateToTick(double time);
 }

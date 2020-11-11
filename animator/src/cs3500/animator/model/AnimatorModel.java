@@ -2,6 +2,7 @@ package cs3500.animator.model;
 
 import cs3500.animator.model.animatedobjectcommand.AnimatedObjectCommand;
 import cs3500.animator.model.color.Color;
+import java.awt.Dimension;
 import java.util.List;
 import java.util.Map;
 import cs3500.animator.model.animatedobject.AnimatedObject;
@@ -10,10 +11,11 @@ import cs3500.animator.model.position2d.Position2D;
 import cs3500.animator.model.shape.Shape;
 
 /**
- * Represents the cs3500.animator.model backend component for an animation application that will draw an animation
- * according to how it is described in text. The cs3500.animator.model itself supports operations and observations
- * that a user who is running an animation will likely want to perform. The cs3500.animator.model then processes
- * these operations and maintains the state of the animation.
+ * Represents the cs3500.animator.model backend component for an animation application that will
+ * draw an animation according to how it is described in text. The cs3500.animator.model itself
+ * supports operations and observations that a user who is running an animation will likely want to
+ * perform. The cs3500.animator.model then processes these operations and maintains the state of the
+ * animation.
  */
 public interface AnimatorModel {
 
@@ -37,58 +39,35 @@ public interface AnimatorModel {
   Shape getShapeAt(String name, int time) throws IllegalArgumentException;
 
   /**
-   * Move a shape with the given name to a given point during the given interval of time.
-   *
-   * @param s             - name of shape to be moved
-   * @param startTime     - time when moving should begin
-   * @param endTime       - time when moving should end
-   * @param startPosition - position shape will be before move
-   * @param endPosition   - position shape will be after move
-   * @throws IllegalArgumentException if given shape doesn't exist, if Position is null, or if time
-   *                                  interval is invalid
+   * Add a motion to a shape with a given name that transitions the state of the shape over a
+   * given time interval.
+   * @param name             Name of Shape
+   * @param startTime        Start of time interval
+   * @param endTime          End of time interval
+   * @param startPosition    Start position of shape at beginning of motion
+   * @param endPosition      End position of shape at end of motion
+   * @param startColor       Start Color of shape at beginning of motion
+   * @param endColor         End Color of shape at end of motion
+   * @param startSize        Start Size of shape at beginning of motion
+   * @param endSize          End Size of shape at end of motion
+   * @throws IllegalArgumentException if no shape with given name exits or if any field is null or
+   *                                  if time interval is invalid.
    */
-  void move(String s, int startTime, int endTime, Position2D startPosition, Position2D endPosition)
-      throws IllegalArgumentException;
-
-  /**
-   * Change the color of a shape with the given name during the given interval of time.
-   *
-   * @param s          - name of shape who's color will change
-   * @param startTime  - time when color change should begin
-   * @param endTime    - time when color change should end
-   * @param startColor - color that the shape will be as time interval has begun
-   * @param endColor   - color that the shape will be after time interval has passed
-   * @throws IllegalArgumentException if given shape doesn't exist, if changeColor is null, or if
-   *                                  time interval is invalid
-   */
-  void changeColor(String s, int startTime, int endTime, Color startColor, Color endColor)
-      throws IllegalArgumentException;
-
-  /**
-   * Change the size of a shape with the given name during the given interval of time. Resizes
-   * (stretches) the bounding box of the shape.
-   *
-   * @param s               - name of shape who's color will change
-   * @param startTime       - time when size change should begin
-   * @param endTime         - time when size change should end
-   * @param startDimensions - the size of the shape in the beginning
-   * @param endDimensions   - the size of the shape after the transformation
-   * @throws IllegalArgumentException if given shape doesn't exist, if height or width are negative,
-   *                                  or if time interval is invalid
-   */
-  void changeSize(String s, int startTime, int endTime, Dimension2D startDimensions,
-      Dimension2D endDimensions)
-      throws IllegalArgumentException;
+  void addMotion(String name, int startTime, int endTime, Position2D startPosition,
+      Position2D endPosition, Color startColor, Color endColor, Dimension2D startSize,
+      Dimension2D endSize) throws IllegalArgumentException;
 
   /**
    * Get all the names of shapes currently in our animation.
+   *
    * @return all the names of shapes currently in our animation.
    */
   List<String> getAllShapeName();
 
   /**
    * Get all the commands to be applied on a animated shape with a given name.
-   * @param name      name of shape
+   *
+   * @param name name of shape
    * @return all commands for shape with given name
    * @throws IllegalArgumentException if animated shape with given name doesn't exist.
    */
