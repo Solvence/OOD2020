@@ -74,25 +74,8 @@ public class BasicAnimatedObject implements AnimatedObject {
 
   @Override
   public void addCommand(AnimatedObjectCommand command) throws IllegalArgumentException {
-    for (AnimatedObjectCommand cmd : commands) {
-      if ((command.getStartTime() >= cmd.getStartTime()
-          && command.getStartTime() < cmd.getEndTime())
-          || (command.getStartTime() <= cmd.getStartTime()
-          && command.getEndTime() > cmd.getStartTime())) {
-        if (command.sameType(cmd)) {
-          throw new IllegalArgumentException("intervals cannot overlap for "
-              + "commands of the same type");
-        }
-      }
-    }
-    int startIndex = 0;
-    while (startIndex < commands.size()) {
-      if (commands.get(startIndex).getStartTime() > command.getStartTime()) {
-        commands.add(startIndex, command);
-        return;
-      }
-      startIndex++;
-    }
+
+
     commands.add(command);
   }
 
