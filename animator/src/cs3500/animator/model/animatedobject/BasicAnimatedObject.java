@@ -57,7 +57,7 @@ public class BasicAnimatedObject implements AnimatedObject {
         return command.apply(this.baseShape, time);
       }
     }
-    return null;
+    return this.baseShape.build(null, null, null);
   }
 
   @Override
@@ -70,7 +70,7 @@ public class BasicAnimatedObject implements AnimatedObject {
     } else {
       AnimatedObjectCommand lastCommand = this.commands.get(this.commands.size() - 1);
       Shape endOfLastCommand = lastCommand.apply(this.baseShape, lastCommand.getEndTime());
-      Shape startOfNewCommand = command.apply(this.baseShape, command.getEndTime());
+      Shape startOfNewCommand = command.apply(this.baseShape, command.getStartTime());
       ;
       if (lastCommand.getEndTime() != command.getStartTime() || !endOfLastCommand
           .equals(startOfNewCommand)) {
@@ -86,6 +86,11 @@ public class BasicAnimatedObject implements AnimatedObject {
   @Override
   public List<AnimatedObjectCommand> getCommands() {
     return new ArrayList<>(this.commands);
+  }
+
+  @Override
+  public Shape getBaseShape() {
+    return this.baseShape;
   }
 
   /**

@@ -36,4 +36,11 @@ public interface AnimatedObject {
    */
   List<AnimatedObjectCommand> getCommands();
 
+  /**
+   * Returns the base shape that this animatedObject is associated with
+   *
+   * @return - the shape that this animatedObject is tied with
+   */
+  Shape getBaseShape();
+
 }

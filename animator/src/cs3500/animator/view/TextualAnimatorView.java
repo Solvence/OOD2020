@@ -4,9 +4,7 @@ import cs3500.animator.model.color.Color;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Map;
 import cs3500.animator.model.AnimatorModel;
-import cs3500.animator.model.animatedobject.AnimatedObject;
 import cs3500.animator.model.animatedobjectcommand.AnimatedObjectCommand;
 import cs3500.animator.model.dimension2d.Dimension2D;
 import cs3500.animator.model.shape.Shape;
@@ -14,24 +12,33 @@ import cs3500.animator.model.shape.Shape;
 /**
  * Represents a textual translation of an animation.
  */
-public class BasicTextualAnimatorView implements AnimatorView {
+public class TextualAnimatorView implements AnimatorView {
 
   private final AnimatorModel model;
   private final Appendable log;
+  private final double ticksPerSecond;
 
   /**
    * Loaded Constructor.
    *
    * @param model - cs3500.animator.model to be displayed
    * @param log   - log of passed displays
+   * @param ticksPerSecond - the number of ticks that the animation goes through per second
+   * @throws IllegalArgumentException - if ticksPerSecond is nonpositive, or model/log is null
    */
-  public BasicTextualAnimatorView(AnimatorModel model, Appendable log) {
+  public TextualAnimatorView(AnimatorModel model, Appendable log, double ticksPerSecond)
+  throws IllegalArgumentException {
+    if (ticksPerSecond <= 0 || model == null || log == null) {
+      throw new IllegalArgumentException("model/log can't be null and ticksPerSecond must "
+          + "be positive");
+    }
     this.model = model;
     this.log = log;
+    this.ticksPerSecond = ticksPerSecond;
   }
 
-  public BasicTextualAnimatorView(AnimatorModel model) {
-    this(model, new StringBuilder());
+  public TextualAnimatorView(AnimatorModel model) {
+    this(model, new StringBuilder(), 1.0);
   }
 
 
@@ -41,34 +48,25 @@ public class BasicTextualAnimatorView implements AnimatorView {
   }
 
   @Override
-  public int translateToTick(double time) {
-    return 0;
+  public double translateToTime(int tick) {
+    return tick / ticksPerSecond;
   }
 
   @Override
   public String toString() {
+    //String.format(".2f", d)
     StringBuilder table = new StringBuilder();
 
     for (String animatedObjectNames : this.model.getAllShapeName()) {
-      ArrayList<Integer> times = new ArrayList<>();
-
-      for (AnimatedObjectCommand command : this.model.getCommandsForShape(animatedObjectNames)) {
-        times.add(command.getStartTime());
-        times.add(command.getEndTime());
-      }
-      Collections.sort(times);
 
       StringBuilder currentShapeOutput = new StringBuilder();
+
       currentShapeOutput.append("Shape - ").append(animatedObjectNames).append(" - ")
           .append(this.model.getShapeAt(animatedObjectNames, 0).toString()).append("\n");
 
-      currentShapeOutput.append(
-          "Start: time | x | y | width| height| r | g | b |")
-          .append("      End: time | x | y | width| height| r | g | b |\n");
-
-      for (int i = 1; i < times.size(); i++) {
-        int startTime = times.get(i - 1);
-        int endTime = times.get(i);
+      for (AnimatedObjectCommand command : this.model.getCommandsForShape(animatedObjectNames)) {
+        int startTime = command.getStartTime();
+        int endTime = command.getEndTime();
         Shape startShape = this.model.getShapeAt(animatedObjectNames, startTime);
         Shape endShape = this.model.getShapeAt(animatedObjectNames,endTime);
         Dimension2D startSize = startShape.getSize();
@@ -76,15 +74,16 @@ public class BasicTextualAnimatorView implements AnimatorView {
         Color startColor = startShape.getColor();
         Color endColor = endShape.getColor();
 
-        currentShapeOutput.append(String.format("Motion %s %02d %03d %03d %02d %03d %03d %03d %03d",
-            animatedObjectNames, startTime, startShape.getPosition().getX(), startShape.getPosition().getY(),
+        currentShapeOutput.append(String.format("Motion %s %.2f %d %d %d %d %d %d %d",
+            animatedObjectNames, this.translateToTime(startTime), startShape.getPosition().getX(), startShape.getPosition().getY(),
             startSize.getXDir(), startSize.getYDir(), startColor.getRed(),
             startColor.getGreen(), startColor.getBlue()));
 
-        currentShapeOutput.append(String.format("      %02d %03d %03d %02d %03d %03d %03d %03d\n",
-            endTime, endShape.getPosition().getX(), endShape.getPosition().getY(),
+        currentShapeOutput.append(String.format("      %.2f %d %d %d %d %d %d %d\n",
+            this.translateToTime(endTime), endShape.getPosition().getX(), endShape.getPosition().getY(),
             endSize.getXDir(), endSize.getYDir(), endColor.getRed(),
             endColor.getGreen(), endColor.getBlue()));
+
       }
       table.append(currentShapeOutput);
     }

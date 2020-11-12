@@ -54,6 +54,8 @@ TODO:
 - Look over past lectures on views, etc.
 - Finish implementing BasicCommand
 - null Shape constructor
+- finish implementing canvas in
+- fix width and height to Dimension2D
 
 
 

@@ -1,12 +1,12 @@
+package incompletetests;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import cs3500.animator.model.color.Color;
+
 import cs3500.animator.model.animatedobjectcommand.AnimatedObjectCommand;
-import cs3500.animator.model.animatedobjectcommand.ChangeColor;
-import cs3500.animator.model.animatedobjectcommand.ChangeSize;
-import cs3500.animator.model.animatedobjectcommand.Move;
 import cs3500.animator.model.dimension2d.Dimension2D;
 import cs3500.animator.model.position2d.Position2D;
 import cs3500.animator.model.shape.Ellipse;
@@ -16,9 +16,9 @@ import org.junit.Before;
 import org.junit.Test;
 
 /**
- * Tests for Move Command class object.
+ * Tests for ChangeColor Command class object.
  */
-public class MoveTest {
+public class ChangeColorTest {
 
   AnimatedObjectCommand c1;
   AnimatedObjectCommand c2;
@@ -29,18 +29,12 @@ public class MoveTest {
 
   @Before
   public void setUp() {
-    this.c1 = new Move(1, 15, new Position2D(0, 0),
-        new Position2D(15, 0));
-    this.c2 = new Move(20, 21, new Position2D(15, 0),
-        new Position2D(6, 0));
-    this.c3 = new Move(70, 75, new Position2D(2, 2),
-        new Position2D(10, 25));
-    this.s1 = new Rectangle(10, 10, new Color(10, 10, 10),
-        new Position2D(0, 0));
-    this.s2 = new Ellipse(14, 6, new Color(11, 10, 155),
-        new Position2D(15, 0));
-    this.s3 = new Rectangle(20, 12, new Color(10, 20, 10),
-        new Position2D(2, 2));
+    this.c1 = new ChangeColor(1, 15, new Color(10, 10, 10), new Color(11, 10, 155));
+    this.c2 = new ChangeColor(20, 21, new Color(11, 10, 155), new Color(200, 200, 200));
+    this.c3 = new ChangeColor(70, 75, new Color(10, 20, 10), new Color(100, 20, 100));
+    this.s1 = new Rectangle(1, 1, new Color(10, 10, 10), new Position2D(0, 0));
+    this.s2 = new Ellipse(15, 1, new Color(11, 10, 155), new Position2D(15, 0));
+    this.s3 = new Rectangle(2, 2, new Color(10, 20, 10), new Position2D(2, 2));
   }
 
   // test constructor
@@ -48,43 +42,41 @@ public class MoveTest {
   // test constructor throws exception for negative start time.
   @Test(expected = IllegalArgumentException.class)
   public void testCommandNegativeStartTime() {
-    AnimatedObjectCommand invalid = new Move(-1, 2,
-        new Position2D(1, 1), new Position2D(2, 1));
+    AnimatedObjectCommand invalid = new ChangeColor(-1, 2, new Color(10, 10, 10),
+        new Color(111, 10, 10));
   }
 
   // test constructor throws exception for negative end time.
   @Test(expected = IllegalArgumentException.class)
   public void testCommandNegativeEndTime() {
-    AnimatedObjectCommand invalid = new Move(2, -2,
-        new Position2D(1, 1), new Position2D(2, 1));
+    AnimatedObjectCommand invalid = new ChangeColor(2, -2, new Color(10, 10, 10),
+        new Color(111, 10, 10));
   }
 
   // test constructor throws exception for endtime before starttime.
   @Test(expected = IllegalArgumentException.class)
   public void testCommandStartTimeBeforeEndTime() {
-    AnimatedObjectCommand invalid = new Move(2, 1,
-        new Position2D(1, 1), new Position2D(1, 2));
+    AnimatedObjectCommand invalid = new ChangeColor(2, 1, new Color(10, 10, 10),
+        new Color(111, 10, 10));
   }
 
   // test constructor throws exception for zero second interval.
   @Test(expected = IllegalArgumentException.class)
   public void testCommandStartTimeEqualEndTime() {
-    AnimatedObjectCommand invalid = new Move(2, 2,
-        new Position2D(1, 1), new Position2D(1, 1));
+    AnimatedObjectCommand invalid = new ChangeColor(2, 2, new Color(10, 10, 10),
+        new Color(111, 10, 10));
   }
 
-  // test constructor throws exception if startPosition is null.
+  // test constructor throws exception if startColor is null.
   @Test(expected = IllegalArgumentException.class)
   public void testCommandStartPositionNull() {
-    AnimatedObjectCommand invalid = new Move(2, 2,
-        null, new Position2D(1, 1));
+    AnimatedObjectCommand invalid = new ChangeColor(2, 2, null, new Color(10, 10, 10));
   }
 
-  // test constructor throws exception if endPosition is null.
+  // test constructor throws exception if endColor is null.
   @Test(expected = IllegalArgumentException.class)
   public void testCommandEndPositionNull() {
-    AnimatedObjectCommand invalid = new Move(2, 2,
-        new Position2D(1, 1), null);
+    AnimatedObjectCommand invalid = new ChangeColor(2, 2, new Color(10, 10, 10), null);
   }
 
   // apply
@@ -95,9 +87,9 @@ public class MoveTest {
     c2.apply(s2, 10);
   }
 
-  // called apply on not applicable / startcoord don't line up
+  // called apply on not applicable / startColor don't line up
   @Test(expected = IllegalArgumentException.class)
-  public void testApplyShapeCoordsNotAtStartCoord() {
+  public void testApplyShapeCoordsNotAtStartColor() {
     c2.apply(s1, 20);
   }
 
@@ -106,78 +98,78 @@ public class MoveTest {
     // time is equal to end time
     assertEquals(s1.getPosition(), new Position2D(0, 0));
     assertEquals(s1.getColor(), new Color(10, 10, 10));
-    assertEquals(s1.getSize(), new Dimension2D(10, 10));
+    assertEquals(s1.getSize(), new Dimension2D(1, 1));
     Shape newS1 = c1.apply(s1, 15);
     assertEquals(s1.getPosition(), new Position2D(0, 0));
     assertEquals(s1.getColor(), new Color(10, 10, 10));
-    assertEquals(s1.getSize(), new Dimension2D(10, 10));
-    assertEquals(newS1.getPosition(), new Position2D(15, 0));
-    assertEquals(newS1.getColor(), new Color(10, 10, 10));
-    assertEquals(newS1.getSize(), new Dimension2D(10, 10));
+    assertEquals(s1.getSize(), new Dimension2D(1, 1));
+    assertEquals(newS1.getPosition(), new Position2D(0, 0));
+    assertEquals(newS1.getColor(), new Color(11, 10, 155));
+    assertEquals(newS1.getSize(), new Dimension2D(1, 1));
 
     // time is greater than end time
 
     assertEquals(s2.getPosition(), new Position2D(15, 0));
     assertEquals(s2.getColor(), new Color(11, 10, 155));
-    assertEquals(s2.getSize(), new Dimension2D(14, 6));
+    assertEquals(s2.getSize(), new Dimension2D(15, 1));
     Shape newS2 = c2.apply(s2, 25);
     assertEquals(s2.getPosition(), new Position2D(15, 0));
     assertEquals(s2.getColor(), new Color(11, 10, 155));
-    assertEquals(s2.getSize(), new Dimension2D(14, 6));
-    assertEquals(newS2.getPosition(), new Position2D(6, 0));
-    assertEquals(newS2.getColor(), new Color(11, 10, 155));
-    assertEquals(newS2.getSize(), new Dimension2D(14, 6));
+    assertEquals(s2.getSize(), new Dimension2D(15, 1));
+    assertEquals(newS2.getPosition(), new Position2D(15, 0));
+    assertEquals(newS2.getColor(), new Color(200, 200, 200));
+    assertEquals(newS2.getSize(), new Dimension2D(15, 1));
 
     assertEquals(s1.getPosition(), new Position2D(0, 0));
     assertEquals(s1.getColor(), new Color(10, 10, 10));
-    assertEquals(s1.getSize(), new Dimension2D(10, 10));
+    assertEquals(s1.getSize(), new Dimension2D(1, 1));
     newS1 = c1.apply(s1, 46);
     assertEquals(s1.getPosition(), new Position2D(0, 0));
     assertEquals(s1.getColor(), new Color(10, 10, 10));
-    assertEquals(s1.getSize(), new Dimension2D(10, 10));
-    assertEquals(newS1.getPosition(), new Position2D(15, 0));
-    assertEquals(newS1.getColor(), new Color(10, 10, 10));
-    assertEquals(newS1.getSize(), new Dimension2D(10, 10));
+    assertEquals(s1.getSize(), new Dimension2D(1, 1));
+    assertEquals(newS1.getPosition(), new Position2D(0, 0));
+    assertEquals(newS1.getColor(), new Color(11, 10, 155));
+    assertEquals(newS1.getSize(), new Dimension2D(1, 1));
 
     // time is inbetween intervals
-    assertEquals(s3.getPosition(), new Position2D(2, 2));
+    assertEquals(s3.getColor(), new Color(10, 20, 10));
     Shape newS3 = c3.apply(s3, 71);
-    assertEquals(newS3.getPosition(), new Position2D(3, 6));
+    assertEquals(newS3.getColor(), new Color(28, 20, 28));
     newS3 = c3.apply(s3, 72);
-    assertEquals(newS3.getPosition(), new Position2D(5, 11));
+    assertEquals(newS3.getColor(), new Color(46, 20, 46));
     newS3 = c3.apply(s3, 73);
-    assertEquals(newS3.getPosition(), new Position2D(6, 15));
+    assertEquals(newS3.getColor(), new Color(64, 20, 64));
     newS3 = c3.apply(s3, 74);
-    assertEquals(newS3.getPosition(), new Position2D(8, 20));
+    assertEquals(newS3.getColor(), new Color(82, 20, 82));
 
-    assertEquals(s1.getPosition(), new Position2D(0, 0));
+    assertEquals(s1.getColor(), new Color(10, 10, 10));
     newS1 = c1.apply(s1, 10);
-    assertEquals(newS1.getPosition(), new Position2D(9, 0));
+    assertEquals(newS1.getColor(), new Color(10, 10, 103));
     newS1 = c1.apply(s1, 12);
-    assertEquals(newS1.getPosition(), new Position2D(11, 0));
+    assertEquals(newS1.getColor(), new Color(10, 10, 123));
     newS1 = c1.apply(s1, 6);
-    assertEquals(newS1.getPosition(), new Position2D(5, 0));
+    assertEquals(newS1.getColor(), new Color(10, 10, 61));
 
     // time is equal to start
 
-    assertEquals(s3.getPosition(), new Position2D(2, 2));
+    assertEquals(s3.getColor(), new Color(10, 20, 10));
     newS3 = c3.apply(s3, 70);
-    assertEquals(newS3.getPosition(), new Position2D(2, 2));
+    assertEquals(newS3.getColor(), new Color(10, 20, 10));
 
-    assertEquals(s1.getPosition(), new Position2D(0, 0));
+    assertEquals(s1.getColor(), new Color(10, 10, 10));
     newS1 = c1.apply(s1, 1);
-    assertEquals(newS1.getPosition(), new Position2D(0, 0));
+    assertEquals(newS1.getColor(), new Color(10, 10, 10));
 
-    assertEquals(s2.getPosition(), new Position2D(15, 0));
+    assertEquals(s2.getColor(), new Color(11, 10, 155));
     newS2 = c2.apply(s2, 20);
-    assertEquals(newS2.getPosition(), new Position2D(15, 0));
+    assertEquals(newS2.getColor(), new Color(11, 10, 155));
 
-    // chaining two move commands together together
-    assertEquals(s1.getPosition(), new Position2D(0, 0));
+    // chaining two ChangeColor commands together together
+    assertEquals(s1.getColor(), new Color(10, 10, 10));
     newS1 = c1.apply(s1, 20);
-    assertEquals(newS1.getPosition(), new Position2D(15, 0));
+    assertEquals(newS1.getColor(), new Color(11, 10, 155));
     newS2 = c2.apply(newS1, 20);
-    assertEquals(newS2.getPosition(), new Position2D(15, 0));
+    assertEquals(newS2.getColor(), new Color(11, 10, 155));
 
   }
 
@@ -201,10 +193,8 @@ public class MoveTest {
     assertTrue(c1.sameType(c2));
     assertTrue(c2.sameType(c1));
     assertTrue(c2.sameType(c3));
-    assertFalse(c2.sameType(new ChangeColor(1, 2,
-        new Color(1, 1, 1), new Color(2, 3, 4))));
-    assertFalse(c1.sameType(new ChangeSize(1, 2,
-        new Dimension2D(1, 1), new Dimension2D(2, 3))));
+    assertFalse(c2.sameType(new ChangeSize(1, 2, new Dimension2D(1, 1), new Dimension2D(2, 3))));
+    assertFalse(c1.sameType(new Move(1, 2, new Position2D(1, 1), new Position2D(2, 3))));
   }
 
   // getstarttime
@@ -235,15 +225,13 @@ public class MoveTest {
     assertFalse(this.c2.equals(this.c1));
     assertFalse(this.c1.equals(this.c3));
     assertFalse(this.c1.equals("hello"));
-    assertFalse(this.c1.equals(new ChangeColor(1, 2, new Color(1, 1, 1),
-        new Color(1, 2, 1))));
-    assertFalse(this.c1.equals(new ChangeSize(1, 2,
-        new Dimension2D(1, 1), new Dimension2D(1, 2))));
+    assertFalse(this.c1.equals(new Move(1, 2, new Position2D(1, 1), new Position2D(1, 2))));
+    assertFalse(this.c1.equals(new ChangeSize(1, 2, new Dimension2D(1, 1), new Dimension2D(1, 2))));
 
-    AnimatedObjectCommand otherC1 = new Move(1, 15, new Position2D(0, 0),
-        new Position2D(15, 0));
-    AnimatedObjectCommand otherC2 = new Move(20, 21, new Position2D(15, 0),
-        new Position2D(6, 0));
+    AnimatedObjectCommand otherC1 = new ChangeColor(1, 15, new Color(10, 10, 10),
+        new Color(11, 10, 155));
+    AnimatedObjectCommand otherC2 = new ChangeColor(20, 21, new Color(11, 10, 155),
+        new Color(200, 200, 200));
 
     assertTrue(this.c1.equals(otherC1));
     assertTrue(this.c2.equals(otherC2));
@@ -252,12 +240,13 @@ public class MoveTest {
   //test hashcode.
   @Test
   public void testHashcode() {
+
     assertEquals(this.c1.hashCode(), this.c1.hashCode());
     assertEquals(this.c2.hashCode(), this.c2.hashCode());
-    AnimatedObjectCommand otherC1 = new Move(1, 15, new Position2D(0, 0),
-        new Position2D(15, 0));
-    AnimatedObjectCommand otherC2 = new Move(20, 21, new Position2D(15, 0),
-        new Position2D(6, 0));
+    AnimatedObjectCommand otherC1 = new ChangeColor(1, 15, new Color(10, 10, 10),
+        new Color(11, 10, 155));
+    AnimatedObjectCommand otherC2 = new ChangeColor(20, 21, new Color(11, 10, 155),
+        new Color(200, 200, 200));
 
     assertEquals(this.c1.hashCode(), otherC1.hashCode());
     assertEquals(this.c2.hashCode(), otherC2.hashCode());

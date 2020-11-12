@@ -1,3 +1,5 @@
+package incompletetests;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotSame;
@@ -8,9 +10,6 @@ import java.util.List;
 import cs3500.animator.model.animatedobject.AnimatedObject;
 import cs3500.animator.model.animatedobject.BasicAnimatedObject;
 import cs3500.animator.model.animatedobjectcommand.AnimatedObjectCommand;
-import cs3500.animator.model.animatedobjectcommand.ChangeColor;
-import cs3500.animator.model.animatedobjectcommand.ChangeSize;
-import cs3500.animator.model.animatedobjectcommand.Move;
 import cs3500.animator.model.dimension2d.Dimension2D;
 import cs3500.animator.model.position2d.Position2D;
 import cs3500.animator.model.shape.Ellipse;

@@ -33,8 +33,10 @@ public class Rectangle extends AbstractShape {
   @Override
   public Shape build(Position2D position, Color color, Dimension2D size)
       throws IllegalArgumentException {
-    if (size == null) {
-      throw new IllegalArgumentException("size can't be null");
+    if (position == null  && color == null && size == null) {
+      return new Rectangle();
+    } else if (position == null  || color == null || size == null) {
+      throw new IllegalArgumentException("cannot construct an Rectangle with a mix of null and nonnull arguments");
     }
     return new Rectangle(size.getXDir(), size.getYDir(), color, position);
   }

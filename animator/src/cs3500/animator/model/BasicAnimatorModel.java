@@ -9,9 +9,6 @@ import java.util.List;
 import java.util.Map;
 import cs3500.animator.model.animatedobject.AnimatedObject;
 import cs3500.animator.model.animatedobject.BasicAnimatedObject;
-import cs3500.animator.model.animatedobjectcommand.ChangeColor;
-import cs3500.animator.model.animatedobjectcommand.ChangeSize;
-import cs3500.animator.model.animatedobjectcommand.Move;
 import cs3500.animator.model.dimension2d.Dimension2D;
 import cs3500.animator.model.position2d.Position2D;
 import cs3500.animator.model.shape.Shape;
@@ -52,7 +49,7 @@ public class BasicAnimatorModel implements AnimatorModel {
   public void addMotion(String name, int startTime, int endTime, Position2D startPosition,
       Position2D endPosition, Color startColor, Color endColor, Dimension2D startSize,
       Dimension2D endSize) throws IllegalArgumentException {
-    if (!this.animatedObjects.containsKey(name) || startTime < 0 || startTime - endTime < 0
+    if (!this.animatedObjects.containsKey(name) || startTime < 0 || endTime - startTime < 0
         || startPosition == null
         || endPosition == null || startColor == null || endColor == null || startSize == null
         || endSize == null) {

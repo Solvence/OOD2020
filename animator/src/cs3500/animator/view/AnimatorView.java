@@ -15,9 +15,9 @@ public interface AnimatorView {
   void render() throws IOException;
 
   /**
-   * translate the given time in seconds to a tick value
-   * @param time time in seconds
-   * @return tick value equivalent to time based on some tick rate.
+   * translate the given tick to unitful time.
+   * @param tick the given tick frame to be converted
+   * @return time value equivalent to tick based on some tick rate.
    */
-  int translateToTick(double time);
+  double translateToTime(int tick);
 }
