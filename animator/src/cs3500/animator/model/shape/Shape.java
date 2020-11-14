@@ -3,6 +3,7 @@ package cs3500.animator.model.shape;
 import cs3500.animator.model.color.Color;
 import cs3500.animator.model.dimension2d.Dimension2D;
 import cs3500.animator.model.position2d.Position2D;
+import cs3500.animator.model.shapevisitor.ShapeVisitor;
 
 /**
  * Represents a 2D shape.
@@ -43,4 +44,13 @@ public interface Shape {
    * @return size of a shape
    */
   Dimension2D getSize();
+
+
+  /**
+   * Accepts a visitor and applies its functionality to this shape.
+   * @param visitor - the visitor function object to be applied on this Shape
+   * @param <R> - The return type of the given visitor
+   * @return - The result of applying the visitor's functionality on this Shape
+   */
+  <R> R accept(ShapeVisitor<R> visitor);
 }

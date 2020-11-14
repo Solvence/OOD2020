@@ -58,6 +58,15 @@ TODO:
 - finish implementing canvas in
 - fix width and height to Dimension2D
 - Teleportation can happen! Piazza @1450
+- figure out viewbox stuff for svg
+- Think about abstraction and if we need all five animates every time
+- visibility in svg view
+
+Ask in oh:
+- is our visitor design good?
+- abstraction?
+- abstraction between views
+- all five animates every time
 
 
 

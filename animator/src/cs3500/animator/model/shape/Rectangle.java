@@ -1,6 +1,7 @@
 package cs3500.animator.model.shape;
 
 import cs3500.animator.model.color.Color;
+import cs3500.animator.model.shapevisitor.ShapeVisitor;
 import java.util.Objects;
 import cs3500.animator.model.dimension2d.Dimension2D;
 import cs3500.animator.model.position2d.Position2D;
@@ -40,6 +41,12 @@ public class Rectangle extends AbstractShape {
     }
     return new Rectangle(size.getXDir(), size.getYDir(), color, position);
   }
+
+  @Override
+  public <R> R accept(ShapeVisitor<R> visitor) {
+    return visitor.visitRectangle(this);
+  }
+
   /**
    * An Rectangle is equal to an Object if the object is an Rectangle and has the same dimensions,
    * color, and position as this Rectangle.

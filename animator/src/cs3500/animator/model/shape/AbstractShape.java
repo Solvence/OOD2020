@@ -3,6 +3,7 @@ package cs3500.animator.model.shape;
 import cs3500.animator.model.color.Color;
 import cs3500.animator.model.dimension2d.Dimension2D;
 import cs3500.animator.model.position2d.Position2D;
+import cs3500.animator.model.shapevisitor.ShapeVisitor;
 
 /**
  * Represents a generic implementation of a shape.
@@ -58,6 +59,9 @@ public abstract class AbstractShape implements Shape {
   public Dimension2D getSize() {
     return new Dimension2D(this.width, this.height);
   }
+
+  @Override
+  abstract public <R> R accept(ShapeVisitor<R> visitor);
 
   abstract public int hashCode();
 
