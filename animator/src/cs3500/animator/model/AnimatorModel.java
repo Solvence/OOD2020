@@ -73,4 +73,28 @@ public interface AnimatorModel {
    */
   List<AnimatedObjectCommand> getCommandsForShape(String name) throws IllegalArgumentException;
 
+
+  /**
+   * Initialize the fields of the models canvas, if they haven't have been already.
+   * @param pos  Position of top left corner of canvas
+   * @param size Dimensions of canvas.
+   * @throws IllegalArgumentException  either field is null
+   * @throws IllegalStateException if canvas has already been initialized.
+   */
+  void initCanvas(Position2D pos, Dimension2D size) throws IllegalArgumentException, IllegalStateException;
+
+  /**
+   * Get position of the models canvas.
+   * @return position of the models canvas.
+   * @throws IllegalStateException if position of canvas hasn't been initialized.
+   */
+  Position2D getCanvasPosition() throws IllegalStateException;
+
+  /**
+   * Get size of the models canvas.
+   * @return size of the models canvas.
+   * @throws IllegalStateException if size of canvas hasn't been initialized.
+   */
+  Dimension2D getCanvasSize() throws IllegalStateException;
+
 }

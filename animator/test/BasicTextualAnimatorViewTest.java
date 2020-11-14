@@ -84,6 +84,7 @@ public class BasicTextualAnimatorViewTest {
   @Test
   public void testAllToString() {
     AnimatorModel model = new BasicAnimatorModel();
+    model.initCanvas(new Position2D(1,1), new Dimension2D(1,1));
     Appendable ap = new StringBuilder();
     AnimatorView view = new TextualAnimatorView(model, ap, 2.0);
 

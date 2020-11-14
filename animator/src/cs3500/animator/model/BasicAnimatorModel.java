@@ -12,6 +12,7 @@ import cs3500.animator.model.animatedobject.BasicAnimatedObject;
 import cs3500.animator.model.dimension2d.Dimension2D;
 import cs3500.animator.model.position2d.Position2D;
 import cs3500.animator.model.shape.Shape;
+import cs3500.animator.model.canvas.Canvas;
 
 /**
  * A Basic Representation of a AnimatorModel, which animates basic Shapes.
@@ -19,6 +20,7 @@ import cs3500.animator.model.shape.Shape;
 public class BasicAnimatorModel implements AnimatorModel {
 
   private final Map<String, AnimatedObject> animatedObjects;
+  private final Canvas canvas;
 
   /**
    * Default Constructor for BasicAnimatorModel. INVARIANT: animatedObjects cannot contain two
@@ -26,6 +28,7 @@ public class BasicAnimatorModel implements AnimatorModel {
    */
   public BasicAnimatorModel() {
     this.animatedObjects = new HashMap<>();
+    this.canvas = new Canvas();
   }
 
 
@@ -73,5 +76,23 @@ public class BasicAnimatorModel implements AnimatorModel {
     return new ArrayList<>(this.animatedObjects.get(name).getCommands());
   }
 
+  @Override
+  public void initCanvas(Position2D pos, Dimension2D size) throws IllegalArgumentException, IllegalStateException{
+    if (pos == null || size == null) {
+      throw new IllegalArgumentException("Can't init canvas with null fields");
+    }
+    this.canvas.initFields(size, pos);
+  }
+
+  @Override
+  public Position2D getCanvasPosition() {
+    return new Position2D(this.canvas.getPosition());
+  }
+
+  @Override
+  public Dimension2D getCanvasSize() {
+    return new Dimension2D(this.canvas.getSize());
+
+  }
 
 }

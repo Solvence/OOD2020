@@ -1,5 +1,6 @@
 package cs3500.animator.model.animatedobject;
 
+import cs3500.animator.model.dimension2d.Dimension2D;
 import java.util.List;
 import cs3500.animator.model.animatedobjectcommand.AnimatedObjectCommand;
 import cs3500.animator.model.shape.Shape;

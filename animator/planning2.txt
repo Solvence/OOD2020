@@ -28,6 +28,7 @@ In Model Interface:
   - Create two new getters getNames() (get all the names of objects in animation) & getCommandsForShape(String name) which will get commands for shape with given name.
   - Get rid of getAnimatedObject as it may reveal too much information which the user wont always need to know.
   - Make getShapesAt -> getShapeAt(String name, int time) as we may not always need to get all the shapes at a given time.
+  - add getCanvas() method
 
 
 
