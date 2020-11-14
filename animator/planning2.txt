@@ -56,6 +56,7 @@ TODO:
 - null Shape constructor
 - finish implementing canvas in
 - fix width and height to Dimension2D
+- Teleportation can happen! Piazza @1450
 
 
 
