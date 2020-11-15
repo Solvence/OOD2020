@@ -58,15 +58,14 @@ public class Ellipse extends AbstractShape {
   @Override
   public boolean equals(Object other) {
     return other instanceof Ellipse
-        && this.width == ((Ellipse) other).getSize().getXDir()
-        && this.height == ((Ellipse) other).getSize().getYDir()
+        && this.size.equals(((Ellipse) other).getSize())
         && this.color.equals(((Ellipse) other).getColor())
         && this.position.equals(((Ellipse) other).getPosition());
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(this.width, this.height, this.color, this.position,
+    return Objects.hash(this.size, this.color, this.position,
         "Ellipse");
   }
 

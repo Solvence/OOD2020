@@ -57,15 +57,14 @@ public class Rectangle extends AbstractShape {
   @Override
   public boolean equals(Object other) {
     return other instanceof Rectangle
-        && this.width == ((Rectangle) other).getSize().getXDir()
-        && this.height == ((Rectangle) other).getSize().getYDir()
+        && this.size.equals(((Rectangle) other).getSize())
         && this.color.equals(((Rectangle) other).getColor())
         && this.position.equals(((Rectangle) other).getPosition());
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(this.width, this.height, this.color, this.position,
+    return Objects.hash(this.size, this.color, this.position,
         "Rectangle");
   }
 

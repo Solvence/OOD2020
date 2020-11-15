@@ -9,9 +9,17 @@ import java.io.IOException;
 import java.util.List;
 import javax.swing.JFrame;
 
+/**
+ * Represents a visual frame by frame translation of an animation using JFrame.
+ */
 public class VisualAnimatorView extends JFrame implements ActiveAnimatorView {
   VisualAnimatorPanel visualPanel;
 
+  /**
+   * Default Constructor
+   * @param canvasTopLeft top left relative position of canvas
+   * @param canvasSize dimensions of canvas
+   */
   public VisualAnimatorView(Position2D canvasTopLeft, Dimension2D canvasSize) {
     super();
     this.setTitle("Visual View");

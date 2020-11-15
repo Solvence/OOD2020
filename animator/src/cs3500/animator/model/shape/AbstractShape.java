@@ -11,8 +11,7 @@ import cs3500.animator.view.shapevisitor.ShapeVisitor;
 public abstract class AbstractShape implements Shape {
   protected final Color color;
   protected final Position2D position;
-  protected final int width;
-  protected  final int height;
+  protected final Dimension2D size;
 
   /**
    * Default constructor.
@@ -26,8 +25,7 @@ public abstract class AbstractShape implements Shape {
     if (width < 0 || height < 0 || color == null || position == null) {
       throw new IllegalArgumentException("can't have negative dimensions or null values");
     }
-    this.width = width;
-    this.height = height;
+    this.size = new Dimension2D(width, height);
     this.color = color;
     this.position = position;
   }
@@ -36,8 +34,7 @@ public abstract class AbstractShape implements Shape {
    * Default Constructor
    */
   AbstractShape() {
-    this.width = -1;
-    this.height = -1;
+    this.size = null;
     this.color = null;
     this.position = null;
   }
@@ -47,17 +44,26 @@ public abstract class AbstractShape implements Shape {
 
   @Override
   public Position2D getPosition() {
+    if (this.position == null) {
+      return null;
+    }
     return new Position2D(this.position);
   }
 
   @Override
   public Color getColor() {
+    if (this.color == null) {
+      return null;
+    }
     return new Color(this.color);
   }
 
   @Override
   public Dimension2D getSize() {
-    return new Dimension2D(this.width, this.height);
+    if (this.size == null) {
+      return null;
+    }
+    return new Dimension2D(this.size);
   }
 
   @Override

@@ -8,10 +8,17 @@ import cs3500.animator.model.shape.Shape;
 import java.awt.Color;
 import java.awt.Graphics2D;
 
+/**
+ * Represents a function object to render a shape onto a JFrame Canvas.
+ */
 public class VisualShapeVisitor implements ShapeVisitor<Void> {
 
   private final Graphics2D g2d;
 
+  /**
+   * Default Constructor.
+   * @param g2d  2D graphic canvas
+   */
   public VisualShapeVisitor(Graphics2D g2d) {
     this.g2d = g2d;
   }
