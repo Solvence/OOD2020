@@ -44,16 +44,16 @@ public class SVGAnimatorView implements AnimatorView{
       Shape baseShape = this.model.getShapeAt(name, 0);
       Shape initialShape = commands.get(0).apply(baseShape, firstCommand.getStartTime());
 
-      file.write(new RenderSVGHeader(name).apply(initialShape).toString());
+      file.write(new RenderSVGHeader(name).apply(initialShape));
 
       for (AnimatedObjectCommand command: commands) {
         double startTime = this.translateToTime(command.getStartTime());
         double endTime = this.translateToTime(command.getEndTime());
 
-        file.write(new RenderSVGAnimateTag(command, startTime, endTime).apply(baseShape).toString());
+        file.write(new RenderSVGAnimateTag(command, startTime, endTime).apply(baseShape));
       }
 
-      file.write(new RenderSVGExitTag().apply(baseShape).toString());
+      file.write(new RenderSVGExitTag().apply(baseShape));
 
     }
 

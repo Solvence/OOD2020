@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * Represents a function object to render an animation tag in an SVG view for a given Shape
  */
-public class RenderSVGAnimateTag implements ShapeVisitor<StringBuilder> {
+public class RenderSVGAnimateTag implements ShapeVisitor<String> {
 
   private final AnimatedObjectCommand command;
   private final double startTime;
@@ -26,7 +26,7 @@ public class RenderSVGAnimateTag implements ShapeVisitor<StringBuilder> {
   }
 
   @Override
-  public StringBuilder visitEllipse(Ellipse e) {
+  public String visitEllipse(Ellipse e) {
     Shape initialShape = command.apply(e, command.getStartTime());
     Shape finalShape = command.apply(e, command.getEndTime());
 
@@ -59,11 +59,11 @@ public class RenderSVGAnimateTag implements ShapeVisitor<StringBuilder> {
         finalShape.getColor().getRed(), finalShape.getColor().getGreen(),
         finalShape.getColor().getBlue()));
 
-    return sb;
+    return sb.toString();
   }
 
   @Override
-  public StringBuilder visitRectangle(Rectangle r) {
+  public String visitRectangle(Rectangle r) {
     Shape initialShape = command.apply(r, command.getStartTime());
     Shape finalShape = command.apply(r, command.getEndTime());
 
@@ -96,11 +96,11 @@ public class RenderSVGAnimateTag implements ShapeVisitor<StringBuilder> {
         finalShape.getColor().getRed(), finalShape.getColor().getGreen(),
         finalShape.getColor().getBlue()));
 
-    return sb;
+    return sb.toString();
   }
 
   @Override
-  public StringBuilder apply(Shape shape) {
+  public String apply(Shape shape) {
     return shape.accept(this);
   }
 }

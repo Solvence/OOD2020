@@ -10,7 +10,7 @@ import cs3500.animator.model.shape.Shape;
 /**
  * Represents a function object to render a header of a Shape's SVG component.
  */
-public class RenderSVGHeader implements ShapeVisitor<StringBuilder> {
+public class RenderSVGHeader implements ShapeVisitor<String> {
 
   private final String name;
 
@@ -24,31 +24,31 @@ public class RenderSVGHeader implements ShapeVisitor<StringBuilder> {
   }
 
   @Override
-  public StringBuilder visitEllipse(Ellipse e) {
+  public String visitEllipse(Ellipse e) {
     Position2D pos = e.getPosition();
     Dimension2D dimension = e.getSize();
     Color color = e.getColor();
 
-    return new StringBuilder(String.format("<ellipse id=\"%s\" cx=\"%d\" cy=\"%d\" rx=\"%d\" "
+    return String.format("<ellipse id=\"%s\" cx=\"%d\" cy=\"%d\" rx=\"%d\" "
             + "ry=\"%d\" fill=\"rgb(%d,%d,%d)\" visibility=\"visible\" >\n",
         this.name, pos.getX(), pos.getY(), dimension.getXDir(), dimension.getYDir(),
-        color.getRed(), color.getGreen(), color.getBlue()));
+        color.getRed(), color.getGreen(), color.getBlue());
   }
 
   @Override
-  public StringBuilder visitRectangle(Rectangle r) {
+  public String visitRectangle(Rectangle r) {
     Position2D pos = r.getPosition();
     Dimension2D dimension = r.getSize();
     Color color = r.getColor();
 
-    return new StringBuilder(String.format("<rect id=\"%s\" x=\"%d\" y=\"%d\" width=\"%d\" "
+    return String.format("<rect id=\"%s\" x=\"%d\" y=\"%d\" width=\"%d\" "
             + "height=\"%d\" fill=\"rgb(%d,%d,%d)\" visibility=\"visible\" >\n",
         this.name, pos.getX(), pos.getY(), dimension.getXDir(), dimension.getYDir(),
-        color.getRed(), color.getGreen(), color.getBlue()));
+        color.getRed(), color.getGreen(), color.getBlue());
   }
 
   @Override
-  public StringBuilder apply(Shape shape) {
+  public String apply(Shape shape) {
     return shape.accept(this);
   }
 }

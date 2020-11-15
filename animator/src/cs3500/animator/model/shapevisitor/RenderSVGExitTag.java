@@ -7,20 +7,20 @@ import cs3500.animator.model.shape.Shape;
 /**
  * Represents a function object to render an exit tag for a component in an SVG file.
  */
-public class RenderSVGExitTag implements ShapeVisitor<StringBuilder> {
+public class RenderSVGExitTag implements ShapeVisitor<String> {
 
   @Override
-  public StringBuilder visitEllipse(Ellipse e) {
-    return new StringBuilder("</ellipse>\n");
+  public String visitEllipse(Ellipse e) {
+    return "</ellipse>\n";
   }
 
   @Override
-  public StringBuilder visitRectangle(Rectangle r) {
-    return new StringBuilder("</rect>\n");
+  public String visitRectangle(Rectangle r) {
+    return "</rect>\n";
   }
 
   @Override
-  public StringBuilder apply(Shape shape) {
+  public String apply(Shape shape) {
     return shape.accept(this);
   }
 }
