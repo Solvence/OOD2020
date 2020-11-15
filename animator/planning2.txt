@@ -61,6 +61,7 @@ TODO:
 - figure out viewbox stuff for svg
 - Think about abstraction and if we need all five animates every time
 - visibility in svg view
+- hasFinishedRendering() method that returns a boolean. VisualView itself will update the time.
 
 Ask in oh:
 - is our visitor design good?
