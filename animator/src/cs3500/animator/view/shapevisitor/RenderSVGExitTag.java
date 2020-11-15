@@ -1,4 +1,4 @@
-package cs3500.animator.model.shapevisitor;
+package cs3500.animator.view.shapevisitor;
 
 import cs3500.animator.model.shape.Ellipse;
 import cs3500.animator.model.shape.Rectangle;

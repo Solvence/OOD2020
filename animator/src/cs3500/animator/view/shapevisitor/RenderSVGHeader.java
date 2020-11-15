@@ -1,4 +1,4 @@
-package cs3500.animator.model.shapevisitor;
+package cs3500.animator.view.shapevisitor;
 
 import cs3500.animator.model.color.Color;
 import cs3500.animator.model.dimension2d.Dimension2D;

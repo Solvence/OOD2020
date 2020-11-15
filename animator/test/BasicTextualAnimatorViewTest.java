@@ -5,10 +5,15 @@ import cs3500.animator.model.dimension2d.Dimension2D;
 import cs3500.animator.model.position2d.Position2D;
 import cs3500.animator.model.shape.Ellipse;
 import cs3500.animator.model.shape.Rectangle;
+import cs3500.animator.model.shape.Shape;
+import cs3500.animator.view.ActiveAnimatorView;
 import cs3500.animator.view.SVGAnimatorView;
+import cs3500.animator.view.VisualAnimatorView;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import org.junit.Test;
 import cs3500.animator.view.AnimatorView;
 import cs3500.animator.view.TextualAnimatorView;
@@ -88,11 +93,13 @@ public class BasicTextualAnimatorViewTest {
   @Test
   public void testAllToString() throws IOException { // remove throws later
     AnimatorModel model = new BasicAnimatorModel();
-    model.initCanvas(new Position2D(1,1), new Dimension2D(100,100));
+    model.initCanvas(new Position2D(1,1), new Dimension2D(1000,1000));
     Appendable ap = new StringBuilder();
     AnimatorView view = new TextualAnimatorView(model, ap, 2.0);
     //TEST
     AnimatorView view2 = new SVGAnimatorView(model, new FileWriter("TESTING.svg"), 2.0);
+
+    ActiveAnimatorView view3 = new VisualAnimatorView(model.getCanvasPosition(), model.getCanvasSize());
 
     model.create("My Shape", new Rectangle(20, 10, new Color(1, 1, 199),
         new Position2D(3, 5)));
@@ -114,8 +121,14 @@ public class BasicTextualAnimatorViewTest {
 
     model.addMotion("My Shape", 20, 27, new Position2D(10, 18), new Position2D(50, 60), new Color(9, 1, 9),
         new Color(255, 0, 0), new Dimension2D(10, 90), new Dimension2D(40, 30));
+    List<Shape> shapes = new ArrayList<Shape>();
+    for (String s : model.getAllShapeName()) {
+      shapes.add(model.getShapeAt(s, 3));
+    }
 
-    view2.render();
+    view3.makeVisible();
+    view3.setShapes(shapes);
+    view3.render();
 
 //    assertEquals(view.toString(), "Shape - My Shape - Rectangle\n"
 //        + "Start: time | x | y | width| height| r | g | b |      "

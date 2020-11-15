@@ -3,7 +3,7 @@ package cs3500.animator.model.shape;
 import cs3500.animator.model.color.Color;
 import cs3500.animator.model.dimension2d.Dimension2D;
 import cs3500.animator.model.position2d.Position2D;
-import cs3500.animator.model.shapevisitor.ShapeVisitor;
+import cs3500.animator.view.shapevisitor.ShapeVisitor;
 
 /**
  * Represents a generic implementation of a shape.

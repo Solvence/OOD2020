@@ -1,10 +1,9 @@
-package cs3500.animator.model.shapevisitor;
+package cs3500.animator.view.shapevisitor;
 
 import cs3500.animator.model.animatedobjectcommand.AnimatedObjectCommand;
 import cs3500.animator.model.shape.Ellipse;
 import cs3500.animator.model.shape.Rectangle;
 import cs3500.animator.model.shape.Shape;
-import java.util.List;
 
 /**
  * Represents a function object to render an animation tag in an SVG view for a given Shape
