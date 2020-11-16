@@ -13,11 +13,14 @@ import cs3500.animator.model.shape.Shape;
 import cs3500.animator.util.AnimationReader;
 import cs3500.animator.view.ActiveAnimatorView;
 
+import cs3500.animator.view.AnimatorView;
+import cs3500.animator.view.SVGAnimatorView;
 import cs3500.animator.view.VisualAnimatorView;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,13 +28,18 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class Animate {
-  public static void main(String[] args) throws InterruptedException, FileNotFoundException {
+  public static void main(String[] args) throws InterruptedException, IOException {
     AnimationReader reader = new AnimationReader();
     AnimatorModel model = reader.parseFile(new FileReader(new File("buildings.txt")),
         BasicAnimatorModel.builder());
 
     ActiveAnimatorView view3 = new VisualAnimatorView(model.getCanvasPosition(),
         model.getCanvasSize());
+
+    AnimatorView view1 = new SVGAnimatorView(model, new FileWriter("TESTING.svg"),
+        60);
+
+    view1.render();
 
 
     Timer t = new Timer();

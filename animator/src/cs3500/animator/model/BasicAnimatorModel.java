@@ -6,7 +6,7 @@ import cs3500.animator.model.color.Color;
 import cs3500.animator.model.shape.ShapeFactory;
 import cs3500.animator.util.AnimationBuilder;
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import cs3500.animator.model.animatedobject.AnimatedObject;
@@ -30,7 +30,7 @@ public class BasicAnimatorModel implements AnimatorModel {
    * be initialized using initCanvas before any shapes are initialized
    */
   private BasicAnimatorModel() {
-    this.animatedObjects = new HashMap<>();
+    this.animatedObjects = new LinkedHashMap<>();
     this.canvas = new Canvas();
   }
 
