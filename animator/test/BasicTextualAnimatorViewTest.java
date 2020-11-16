@@ -92,7 +92,7 @@ public class BasicTextualAnimatorViewTest {
    */
   @Test
   public void testAllToString() throws IOException { // remove throws later
-    AnimatorModel model = new BasicAnimatorModel();
+    /*AnimatorModel model = new BasicAnimatorModel();
     model.initCanvas(new Position2D(1,1), new Dimension2D(1000,1000));
     Appendable ap = new StringBuilder();
     AnimatorView view = new TextualAnimatorView(model, ap, 2.0);
@@ -128,7 +128,7 @@ public class BasicTextualAnimatorViewTest {
 
     view3.makeVisible();
     view3.setShapes(shapes);
-    view3.render();
+    view3.render();*/
 
 //    assertEquals(view.toString(), "Shape - My Shape - Rectangle\n"
 //        + "Start: time | x | y | width| height| r | g | b |      "

@@ -35,8 +35,9 @@ public interface AnimatorModel {
    * @param name name of shape to get state of.
    * @return a version of a shape after a given time of animation has elapsed.
    * @throws IllegalArgumentException if time is negative or if shape with given name doesn't exist
+   * @throws IllegalStateException if canvas is not initialized
    */
-  Shape getShapeAt(String name, int time) throws IllegalArgumentException;
+  Shape getShapeAt(String name, int time) throws IllegalArgumentException, IllegalStateException;
 
   /**
    * Add a motion to a shape with a given name that transitions the state of the shape over a
@@ -52,17 +53,19 @@ public interface AnimatorModel {
    * @param endSize          End Size of shape at end of motion
    * @throws IllegalArgumentException if no shape with given name exits or if any field is null or
    *                                  if time interval is invalid.
+   * @throws IllegalStateException if the canvas has not yet been initialized
    */
   void addMotion(String name, int startTime, int endTime, Position2D startPosition,
       Position2D endPosition, Color startColor, Color endColor, Dimension2D startSize,
-      Dimension2D endSize) throws IllegalArgumentException;
+      Dimension2D endSize) throws IllegalArgumentException, IllegalStateException;
 
   /**
    * Get all the names of shapes currently in our animation.
    *
    * @return all the names of shapes currently in our animation.
+   * @throws IllegalStateException if the canvas has not yet been initialized
    */
-  List<String> getAllShapeName();
+  List<String> getAllShapeName() throws IllegalStateException;
 
   /**
    * Get all the commands to be applied on a animated shape with a given name.
@@ -70,8 +73,10 @@ public interface AnimatorModel {
    * @param name name of shape
    * @return all commands for shape with given name
    * @throws IllegalArgumentException if animated shape with given name doesn't exist.
+   * @throws IllegalStateException if the canvas has not yet been initialized
    */
-  List<AnimatedObjectCommand> getCommandsForShape(String name) throws IllegalArgumentException;
+  List<AnimatedObjectCommand> getCommandsForShape(String name) throws IllegalArgumentException,
+      IllegalStateException;
 
 
   /**
@@ -81,7 +86,8 @@ public interface AnimatorModel {
    * @throws IllegalArgumentException  either field is null
    * @throws IllegalStateException if canvas has already been initialized.
    */
-  void initCanvas(Position2D pos, Dimension2D size) throws IllegalArgumentException, IllegalStateException;
+  void initCanvas(Position2D pos, Dimension2D size) throws IllegalArgumentException,
+      IllegalStateException;
 
   /**
    * Get position of the models canvas.
@@ -96,5 +102,7 @@ public interface AnimatorModel {
    * @throws IllegalStateException if size of canvas hasn't been initialized.
    */
   Dimension2D getCanvasSize() throws IllegalStateException;
+
+
 
 }

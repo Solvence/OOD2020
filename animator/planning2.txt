@@ -63,6 +63,7 @@ TODO:
 - visibility in svg view
 - hasFinishedRendering() method that returns a boolean. VisualView itself will update the time.
 - update positions of shapes based off of canvas in SVG and textualView.
+- make sure ShapeFactory is good design?
 
 Ask in oh:
 - is our visitor design good?
