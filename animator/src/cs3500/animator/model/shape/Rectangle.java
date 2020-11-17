@@ -63,13 +63,14 @@ public class Rectangle extends AbstractShape {
       return false;
     }
     Rectangle that = (Rectangle) other;
-    if (this.size == null && that.size == null && this.color == null && that.color == null
-        && this.position == null && that.position == null) {
-      return true;
-    } else {
+    if (this.size != null && that.size != null && this.color != null && that.color != null
+        && this.position != null && that.position != null) {
       return this.size.equals(that.size)
           && this.color.equals(that.color)
           && this.position.equals(that.position);
+    } else {
+      return this.size == null && that.size == null && this.color == null && that.color == null
+          && this.position == null && that.position == null;
     }
   }
 

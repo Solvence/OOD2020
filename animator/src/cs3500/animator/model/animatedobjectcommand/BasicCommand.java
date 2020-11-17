@@ -25,6 +25,9 @@ public class BasicCommand implements AnimatedObjectCommand {
         || endColor == null) {
       throw new IllegalArgumentException("invalid inputs");
     }
+    if (startTime == endTime && (!startPosition.equals(endPosition) || !startColor.equals(endColor) || !startSize.equals(endSize))) {
+      throw new IllegalArgumentException("KeyFrames can't teleport objects");
+    }
     this.startTime = startTime;
     this.endTime = endTime;
     this.startPosition = startPosition;

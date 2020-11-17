@@ -69,6 +69,33 @@ public class BasicCommandTest {
         new Color(11, 10, 155));
   }
 
+  // test constructor throws exception for keyframe that changes shape field position.
+  @Test(expected = IllegalArgumentException.class)
+  public void testCommandConstructorDoesntAllowTeleportPosition() {
+    AnimatedObjectCommand c1 = new BasicCommand(15, 15, new Position2D(0, 0),
+        new Position2D(10, 10),
+        new Dimension2D(1, 1), new Dimension2D(1, 1), new Color(10, 10, 10),
+        new Color(10, 10, 10));
+  }
+
+  // test constructor throws exception for keyframe that changes shape field color.
+  @Test(expected = IllegalArgumentException.class)
+  public void testCommandConstructorDoesntAllowTeleportColor() {
+    AnimatedObjectCommand c1 = new BasicCommand(15, 15, new Position2D(0, 0),
+        new Position2D(0, 0),
+        new Dimension2D(1, 1), new Dimension2D(1, 1), new Color(10, 10, 10),
+        new Color(10, 11, 10));
+  }
+
+  // test constructor throws exception for keyframe that changes shape field size.
+  @Test(expected = IllegalArgumentException.class)
+  public void testCommandConstructorDoesntAllowTeleportSize() {
+    AnimatedObjectCommand c1 = new BasicCommand(15, 15, new Position2D(0, 0),
+        new Position2D(0, 0),
+        new Dimension2D(1, 1), new Dimension2D(2, 1), new Color(10, 10, 10),
+        new Color(10, 10, 10));
+  }
+
   // test constructor throws exception if startPosition is null.
   @Test(expected = IllegalArgumentException.class)
   public void testCommandStartPositionNull() {

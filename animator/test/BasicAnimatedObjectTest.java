@@ -76,7 +76,8 @@ public class BasicAnimatedObjectTest {
     AnimatedObjectCommand c1 = new BasicCommand(1, 15, new Position2D(0, 0), new Position2D(10, 10),
         new Dimension2D(1, 1), new Dimension2D(10, 10), new Color(10, 10, 10),
         new Color(11, 10, 155));
-    AnimatedObjectCommand c2 = new BasicCommand(14, 30, new Position2D(10, 10), new Position2D(25, 10),
+    AnimatedObjectCommand c2 = new BasicCommand(14, 30, new Position2D(10, 10),
+        new Position2D(25, 10),
         new Dimension2D(10, 10), new Dimension2D(10, 40), new Color(11, 10, 155),
         new Color(11, 11, 11));
     List<AnimatedObjectCommand> commands = new ArrayList<>();
@@ -92,7 +93,8 @@ public class BasicAnimatedObjectTest {
     AnimatedObjectCommand c1 = new BasicCommand(1, 15, new Position2D(0, 0), new Position2D(10, 10),
         new Dimension2D(1, 1), new Dimension2D(10, 10), new Color(10, 10, 10),
         new Color(11, 10, 155));
-    AnimatedObjectCommand c2 = new BasicCommand(14, 30, new Position2D(10, 10), new Position2D(25, 10),
+    AnimatedObjectCommand c2 = new BasicCommand(14, 30, new Position2D(10, 10),
+        new Position2D(25, 10),
         new Dimension2D(10, 10), new Dimension2D(10, 40), new Color(11, 10, 155),
         new Color(11, 11, 11));
     ao1.addCommand(c1);
@@ -105,7 +107,8 @@ public class BasicAnimatedObjectTest {
     AnimatedObjectCommand c1 = new BasicCommand(1, 15, new Position2D(0, 0), new Position2D(10, 10),
         new Dimension2D(1, 1), new Dimension2D(10, 10), new Color(10, 10, 10),
         new Color(11, 10, 155));
-    AnimatedObjectCommand c2 = new BasicCommand(16, 30, new Position2D(10, 10), new Position2D(25, 10),
+    AnimatedObjectCommand c2 = new BasicCommand(16, 30, new Position2D(10, 10),
+        new Position2D(25, 10),
         new Dimension2D(10, 10), new Dimension2D(10, 40), new Color(11, 10, 155),
         new Color(11, 11, 11));
     ao1.addCommand(c1);
@@ -119,10 +122,12 @@ public class BasicAnimatedObjectTest {
     AnimatedObjectCommand c1 = new BasicCommand(1, 15, new Position2D(0, 0), new Position2D(10, 10),
         new Dimension2D(1, 1), new Dimension2D(10, 10), new Color(10, 10, 10),
         new Color(11, 10, 155));
-    AnimatedObjectCommand c2 = new BasicCommand(15, 30, new Position2D(10, 10), new Position2D(25, 10),
+    AnimatedObjectCommand c2 = new BasicCommand(15, 30, new Position2D(10, 10),
+        new Position2D(25, 10),
         new Dimension2D(10, 10), new Dimension2D(10, 40), new Color(11, 10, 155),
         new Color(11, 11, 11));
-    AnimatedObjectCommand c3 = new BasicCommand(30, 45, new Position2D(25, 10), new Position2D(200, 10),
+    AnimatedObjectCommand c3 = new BasicCommand(30, 45, new Position2D(25, 10),
+        new Position2D(200, 10),
         new Dimension2D(10, 40), new Dimension2D(80, 40), new Color(11, 11, 11),
         new Color(1, 1, 1));
 
@@ -157,10 +162,12 @@ public class BasicAnimatedObjectTest {
     AnimatedObjectCommand c1 = new BasicCommand(2, 15, new Position2D(0, 0), new Position2D(10, 10),
         new Dimension2D(1, 1), new Dimension2D(10, 10), new Color(10, 10, 10),
         new Color(11, 10, 155));
-    AnimatedObjectCommand c2 = new BasicCommand(15, 30, new Position2D(10, 10), new Position2D(25, 10),
+    AnimatedObjectCommand c2 = new BasicCommand(15, 30, new Position2D(10, 10),
+        new Position2D(25, 10),
         new Dimension2D(10, 10), new Dimension2D(10, 40), new Color(11, 10, 155),
         new Color(11, 11, 11));
-    AnimatedObjectCommand c3 = new BasicCommand(30, 45, new Position2D(25, 10), new Position2D(200, 10),
+    AnimatedObjectCommand c3 = new BasicCommand(30, 45, new Position2D(25, 10),
+        new Position2D(200, 10),
         new Dimension2D(10, 40), new Dimension2D(80, 40), new Color(11, 11, 11),
         new Color(1, 1, 1));
     ao1.addCommand(c1);
@@ -169,39 +176,36 @@ public class BasicAnimatedObjectTest {
 
     assertEquals(ao1.getShape(0), s1);
     assertEquals(ao1.getShape(1), s1);
-    System.out.println(String.format());
     assertEquals(ao1.getShape(5),
-        new Rectangle(15, 104, new Color(10, 10, 10), new Position2D(4, 4)));
+        new Rectangle(3, 3, new Color(10, 10, 43), new Position2D(2, 2)));
     assertEquals(ao1.getShape(10),
-        new Rectangle(22, 222, new Color(10, 10, 10), new Position2D(10, 10)));
+        new Rectangle(6, 6, new Color(10, 10, 99), new Position2D(6, 6)));
     assertEquals(ao1.getShape(11),
-        new Rectangle(22, 222, new Color(10, 10, 10), new Position2D(12, 13)));
+        new Rectangle(7, 7, new Color(10, 10, 110), new Position2D(6, 6)));
     assertEquals(ao1.getShape(15),
-        new Rectangle(22, 222, new Color(10, 10, 10), new Position2D(20, 25)));
+        new Rectangle(10, 10, new Color(11, 10, 155), new Position2D(10, 10)));
     assertEquals(ao1.getShape(16),
-        new Rectangle(22, 222, new Color(10, 10, 10), new Position2D(20, 25)));
+        new Rectangle(10, 12, new Color(11, 10, 146), new Position2D(11, 10)));
     assertEquals(ao1.getShape(20),
-        new Rectangle(22, 222, new Color(100, 22, 222), new Position2D(20, 25)));
+        new Rectangle(10, 20, new Color(11, 10, 107), new Position2D(15, 10)));
     assertEquals(ao1.getShape(41),
-        new Rectangle(22, 222, new Color(100, 22, 222), new Position2D(20, 25)));
+        new Rectangle(61, 40, new Color(4, 4, 4), new Position2D(153, 10)));
     assertEquals(ao1.getShape(45),
-        new Rectangle(22, 222, new Color(100, 22, 222), new Position2D(20, 25)));
+        new Rectangle(80, 40, new Color(1, 1, 1), new Position2D(200, 10)));
 
-    AnimatedObjectCommand c4 = new BasicCommand(45, 50, new Position2D(25, 10), new Position2D(200, 10),
+    AnimatedObjectCommand c4 = new BasicCommand(45, 50, new Position2D(25, 10),
+        new Position2D(200, 10),
         new Dimension2D(10, 40), new Dimension2D(80, 40), new Color(22, 11, 11),
         new Color(1, 1, 1));
     ao2.addCommand(c4);
     assertEquals(ao2.getShape(0), s2);
-    assertEquals(ao2.getShape(5), new Ellipse(2, 6, new Color(14, 100, 22), new Position2D(9, 1)));
-    assertEquals(ao2.getShape(10), new Ellipse(2, 6, new Color(14, 100, 22), new Position2D(0, 0)));
-    assertEquals(ao2.getShape(11), new Ellipse(2, 6, new Color(14, 100, 22), new Position2D(0, 0)));
-    assertEquals(ao2.getShape(12), new Ellipse(2, 6, new Color(14, 100, 22), new Position2D(0, 0)));
-    assertEquals(ao2.getShape(16), new Ellipse(2, 6, new Color(14, 100, 22), new Position2D(0, 0)));
-    assertEquals(ao2.getShape(30),
-        new Ellipse(2, 6, new Color(100, 22, 222), new Position2D(0, 0)));
-    assertEquals(ao2.getShape(50),
-        new Ellipse(2, 6, new Color(100, 22, 222), new Position2D(0, 0)));
-    assertEquals(ao2.getShape(5), new Ellipse(2, 6, new Color(14, 100, 22), new Position2D(9, 1)));
+    assertEquals(ao2.getShape(5), s2);
+    assertEquals(ao2.getShape(10), s2);
+    assertEquals(ao2.getShape(47), new Ellipse(38, 40, new Color(14, 7, 7), new Position2D(95, 10)));
+    assertEquals(ao2.getShape(50), new Ellipse(80, 40, new Color(1, 1, 1), new Position2D(200, 10)));
+    assertEquals(ao2.getShape(45),
+        new Ellipse(10, 40, new Color(22, 11, 11), new Position2D(25, 10)));
+    assertEquals(ao2.getShape(5), s2);
     assertEquals(ao2.getShape(0), s2);
 
 
@@ -213,15 +217,18 @@ public class BasicAnimatedObjectTest {
     AnimatedObjectCommand c1 = new BasicCommand(1, 15, new Position2D(0, 0), new Position2D(10, 10),
         new Dimension2D(1, 1), new Dimension2D(10, 10), new Color(10, 10, 10),
         new Color(11, 10, 155));
-    AnimatedObjectCommand c2 = new BasicCommand(15, 30, new Position2D(10, 10), new Position2D(25, 10),
+    AnimatedObjectCommand c2 = new BasicCommand(15, 30, new Position2D(10, 10),
+        new Position2D(25, 10),
         new Dimension2D(10, 10), new Dimension2D(10, 40), new Color(11, 10, 155),
         new Color(11, 11, 11));
-    AnimatedObjectCommand c3 = new BasicCommand(30, 45, new Position2D(25, 10), new Position2D(200, 10),
+    AnimatedObjectCommand c3 = new BasicCommand(30, 45, new Position2D(25, 10),
+        new Position2D(200, 10),
         new Dimension2D(10, 40), new Dimension2D(80, 40), new Color(11, 11, 11),
         new Color(1, 1, 1));
-    AnimatedObjectCommand c4 = new BasicCommand(30, 45, new Position2D(25, 10), new Position2D(200, 10),
-        new Dimension2D(10, 40), new Dimension2D(80, 40), new Color(11, 11, 11),
-        new Color(1, 1, 22));
+    AnimatedObjectCommand c4 = new BasicCommand(45, 45, new Position2D(200, 10),
+        new Position2D(200, 10),
+        new Dimension2D(80, 40), new Dimension2D(80, 40), new Color(1, 1, 1),
+        new Color(1, 1, 1));
     List<AnimatedObjectCommand> testList = new ArrayList<>();
     assertEquals(ao1.getCommands(), testList);
     ao1.addCommand(c1);
@@ -245,7 +252,8 @@ public class BasicAnimatedObjectTest {
    */
   @Test
   public void testEquals() {
-    AnimatedObjectCommand c2 = new BasicCommand(15, 30, new Position2D(10, 10), new Position2D(25, 10),
+    AnimatedObjectCommand c2 = new BasicCommand(15, 30, new Position2D(10, 10),
+        new Position2D(25, 10),
         new Dimension2D(10, 10), new Dimension2D(10, 40), new Color(11, 10, 155),
         new Color(11, 11, 11));
     assertEquals(ao1, new BasicAnimatedObject(
@@ -273,12 +281,10 @@ public class BasicAnimatedObjectTest {
   @Test
   public void testHashCode() {
     BasicAnimatedObject ao3 = new BasicAnimatedObject(
-        new Rectangle(10, 10, new Color(10, 10, 10),
-            new Position2D(0, 0)));
+        new Rectangle());
 
     BasicAnimatedObject ao4 = new BasicAnimatedObject(
-        new Ellipse(2, 6, new Color(14, 100, 22),
-            new Position2D(15, 1)));
+        new Ellipse());
 
     assertEquals(ao1, ao3);
     assertEquals(ao2, ao4);
