@@ -58,14 +58,12 @@ public class Animate {
 
   private static String findView(String[] args) {
     int viewIndex = -1;
-    System.out.println(args[5]);
 
     for (int i = 0; i < args.length; i++) {
       if (args[i].equals("-view")) {
         viewIndex = i + 1;
       }
     }
-    System.out.println(viewIndex);
 
     if (viewIndex == -1 || viewIndex > args.length - 1) {
       throw new IllegalArgumentException("view not defined");
@@ -107,7 +105,7 @@ public class Animate {
     int inIndex = -1;
 
     for (int i = 0; i < args.length; i++) {
-      if (args[i] == "-in") {
+      if (args[i].equals("-in")) {
         inIndex = i + 1;
       }
     }
