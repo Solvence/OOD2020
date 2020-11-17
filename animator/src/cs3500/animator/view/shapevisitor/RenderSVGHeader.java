@@ -30,7 +30,7 @@ public class RenderSVGHeader implements ShapeVisitor<String> {
     Color color = e.getColor();
 
     return String.format("<ellipse id=\"%s\" cx=\"%d\" cy=\"%d\" rx=\"%d\" "
-            + "ry=\"%d\" fill=\"rgb(%d,%d,%d)\" visibility=\"visible\" >\n",
+            + "ry=\"%d\" fill=\"rgb(%d,%d,%d)\" visibility=\"hidden\" >\n",
         this.name, pos.getX(), pos.getY(), dimension.getXDir(), dimension.getYDir(),
         color.getRed(), color.getGreen(), color.getBlue());
   }
@@ -42,7 +42,7 @@ public class RenderSVGHeader implements ShapeVisitor<String> {
     Color color = r.getColor();
 
     return String.format("<rect id=\"%s\" x=\"%d\" y=\"%d\" width=\"%d\" "
-            + "height=\"%d\" fill=\"rgb(%d,%d,%d)\" visibility=\"visible\" >\n",
+            + "height=\"%d\" fill=\"rgb(%d,%d,%d)\" visibility=\"hidden\" >\n",
         this.name, pos.getX(), pos.getY(), dimension.getXDir(), dimension.getYDir(),
         color.getRed(), color.getGreen(), color.getBlue());
   }
