@@ -3,6 +3,7 @@ package cs3500.animator.view;
 import cs3500.animator.model.AnimatorModel;
 import cs3500.animator.model.animatedobjectcommand.AnimatedObjectCommand;
 import cs3500.animator.model.dimension2d.Dimension2D;
+import cs3500.animator.model.position2d.Position2D;
 import cs3500.animator.model.shape.Shape;
 import cs3500.animator.view.shapevisitor.RenderSVGAnimateTag;
 import cs3500.animator.view.shapevisitor.RenderSVGExitTag;
@@ -33,8 +34,10 @@ public class SVGAnimatorView implements AnimatorView {
   @Override
   public void render() throws IOException {
     Dimension2D canvasSize = model.getCanvasSize();
-    file.append(String.format("<svg width=\"%d\" height=\"%d\" version=\"1.1\""
-        + " xmlns=\"http://www.w3.org/2000/svg\">\n", canvasSize.getXDir(),
+    Position2D canvasPosition = model.getCanvasPosition();
+    file.append(String.format("<svg viewBox = \"%d %d %d %d\" version=\"1.1\""
+        + " xmlns=\"http://www.w3.org/2000/svg\">\n", canvasPosition.getX(), canvasPosition.getY(),
+        canvasSize.getXDir(),
         canvasSize.getYDir()));
 
     for (String name: model.getAllShapeName()) {

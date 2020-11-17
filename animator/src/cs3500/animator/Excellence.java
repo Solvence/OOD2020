@@ -18,7 +18,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Animate {
+public class Excellence {
   public static void main(String[] args) throws InterruptedException, IOException {
     String type = findView(args);
     double tickRate = findTickRate(args);

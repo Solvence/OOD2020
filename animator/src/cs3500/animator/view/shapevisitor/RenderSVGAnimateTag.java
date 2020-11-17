@@ -31,6 +31,10 @@ public class RenderSVGAnimateTag implements ShapeVisitor<String> {
 
     StringBuilder sb = new StringBuilder();
 
+    sb.append(String.format("<set attributeName=\"visibility\" from=\"hidden\""
+        + "    to=\"visible\" begin=\"%fms\" dur=\"%fms\" fill=\"remove\"/>\n", this.startTime,
+        Math.max(this.endTime - this.startTime, 1.0)));
+
     sb.append(String.format("<animate attributeType=\"xml\" begin=\"%fms\" dur=\"%fms\" "
         + "attributeName=\"cx\" from=\"%d\" to=\"%d\" fill=\"freeze\" visibility=\"visible\" />\n",
         this.startTime, this.endTime - this.startTime, initialShape.getPosition().getX(),
@@ -68,8 +72,12 @@ public class RenderSVGAnimateTag implements ShapeVisitor<String> {
 
     StringBuilder sb = new StringBuilder();
 
+    sb.append(String.format("<set attributeName=\"visibility\" from=\"hidden\""
+        + "    to=\"visible\" begin=\"%fms\" dur=\"%fms\" fill=\"remove\"/>\n", this.startTime,
+        Math.max(this.endTime - this.startTime, 1.0)));
+
     sb.append(String.format("<animate attributeType=\"xml\" begin=\"%fms\" dur=\"%fms\" "
-            + "attributeName=\"x\" from=\"%d\" to=\"%d\" fill=\"freeze\" />\n",
+            + "attributeName=\"x\" from=\"%d\" to=\"%d\" fill=\"freeze\" visibility=\"visible\" />\n",
         this.startTime, this.endTime - this.startTime, initialShape.getPosition().getX(),
         finalShape.getPosition().getX()));
 
