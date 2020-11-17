@@ -34,10 +34,11 @@ public class Rectangle extends AbstractShape {
   @Override
   public Shape build(Position2D position, Color color, Dimension2D size)
       throws IllegalArgumentException {
-    if (position == null  && color == null && size == null) {
+    if (position == null && color == null && size == null) {
       return new Rectangle();
-    } else if (position == null  || color == null || size == null) {
-      throw new IllegalArgumentException("cannot construct an Rectangle with a mix of null and nonnull arguments");
+    } else if (position == null || color == null || size == null) {
+      throw new IllegalArgumentException(
+          "cannot construct an Rectangle with a mix of null and nonnull arguments");
     }
     return new Rectangle(size.getXDir(), size.getYDir(), color, position);
   }
@@ -56,10 +57,21 @@ public class Rectangle extends AbstractShape {
    */
   @Override
   public boolean equals(Object other) {
-    return other instanceof Rectangle
-        && this.size.equals(((Rectangle) other).getSize())
-        && this.color.equals(((Rectangle) other).getColor())
-        && this.position.equals(((Rectangle) other).getPosition());
+    if (this == other) {
+      return true;
+    } else if (!(other instanceof Rectangle)) {
+      return false;
+    }
+    Rectangle that = (Rectangle) other;
+    if (this.size != null && that.size != null && this.color != null && that.color != null
+        && this.position != null && that.position != null) {
+      return this.size.equals(that.size)
+          && this.color.equals(that.color)
+          && this.position.equals(that.position);
+    } else {
+      return this.size == null && that.size == null && this.color == null && that.color == null
+          && this.position == null && that.position == null;
+    }
   }
 
   @Override

@@ -16,10 +16,10 @@ public class Ellipse extends AbstractShape {
    * Construct an ellipse. INVARIANT: xRad and yRad cannot be negative, and color and position
    * cannot be null.
    *
-   * @param xDirection     width of bounding box
-   * @param yDirection     height of bounding box
-   * @param color    Color of ellipse
-   * @param position Position of ellipse
+   * @param xDirection width of bounding box
+   * @param yDirection height of bounding box
+   * @param color      Color of ellipse
+   * @param position   Position of ellipse
    */
   public Ellipse(int xDirection, int yDirection, Color color, Position2D position) {
     super(xDirection, yDirection, color, position);
@@ -35,10 +35,11 @@ public class Ellipse extends AbstractShape {
   @Override
   public Shape build(Position2D position, Color color, Dimension2D size)
       throws IllegalArgumentException {
-    if (position == null  && color == null && size == null) {
+    if (position == null && color == null && size == null) {
       return new Ellipse();
-    } else if (position == null  || color == null || size == null) {
-      throw new IllegalArgumentException("cannot construct an Ellipse with a mix of null and nonnull arguments");
+    } else if (position == null || color == null || size == null) {
+      throw new IllegalArgumentException(
+          "cannot construct an Ellipse with a mix of null and nonnull arguments");
     }
     return new Ellipse(size.getXDir(), size.getYDir(), color, position);
   }
@@ -57,10 +58,21 @@ public class Ellipse extends AbstractShape {
    */
   @Override
   public boolean equals(Object other) {
-    return other instanceof Ellipse
-        && this.size.equals(((Ellipse) other).getSize())
-        && this.color.equals(((Ellipse) other).getColor())
-        && this.position.equals(((Ellipse) other).getPosition());
+    if (this == other) {
+      return true;
+    } else if (!(other instanceof Ellipse)) {
+      return false;
+    }
+    Ellipse that = (Ellipse) other;
+    if (this.size != null && that.size != null && this.color != null && that.color != null
+        && this.position != null && that.position != null) {
+      return this.size.equals(that.size)
+          && this.color.equals(that.color)
+          && this.position.equals(that.position);
+    } else {
+      return this.size == null && that.size == null && this.color == null && that.color == null
+          && this.position == null && that.position == null;
+    }
   }
 
   @Override
