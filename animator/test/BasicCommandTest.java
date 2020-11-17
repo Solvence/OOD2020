@@ -15,7 +15,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 /**
- * Tests for ChangeColor Command class object.
+ * Tests and Examples for the BasicCommand class.
  */
 public class BasicCommandTest {
 

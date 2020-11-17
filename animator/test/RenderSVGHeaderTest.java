@@ -5,12 +5,14 @@ import cs3500.animator.model.position2d.Position2D;
 import cs3500.animator.model.shape.Ellipse;
 import cs3500.animator.model.shape.Rectangle;
 import cs3500.animator.model.shape.Shape;
-import cs3500.animator.view.shapevisitor.RenderSVGExitTag;
 import cs3500.animator.view.shapevisitor.RenderSVGHeader;
 import cs3500.animator.view.shapevisitor.ShapeVisitor;
 import org.junit.Before;
 import org.junit.Test;
 
+/**
+ * Tests and Examples for the RenderSVGHeader class.
+ */
 public class RenderSVGHeaderTest {
 
   Rectangle rect;

@@ -15,6 +15,9 @@ import java.io.IOException;
 import org.junit.Before;
 import org.junit.Test;
 
+/**
+ * Tests and Examples for the SVGAnimatorView class.
+ */
 public class SVGAnimatorViewTest {
   AnimatorModel model;
   AnimatorView view1;

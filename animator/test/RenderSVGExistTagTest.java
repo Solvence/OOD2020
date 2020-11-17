@@ -1,18 +1,16 @@
 import static org.junit.Assert.assertEquals;
 
-import cs3500.animator.model.animatedobjectcommand.BasicCommand;
-import cs3500.animator.model.color.Color;
-import cs3500.animator.model.dimension2d.Dimension2D;
-import cs3500.animator.model.position2d.Position2D;
 import cs3500.animator.model.shape.Ellipse;
 import cs3500.animator.model.shape.Rectangle;
 import cs3500.animator.model.shape.Shape;
-import cs3500.animator.view.shapevisitor.RenderSVGAnimateTag;
 import cs3500.animator.view.shapevisitor.RenderSVGExitTag;
 import cs3500.animator.view.shapevisitor.ShapeVisitor;
 import org.junit.Before;
 import org.junit.Test;
 
+/**
+ * Tests and Examples for the RenderSVGExistTag class.
+ */
 public class RenderSVGExistTagTest {
 
   Rectangle rect;

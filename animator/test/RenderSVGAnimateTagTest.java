@@ -1,6 +1,5 @@
 import static org.junit.Assert.assertEquals;
 
-import cs3500.animator.model.animatedobjectcommand.AnimatedObjectCommand;
 import cs3500.animator.model.animatedobjectcommand.BasicCommand;
 import cs3500.animator.model.color.Color;
 import cs3500.animator.model.dimension2d.Dimension2D;
@@ -10,11 +9,12 @@ import cs3500.animator.model.shape.Rectangle;
 import cs3500.animator.model.shape.Shape;
 import cs3500.animator.view.shapevisitor.RenderSVGAnimateTag;
 import cs3500.animator.view.shapevisitor.ShapeVisitor;
-import java.util.ArrayList;
-import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
+/**
+ * Tests and Examples for the RenderSVGAnimateTag class.
+ */
 public class RenderSVGAnimateTagTest {
 
   Rectangle rect;
