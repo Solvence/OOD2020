@@ -115,6 +115,12 @@ public class BasicAnimatedObjectTest {
     ao1.addCommand(c2);
   }
 
+  // test add command throws exception if command is null.
+  @Test(expected = IllegalArgumentException.class)
+  public void testAddCommandInvalidNullCommand() {
+    ao1.addCommand(null);
+  }
+
 
   // test addCommand works correctly.
   @Test
@@ -207,8 +213,13 @@ public class BasicAnimatedObjectTest {
         new Ellipse(10, 40, new Color(22, 11, 11), new Position2D(25, 10)));
     assertEquals(ao2.getShape(5), s2);
     assertEquals(ao2.getShape(0), s2);
+  }
 
-
+  // test getBaseShape().
+  @Test
+  public void testGetBaseShape() {
+    assertEquals(this.ao1.getBaseShape(), new Rectangle());
+    assertEquals(this.ao2.getBaseShape(), new Ellipse());
   }
 
   // test get commands.
@@ -267,6 +278,8 @@ public class BasicAnimatedObjectTest {
     ao3.addCommand(c2);
 
     assertNotEquals(ao1, ao3);
+    assertNotEquals(ao1, "1");
+    assertNotEquals(ao1, 2);
     assertNotEquals(ao2, new BasicAnimatedObject(
         new Ellipse(2, 7, new Color(14, 100, 22),
             new Position2D(15, 1))));

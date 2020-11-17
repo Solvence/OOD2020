@@ -22,6 +22,7 @@ public class BasicCommandTest {
   AnimatedObjectCommand c1;
   AnimatedObjectCommand c2;
   AnimatedObjectCommand c3;
+  AnimatedObjectCommand c4;
   Shape s1;
   Shape s2;
 
@@ -35,6 +36,9 @@ public class BasicCommandTest {
         new Color(11, 11, 11));
     this.c3 = new BasicCommand(70, 75, new Position2D(25, 10), new Position2D(200, 10),
         new Dimension2D(10, 40), new Dimension2D(80, 40), new Color(11, 11, 11),
+        new Color(1, 1, 1));
+    this.c4 = new BasicCommand(70, 70, new Position2D(25, 10), new Position2D(25, 10),
+        new Dimension2D(10, 40), new Dimension2D(10, 40), new Color(1, 1, 1),
         new Color(1, 1, 1));
     this.s1 = new Rectangle();
     this.s2 = new Ellipse();
@@ -83,7 +87,8 @@ public class BasicCommandTest {
   public void testCommandConstructorDoesntAllowTeleportColor() {
     AnimatedObjectCommand c1 = new BasicCommand(15, 15, new Position2D(0, 0),
         new Position2D(0, 0),
-        new Dimension2D(1, 1), new Dimension2D(1, 1), new Color(10, 10, 10),
+        new Dimension2D(1, 1), new Dimension2D(1, 1),
+        new Color(10, 10, 10),
         new Color(10, 11, 10));
   }
 
@@ -92,14 +97,16 @@ public class BasicCommandTest {
   public void testCommandConstructorDoesntAllowTeleportSize() {
     AnimatedObjectCommand c1 = new BasicCommand(15, 15, new Position2D(0, 0),
         new Position2D(0, 0),
-        new Dimension2D(1, 1), new Dimension2D(2, 1), new Color(10, 10, 10),
+        new Dimension2D(1, 1), new Dimension2D(2, 1),
+        new Color(10, 10, 10),
         new Color(10, 10, 10));
   }
 
   // test constructor throws exception if startPosition is null.
   @Test(expected = IllegalArgumentException.class)
   public void testCommandStartPositionNull() {
-    AnimatedObjectCommand c1 = new BasicCommand(1, 15, null, new Position2D(10, 10),
+    AnimatedObjectCommand c1 = new BasicCommand(1, 15, null,
+        new Position2D(10, 10),
         new Dimension2D(1, 1), new Dimension2D(10, 10), new Color(10, 10, 10),
         new Color(11, 10, 155));
   }
@@ -107,7 +114,8 @@ public class BasicCommandTest {
   // test constructor throws exception if endPosition is null.
   @Test(expected = IllegalArgumentException.class)
   public void testCommandEndPositionNull() {
-    AnimatedObjectCommand c1 = new BasicCommand(1, 15, new Position2D(10, 10), null,
+    AnimatedObjectCommand c1 = new BasicCommand(1, 15,
+        new Position2D(10, 10), null,
         new Dimension2D(1, 1), new Dimension2D(10, 10), new Color(10, 10, 10),
         new Color(11, 10, 155));
   }
@@ -115,7 +123,8 @@ public class BasicCommandTest {
   // test constructor throws exception if startSize is null.
   @Test(expected = IllegalArgumentException.class)
   public void testCommandStartSizeNull() {
-    AnimatedObjectCommand c1 = new BasicCommand(1, 15, new Position2D(0, 0), new Position2D(10, 10),
+    AnimatedObjectCommand c1 = new BasicCommand(1, 15, new Position2D(0, 0),
+        new Position2D(10, 10),
         null, new Dimension2D(10, 10), new Color(10, 10, 10),
         new Color(11, 10, 155));
   }
@@ -123,7 +132,8 @@ public class BasicCommandTest {
   // test constructor throws exception if endSize is null.
   @Test(expected = IllegalArgumentException.class)
   public void testCommandEndSizeNull() {
-    AnimatedObjectCommand c1 = new BasicCommand(1, 15, new Position2D(0, 0), new Position2D(10, 10),
+    AnimatedObjectCommand c1 = new BasicCommand(1, 15, new Position2D(0, 0),
+        new Position2D(10, 10),
         new Dimension2D(1, 1), null, new Color(10, 10, 10),
         new Color(11, 10, 155));
   }
@@ -146,12 +156,27 @@ public class BasicCommandTest {
         null);
   }
 
+  // test constructor throws exception for teleporting keyFrame.
+  @Test(expected = IllegalArgumentException.class)
+  public void testCommandConstructorTeleportingKeyFrame() {
+    AnimatedObjectCommand c1 = new BasicCommand(15, 15, new Position2D(0, 0),
+        new Position2D(10, 10),
+        new Dimension2D(1, 1), new Dimension2D(10, 10), new Color(10, 10, 10),
+        null);
+  }
+
   // apply
 
   // called apply on time too small
   @Test(expected = IllegalArgumentException.class)
   public void testApplyTimeSmallerThanInterval() {
     c2.apply(s2, 10);
+  }
+
+  // called apply on time negative
+  @Test(expected = IllegalArgumentException.class)
+  public void testApplyTimeNegative() {
+    c2.apply(s2, -1);
   }
 
   // called apply on time too large
@@ -173,6 +198,19 @@ public class BasicCommandTest {
     assertEquals(newS1.getPosition(), new Position2D(10, 10));
     assertEquals(newS1.getColor(), new Color(11, 10, 155));
     assertEquals(newS1.getSize(), new Dimension2D(10, 10));
+
+    // keyframe
+
+    assertEquals(s1.getPosition(), null);
+    assertEquals(s1.getColor(), null);
+    assertEquals(s1.getSize(), null);
+    Shape keyFrame = c4.apply(s1, 70);
+    assertEquals(s1.getPosition(), null);
+    assertEquals(s1.getColor(), null);
+    assertEquals(s1.getSize(), null);
+    assertEquals(keyFrame.getPosition(), new Position2D(25, 10));
+    assertEquals(keyFrame.getColor(), new Color(1, 1, 1));
+    assertEquals(keyFrame.getSize(), new Dimension2D(10, 40));
 
     // apply next command
 
