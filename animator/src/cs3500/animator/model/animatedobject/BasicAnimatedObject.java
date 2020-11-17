@@ -17,8 +17,8 @@ public class BasicAnimatedObject implements AnimatedObject {
   // INVARIANT: commands is always sorted by startTime
 
   /**
-   * Loaded Constructor. INVARIANT: baseShape and commands cannot be null INVARIANT: two or more of
-   * the same type of command cannot overlap time interval-wise INVARIANT: commands is sorted by
+   * Loaded Constructor. INVARIANT: baseShape and commands cannot be null INVARIANT: two or more
+   * commands cannot overlap time interval-wise INVARIANT: commands is sorted by
    * start time of the command interval
    *
    * @param baseShape - Shape to be animated
@@ -60,6 +60,9 @@ public class BasicAnimatedObject implements AnimatedObject {
     return this.baseShape.build(null, null, null);
   }
 
+  /**
+   * INVARIANT: Commands must be inserted in order of beginning time interval.
+   */
   @Override
   public void addCommand(AnimatedObjectCommand command) throws IllegalArgumentException {
     if (command == null) {

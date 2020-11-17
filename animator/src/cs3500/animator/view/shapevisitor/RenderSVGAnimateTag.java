@@ -32,27 +32,27 @@ public class RenderSVGAnimateTag implements ShapeVisitor<String> {
     StringBuilder sb = new StringBuilder();
 
     sb.append(String.format("<animate attributeType=\"xml\" begin=\"%fms\" dur=\"%fms\" "
-        + "attributeName=\"cx\" from=\"%d\" to=\"%d\" fill=\"freeze\" />\n",
+        + "attributeName=\"cx\" from=\"%d\" to=\"%d\" fill=\"freeze\" visibility=\"visible\" />\n",
         this.startTime, this.endTime - this.startTime, initialShape.getPosition().getX(),
         finalShape.getPosition().getX()));
 
     sb.append(String.format("<animate attributeType=\"xml\" begin=\"%fms\" dur=\"%fms\" "
-            + "attributeName=\"cy\" from=\"%d\" to=\"%d\" fill=\"freeze\" />\n",
+            + "attributeName=\"cy\" from=\"%d\" to=\"%d\" fill=\"freeze\" visibility=\"visible\" />\n",
         this.startTime, this.endTime - this.startTime, initialShape.getPosition().getY(),
         finalShape.getPosition().getY()));
 
     sb.append(String.format("<animate attributeType=\"xml\" begin=\"%fms\" dur=\"%fms\" "
-            + "attributeName=\"rx\" from=\"%d\" to=\"%d\" fill=\"freeze\" />\n",
+            + "attributeName=\"rx\" from=\"%d\" to=\"%d\" fill=\"freeze\" visibility=\"visible\" />\n",
         this.startTime, this.endTime - this.startTime, initialShape.getSize().getXDir(),
         finalShape.getSize().getXDir()));
 
     sb.append(String.format("<animate attributeType=\"xml\" begin=\"%fms\" dur=\"%fms\" "
-            + "attributeName=\"ry\" from=\"%d\" to=\"%d\" fill=\"freeze\" />\n",
+            + "attributeName=\"ry\" from=\"%d\" to=\"%d\" fill=\"freeze\" visibility=\"visible\" />\n",
         this.startTime, this.endTime - this.startTime, initialShape.getSize().getYDir(),
         finalShape.getSize().getYDir()));
 
     sb.append(String.format("<animate attributeType=\"xml\" begin=\"%fms\" dur=\"%fms\" "
-            + "attributeName=\"fill\" from=\"rgb(%d,%d,%d)\" to=\"rgb(%d,%d,%d)\" fill=\"freeze\" />\n",
+            + "attributeName=\"fill\" from=\"rgb(%d,%d,%d)\" to=\"rgb(%d,%d,%d)\" fill=\"freeze\" visibility=\"visible\" />\n",
         this.startTime, this.endTime - this.startTime, initialShape.getColor().getRed(),
         initialShape.getColor().getGreen(), initialShape.getColor().getBlue(),
         finalShape.getColor().getRed(), finalShape.getColor().getGreen(),

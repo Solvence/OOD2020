@@ -1,9 +1,8 @@
-package incompletetests;
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotSame;
 
+import cs3500.animator.model.animatedobjectcommand.BasicCommand;
 import cs3500.animator.model.color.Color;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,10 +30,8 @@ public class BasicAnimatedObjectTest {
 
   @Before
   public void setUp() {
-    this.s1 = new Rectangle(10, 10, new Color(10, 10, 10),
-        new Position2D(0, 0));
-    this.s2 = new Ellipse(2, 6, new Color(14, 100, 22),
-        new Position2D(15, 1));
+    this.s1 = new Rectangle();
+    this.s2 = new Ellipse();
     this.ao1 = new BasicAnimatedObject(s1);
     this.ao2 = new BasicAnimatedObject(s2);
   }
@@ -51,69 +48,83 @@ public class BasicAnimatedObjectTest {
   @Test(expected = IllegalArgumentException.class)
   public void testConstructorCommandsNull() {
     AnimatedObject invalid = new BasicAnimatedObject(
-        new Rectangle(1, 1, new Color(1, 1, 1), new Position2D(1, 1)), null);
+        new Rectangle(), null);
   }
 
   // test base constructor.
   @Test
   public void testBaseConstructor() {
     AnimatedObject ao = new BasicAnimatedObject(
-        new Rectangle(1, 1, new Color(1, 1, 1), new Position2D(1, 1)));
+        new Rectangle());
     assertEquals(ao.getCommands(), new ArrayList<>());
-    assertEquals(ao.getShape(0), new Rectangle(1, 1, new Color(1, 1, 1), new Position2D(1, 1)));
+    assertEquals(ao.getShape(0), new Rectangle());
   }
 
-  // test copy constructor.
+  // test initial constructor.
   @Test
   public void testCopyConstructor() {
     AnimatedObject ao = new BasicAnimatedObject(
-        new Rectangle(1, 1, new Color(1, 1, 1), new Position2D(1, 1)));
-    AnimatedObject aoCopy = new BasicAnimatedObject(ao);
+        new Rectangle());
+    AnimatedObject aoCopy = new BasicAnimatedObject(new Rectangle());
     assertEquals(ao.getCommands(), aoCopy.getCommands());
     assertEquals(ao.getShape(0), aoCopy.getShape(0));
   }
 
-  // test add command throws exception if two same commands overlap completely.
+  // test add command throws exception if command intervals overlap.
+  @Test(expected = IllegalArgumentException.class)
+  public void testConstructorScreamsIfListCommandsHaveInvalidIntervalsForAnimatedObject() {
+    AnimatedObjectCommand c1 = new BasicCommand(1, 15, new Position2D(0, 0), new Position2D(10, 10),
+        new Dimension2D(1, 1), new Dimension2D(10, 10), new Color(10, 10, 10),
+        new Color(11, 10, 155));
+    AnimatedObjectCommand c2 = new BasicCommand(14, 30, new Position2D(10, 10), new Position2D(25, 10),
+        new Dimension2D(10, 10), new Dimension2D(10, 40), new Color(11, 10, 155),
+        new Color(11, 11, 11));
+    List<AnimatedObjectCommand> commands = new ArrayList<>();
+    commands.add(c1);
+    commands.add(c2);
+    AnimatedObject invalid = new BasicAnimatedObject(new Rectangle(), commands);
+  }
+
+
+  // test add command throws exception if command intervals overlap.
   @Test(expected = IllegalArgumentException.class)
   public void testAddCommandInvalidSameCommandTypeOverlap() {
-    AnimatedObjectCommand c1 = new Move(1, 10, new Position2D(10, 11), new Position2D(11, 12));
-    AnimatedObjectCommand c4 = new Move(1, 10, new Position2D(11, 11), new Position2D(40, 12));
+    AnimatedObjectCommand c1 = new BasicCommand(1, 15, new Position2D(0, 0), new Position2D(10, 10),
+        new Dimension2D(1, 1), new Dimension2D(10, 10), new Color(10, 10, 10),
+        new Color(11, 10, 155));
+    AnimatedObjectCommand c2 = new BasicCommand(14, 30, new Position2D(10, 10), new Position2D(25, 10),
+        new Dimension2D(10, 10), new Dimension2D(10, 40), new Color(11, 10, 155),
+        new Color(11, 11, 11));
     ao1.addCommand(c1);
-    ao1.addCommand(c4);
+    ao1.addCommand(c2);
   }
 
-  // test add command throws exception if two same commands overlap there ends and start times.
+  // test add command throws exception if command intervals aren't butt to butt.
   @Test(expected = IllegalArgumentException.class)
-  public void testAddCommandInvalidSameCommandTypeEndAndStartOverlap() {
-    AnimatedObjectCommand c1 = new ChangeSize(10, 20, new Dimension2D(11, 15),
-        new Dimension2D(22, 222));
-    AnimatedObjectCommand c4 = new ChangeSize(1, 11, new Dimension2D(40, 15),
-        new Dimension2D(67, 40));
+  public void testAddCommandInvalidSameCommandTypeNotButtToButt() {
+    AnimatedObjectCommand c1 = new BasicCommand(1, 15, new Position2D(0, 0), new Position2D(10, 10),
+        new Dimension2D(1, 1), new Dimension2D(10, 10), new Color(10, 10, 10),
+        new Color(11, 10, 155));
+    AnimatedObjectCommand c2 = new BasicCommand(16, 30, new Position2D(10, 10), new Position2D(25, 10),
+        new Dimension2D(10, 10), new Dimension2D(10, 40), new Color(11, 10, 155),
+        new Color(11, 11, 11));
     ao1.addCommand(c1);
-    ao1.addCommand(c4);
+    ao1.addCommand(c2);
   }
 
-  // test add command throws exception if two same commands overlap there ends and start times but
-  // reversed.
-  @Test(expected = IllegalArgumentException.class)
-  public void testAddCommandInvalidSameCommandTypeEndAndStartOverlapReversed() {
-    AnimatedObjectCommand c1 = new ChangeSize(10, 20, new Dimension2D(11, 15),
-        new Dimension2D(22, 222));
-    AnimatedObjectCommand c4 = new ChangeSize(1, 11, new Dimension2D(40, 15),
-        new Dimension2D(67, 40));
-    ao1.addCommand(c4);
-    ao1.addCommand(c1);
-  }
 
   // test addCommand works correctly.
   @Test
   public void testAddCommand() {
-    AnimatedObjectCommand c1 = new Move(1, 10, new Position2D(10, 11), new Position2D(11, 12));
-    AnimatedObjectCommand c2 = new Move(10, 15, new Position2D(11, 15), new Position2D(22, 222));
-    AnimatedObjectCommand c3 = new ChangeSize(1, 10, new Dimension2D(11, 15),
-        new Dimension2D(22, 222));
-    AnimatedObjectCommand c4 = new ChangeColor(10, 15, new Color(11, 15, 10),
-        new Color(100, 22, 222));
+    AnimatedObjectCommand c1 = new BasicCommand(1, 15, new Position2D(0, 0), new Position2D(10, 10),
+        new Dimension2D(1, 1), new Dimension2D(10, 10), new Color(10, 10, 10),
+        new Color(11, 10, 155));
+    AnimatedObjectCommand c2 = new BasicCommand(15, 30, new Position2D(10, 10), new Position2D(25, 10),
+        new Dimension2D(10, 10), new Dimension2D(10, 40), new Color(11, 10, 155),
+        new Color(11, 11, 11));
+    AnimatedObjectCommand c3 = new BasicCommand(30, 45, new Position2D(25, 10), new Position2D(200, 10),
+        new Dimension2D(10, 40), new Dimension2D(80, 40), new Color(11, 11, 11),
+        new Color(1, 1, 1));
 
     assertEquals(ao1.getCommands(), new ArrayList<>());
     ao1.addCommand(c1);
@@ -123,26 +134,19 @@ public class BasicAnimatedObjectTest {
     assertEquals(ao1.getCommands().get(1), c2);
     assertEquals(ao1.getCommands().size(), 2);
 
-    // inserting a command which begins earlier than the last in command list.
     ao1.addCommand(c3);
-    assertEquals(ao1.getCommands().get(2), c2);
+    assertEquals(ao1.getCommands().get(2), c3);
     assertEquals(ao1.getCommands().get(0), c1);
-    assertEquals(ao1.getCommands().get(1), c3);
+    assertEquals(ao1.getCommands().get(1), c2);
     assertEquals(ao1.getCommands().size(), 3);
-
-    ao1.addCommand(c4);
-    assertEquals(ao1.getCommands().get(2), c2);
-    assertEquals(ao1.getCommands().get(0), c1);
-    assertEquals(ao1.getCommands().get(1), c3);
-    assertEquals(ao1.getCommands().get(3), c4);
-    assertEquals(ao1.getCommands().size(), 4);
   }
 
   // test get shape at time negative.
   @Test(expected = IllegalArgumentException.class)
   public void testGetShapeAtNegativeTime() {
-    AnimatedObjectCommand c1 = new ChangeSize(10, 20, new Dimension2D(11, 15),
-        new Dimension2D(22, 222));
+    AnimatedObjectCommand c1 = new BasicCommand(1, 15, new Position2D(0, 0), new Position2D(10, 10),
+        new Dimension2D(1, 1), new Dimension2D(10, 10), new Color(10, 10, 10),
+        new Color(11, 10, 155));
     ao1.addCommand(c1);
     Shape invalid = ao1.getShape(-1);
   }
@@ -150,16 +154,18 @@ public class BasicAnimatedObjectTest {
   // test getShapeAt().
   @Test
   public void testGetShapeAt() {
-    AnimatedObjectCommand c1 = new Move(1, 10, new Position2D(0, 0), new Position2D(10, 10));
-    AnimatedObjectCommand c2 = new Move(10, 15, new Position2D(10, 10), new Position2D(20, 25));
-    AnimatedObjectCommand c3 = new ChangeSize(1, 10, new Dimension2D(10, 10),
-        new Dimension2D(22, 222));
-    AnimatedObjectCommand c4 = new ChangeColor(16, 20, new Color(10, 10, 10),
-        new Color(100, 22, 222));
+    AnimatedObjectCommand c1 = new BasicCommand(2, 15, new Position2D(0, 0), new Position2D(10, 10),
+        new Dimension2D(1, 1), new Dimension2D(10, 10), new Color(10, 10, 10),
+        new Color(11, 10, 155));
+    AnimatedObjectCommand c2 = new BasicCommand(15, 30, new Position2D(10, 10), new Position2D(25, 10),
+        new Dimension2D(10, 10), new Dimension2D(10, 40), new Color(11, 10, 155),
+        new Color(11, 11, 11));
+    AnimatedObjectCommand c3 = new BasicCommand(30, 45, new Position2D(25, 10), new Position2D(200, 10),
+        new Dimension2D(10, 40), new Dimension2D(80, 40), new Color(11, 11, 11),
+        new Color(1, 1, 1));
     ao1.addCommand(c1);
     ao1.addCommand(c2);
     ao1.addCommand(c3);
-    ao1.addCommand(c4);
 
     assertEquals(ao1.getShape(0), s1);
     assertEquals(ao1.getShape(1), s1);
@@ -175,13 +181,14 @@ public class BasicAnimatedObjectTest {
         new Rectangle(22, 222, new Color(10, 10, 10), new Position2D(20, 25)));
     assertEquals(ao1.getShape(20),
         new Rectangle(22, 222, new Color(100, 22, 222), new Position2D(20, 25)));
-    assertEquals(ao1.getShape(56),
+    assertEquals(ao1.getShape(41),
+        new Rectangle(22, 222, new Color(100, 22, 222), new Position2D(20, 25)));
+    assertEquals(ao1.getShape(45),
         new Rectangle(22, 222, new Color(100, 22, 222), new Position2D(20, 25)));
 
-    c1 = new Move(1, 10, new Position2D(15, 1), new Position2D(0, 0));
-    c4 = new ChangeColor(16, 20, new Color(14, 100, 22),
-        new Color(100, 22, 222));
-    ao2.addCommand(c1);
+    AnimatedObjectCommand c4 = new BasicCommand(45, 50, new Position2D(25, 10), new Position2D(200, 10),
+        new Dimension2D(10, 40), new Dimension2D(80, 40), new Color(22, 11, 11),
+        new Color(1, 1, 1));
     ao2.addCommand(c4);
     assertEquals(ao2.getShape(0), s2);
     assertEquals(ao2.getShape(5), new Ellipse(2, 6, new Color(14, 100, 22), new Position2D(9, 1)));
@@ -189,9 +196,9 @@ public class BasicAnimatedObjectTest {
     assertEquals(ao2.getShape(11), new Ellipse(2, 6, new Color(14, 100, 22), new Position2D(0, 0)));
     assertEquals(ao2.getShape(12), new Ellipse(2, 6, new Color(14, 100, 22), new Position2D(0, 0)));
     assertEquals(ao2.getShape(16), new Ellipse(2, 6, new Color(14, 100, 22), new Position2D(0, 0)));
-    assertEquals(ao2.getShape(20),
+    assertEquals(ao2.getShape(30),
         new Ellipse(2, 6, new Color(100, 22, 222), new Position2D(0, 0)));
-    assertEquals(ao2.getShape(25),
+    assertEquals(ao2.getShape(50),
         new Ellipse(2, 6, new Color(100, 22, 222), new Position2D(0, 0)));
     assertEquals(ao2.getShape(5), new Ellipse(2, 6, new Color(14, 100, 22), new Position2D(9, 1)));
     assertEquals(ao2.getShape(0), s2);
@@ -202,25 +209,31 @@ public class BasicAnimatedObjectTest {
   // test get commands.
   @Test
   public void testGetCommands() {
+    AnimatedObjectCommand c1 = new BasicCommand(1, 15, new Position2D(0, 0), new Position2D(10, 10),
+        new Dimension2D(1, 1), new Dimension2D(10, 10), new Color(10, 10, 10),
+        new Color(11, 10, 155));
+    AnimatedObjectCommand c2 = new BasicCommand(15, 30, new Position2D(10, 10), new Position2D(25, 10),
+        new Dimension2D(10, 10), new Dimension2D(10, 40), new Color(11, 10, 155),
+        new Color(11, 11, 11));
+    AnimatedObjectCommand c3 = new BasicCommand(30, 45, new Position2D(25, 10), new Position2D(200, 10),
+        new Dimension2D(10, 40), new Dimension2D(80, 40), new Color(11, 11, 11),
+        new Color(1, 1, 1));
+    AnimatedObjectCommand c4 = new BasicCommand(30, 45, new Position2D(25, 10), new Position2D(200, 10),
+        new Dimension2D(10, 40), new Dimension2D(80, 40), new Color(11, 11, 11),
+        new Color(1, 1, 22));
     List<AnimatedObjectCommand> testList = new ArrayList<>();
     assertEquals(ao1.getCommands(), testList);
-    ao1.addCommand(new Move(1, 10, new Position2D(10, 11), new Position2D(11, 12)));
-    AnimatedObjectCommand c1 = new Move(1, 10, new Position2D(10, 11), new Position2D(11, 12));
+    ao1.addCommand(c1);
     testList.add(c1);
     assertEquals(ao1.getCommands(), testList);
-    AnimatedObjectCommand c2 = new Move(10, 15, new Position2D(11, 15), new Position2D(22, 222));
-    ao1.addCommand(new Move(10, 15, new Position2D(11, 15), new Position2D(22, 222)));
+    ao1.addCommand(c2);
     assertNotSame(ao1.getCommands(), testList);
     testList.add(c2);
     assertEquals(ao1.getCommands(), testList);
-    AnimatedObjectCommand c3 = new ChangeSize(1, 10, new Dimension2D(11, 15),
-        new Dimension2D(22, 222));
-    AnimatedObjectCommand c4 = new ChangeColor(10, 15, new Color(11, 15, 10),
-        new Color(100, 22, 222));
-    ao1.addCommand(new ChangeSize(1, 10, new Dimension2D(11, 15), new Dimension2D(22, 222)));
-    ao1.addCommand(new ChangeColor(10, 15, new Color(11, 15, 10), new Color(100, 22, 222)));
+    ao1.addCommand(c3);
+    ao1.addCommand(c4);
     assertNotSame(ao1.getCommands(), testList);
-    testList.add(1, c3);
+    testList.add(c3);
     assertNotSame(ao1.getCommands(), testList);
     testList.add(c4);
     assertEquals(ao1.getCommands(), testList);
@@ -231,32 +244,26 @@ public class BasicAnimatedObjectTest {
    */
   @Test
   public void testEquals() {
+    AnimatedObjectCommand c2 = new BasicCommand(15, 30, new Position2D(10, 10), new Position2D(25, 10),
+        new Dimension2D(10, 10), new Dimension2D(10, 40), new Color(11, 10, 155),
+        new Color(11, 11, 11));
     assertEquals(ao1, new BasicAnimatedObject(
-        new Rectangle(10, 10, new Color(10, 10, 10),
-            new Position2D(0, 0))));
+        new Rectangle()));
     assertEquals(ao2, new BasicAnimatedObject(
-        new Ellipse(2, 6, new Color(14, 100, 22),
-            new Position2D(15, 1))));
+        new Ellipse()));
 
     BasicAnimatedObject ao3 = new BasicAnimatedObject(
-        new Rectangle(10, 10, new Color(10, 10, 10),
-            new Position2D(0, 0)));
+        new Rectangle());
 
-    ao3.addCommand(new Move(0, 10, new Position2D(0, 0), new Position2D(10, -7)));
+    ao3.addCommand(c2);
 
     assertNotEquals(ao1, ao3);
-    assertNotEquals(ao2, new BasicAnimatedObject(
-        new Ellipse(3, 6, new Color(14, 100, 22),
-            new Position2D(15, 1))));
     assertNotEquals(ao2, new BasicAnimatedObject(
         new Ellipse(2, 7, new Color(14, 100, 22),
             new Position2D(15, 1))));
     assertNotEquals(ao2, new BasicAnimatedObject(
         new Ellipse(2, 6, new Color(14, 110, 22),
             new Position2D(15, 1))));
-    assertNotEquals(ao2, new BasicAnimatedObject(
-        new Ellipse(2, 6, new Color(14, 100, 22),
-            new Position2D(-15, 1))));
   }
 
   /**
