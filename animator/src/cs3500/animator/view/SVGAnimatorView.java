@@ -42,6 +42,9 @@ public class SVGAnimatorView implements AnimatorView {
 
     for (String name: model.getAllShapeName()) {
       List<AnimatedObjectCommand> commands = model.getCommandsForShape(name);
+      if (commands.size() == 0) {
+        continue;
+      }
       AnimatedObjectCommand firstCommand = commands.get(0);
       Shape baseShape = this.model.getShapeAt(name, 0);
       Shape initialShape = commands.get(0).apply(baseShape, firstCommand.getStartTime());

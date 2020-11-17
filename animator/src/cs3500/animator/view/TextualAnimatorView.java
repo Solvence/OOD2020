@@ -4,8 +4,6 @@ import cs3500.animator.model.color.Color;
 import cs3500.animator.model.position2d.Position2D;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
 import cs3500.animator.model.AnimatorModel;
 import cs3500.animator.model.animatedobjectcommand.AnimatedObjectCommand;
 import cs3500.animator.model.dimension2d.Dimension2D;
