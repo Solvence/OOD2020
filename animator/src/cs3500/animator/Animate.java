@@ -46,7 +46,7 @@ public class Animate {
         } catch (IOException e) {
           e.printStackTrace();
         }
-        sleep(100);
+        sleep((int)(1000/tickRate));
         tick +=1;
 
       }
@@ -76,7 +76,7 @@ public class Animate {
     double tickRate = 1;
 
     for (int i = 0; i < args.length; i++) {
-      if (args[i] == "-speed") {
+      if (args[i].equals("-speed")) {
         tickRateIndex = i + 1;
       }
     }
@@ -91,7 +91,7 @@ public class Animate {
     Appendable out = System.out;
 
     for (int i = 0; i < args.length; i++) {
-      if (args[i] == "-out") {
+      if (args[i].equals("-out")) {
         outIndex = i + 1;
       }
     }
