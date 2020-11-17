@@ -6,6 +6,11 @@ import cs3500.animator.model.position2d.Position2D;
 import cs3500.animator.model.shape.Shape;
 import java.util.Objects;
 
+/**
+ * Represents a motion command that may change any or all of size, position, or color. The state of
+ * this command is preserved through fields that represent the start time and state and the end
+ * time/state.
+ */
 public class BasicCommand implements AnimatedObjectCommand {
 
   private final int startTime;
@@ -17,6 +22,18 @@ public class BasicCommand implements AnimatedObjectCommand {
   private final Color startColor;
   private final Color endColor;
 
+  /**
+   * Constructs a motion command
+   * @param startTime - the starting time of this motion command
+   * @param endTime - the ending time of this motion command
+   * @param startPosition - the starting position of 
+   * @param endPosition
+   * @param startSize
+   * @param endSize
+   * @param startColor
+   * @param endColor
+   * @throws IllegalArgumentException
+   */
   public BasicCommand(int startTime, int endTime, Position2D startPosition,
       Position2D endPosition, Dimension2D startSize,
       Dimension2D endSize, Color startColor, Color endColor) throws IllegalArgumentException {

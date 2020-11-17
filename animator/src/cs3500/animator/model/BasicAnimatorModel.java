@@ -17,7 +17,10 @@ import cs3500.animator.model.shape.Shape;
 import cs3500.animator.model.canvas.Canvas;
 
 /**
- * A Basic Representation of a AnimatorModel, which animates basic Shapes.
+ * A Basic Representation of a AnimatorModel, which animates basic Shapes. The state of this model
+ * is preserved through a Map of animatedObjects (and their names), which individually handle a
+ * Shape and its corresponding motions. The state is also preserved through a Canvas in which
+ * the animation as a whole will be drawn upon.
  */
 public class BasicAnimatorModel implements AnimatorModel {
 

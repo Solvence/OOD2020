@@ -1,19 +1,9 @@
 Changes made (don't forget to say why in README):
--Create Color class
--Create Abstract shape and abstracted duplicate code and fields
 Fix BasicAnimatedObject constructor to when given a list of commands, check that building a new
 BasicAnimatedObject with these commands is valid.
--changed getAnimatedObjects method in main model to two separate methods: getCommands and getNames
 - With the new assumptions..., we merged all of our separate ChangeColor, ChangeSize, and Move
   command classes into one that handles all types of changes (deleted methods sameType and
   applicable)
-
-Assumptions:
-- A valid input will have inputted commands that will specify all fields (color, size, position)
-    - commands cannot overlap time intervals
-    - start of a command must equal the end time of the command before it, if there is one
-    - commands are inputted in order of start time
-- The minimum valid start tick is 1
 
 AnimatedObject -
   - changed addCommand to work with new invariants.
@@ -25,9 +15,6 @@ Shapes -
   - Add default empty constructor to shapes
 
 In Model Interface:
-  - Create two new getters getNames() (get all the names of objects in animation) & getCommandsForShape(String name) which will get commands for shape with given name.
-  - Get rid of getAnimatedObject as it may reveal too much information which the user wont always need to know.
-  - Make getShapesAt -> getShapeAt(String name, int time) as we may not always need to get all the shapes at a given time.
   - add getCanvas() method
 
 
