@@ -54,4 +54,6 @@ public class VisualAnimatorView extends JFrame implements ActiveAnimatorView {
   public void makeVisible() {
     this.setVisible(true);
   }
+
+
 }

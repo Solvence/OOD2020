@@ -2,6 +2,7 @@ package cs3500.animator.view;
 
 import cs3500.animator.model.color.Color;
 import cs3500.animator.model.position2d.Position2D;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -38,14 +39,15 @@ public class TextualAnimatorView implements AnimatorView {
     this.ticksPerSecond = ticksPerSecond;
   }
 
-  public TextualAnimatorView(AnimatorModel model) {
-    this(model, new StringBuilder(), 1.0);
-  }
 
 
   @Override
   public void render() throws IOException {
     this.log.append(this.toString());
+    if (this.log instanceof FileWriter) {
+      FileWriter file = (FileWriter) this.log;
+      file.close();
+    }
   }
 
   @Override

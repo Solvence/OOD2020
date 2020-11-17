@@ -4,73 +4,117 @@ import static java.lang.Thread.sleep;
 
 import cs3500.animator.model.AnimatorModel;
 import cs3500.animator.model.BasicAnimatorModel;
-import cs3500.animator.model.color.Color;
-import cs3500.animator.model.dimension2d.Dimension2D;
-import cs3500.animator.model.position2d.Position2D;
-import cs3500.animator.model.shape.Ellipse;
-import cs3500.animator.model.shape.Rectangle;
 import cs3500.animator.model.shape.Shape;
 import cs3500.animator.util.AnimationReader;
 import cs3500.animator.view.ActiveAnimatorView;
 
 import cs3500.animator.view.AnimatorView;
-import cs3500.animator.view.SVGAnimatorView;
-import cs3500.animator.view.VisualAnimatorView;
+import cs3500.animator.view.ViewFactory;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class Animate {
   public static void main(String[] args) throws InterruptedException, IOException {
+    String type = findView(args);
+    double tickRate = findTickRate(args);
+    Appendable out = findOut(args);
+    String in = findIn(args);
+
     AnimationReader reader = new AnimationReader();
-    AnimatorModel model = reader.parseFile(new FileReader(new File("buildings.txt")),
+    AnimatorModel model = reader.parseFile(new FileReader(new File(in)),
         BasicAnimatorModel.builder());
 
-    ActiveAnimatorView view3 = new VisualAnimatorView(model.getCanvasPosition(),
-        model.getCanvasSize());
+    AnimatorView view = ViewFactory.build(type, model, tickRate, out);
 
-    AnimatorView view1 = new SVGAnimatorView(model, new FileWriter("TESTING.svg"),
-        60);
+    if (type.equals("visual")) {
+      int tick = 0;
+      ActiveAnimatorView newView = (ActiveAnimatorView) view;
+      newView.makeVisible();
+      while (newView.isActive()) {
+        List<Shape> shapes = new ArrayList<Shape>();
+        for (String s : model.getAllShapeName()) {
+          shapes.add(model.getShapeAt(s, tick));
+        }
+        newView.setShapes(shapes);
+        try {
+          newView.render();
+        } catch (IOException e) {
+          e.printStackTrace();
+        }
+        sleep(100);
+        tick +=1;
 
-    view1.render();
-
-
-    Timer t = new Timer();
-    view3.makeVisible();
-    for (int i=0; i < 1000; i++) {
-
-          List<Shape> shapes = new ArrayList<Shape>();
-          for (String s : model.getAllShapeName()) {
-            shapes.add(model.getShapeAt(s, i));
-          }
-          view3.setShapes(shapes);
-          try {
-            view3.render();
-          } catch (IOException e) {
-            e.printStackTrace();
-          }
-          sleep(100);
-
-    }
-
-
-
-  }
-
-  private static TimerTask wrap(Runnable r) {
-    return new TimerTask() {
-
-      @Override
-      public void run() {
-        r.run();
       }
-    };
+
+    }else{
+      view.render();
+    }
   }
+
+  private static String findView(String[] args) {
+    int viewIndex = -1;
+    System.out.println(args[5]);
+
+    for (int i = 0; i < args.length; i++) {
+      if (args[i].equals("-view")) {
+        viewIndex = i + 1;
+      }
+    }
+    System.out.println(viewIndex);
+
+    if (viewIndex == -1 || viewIndex > args.length - 1) {
+      throw new IllegalArgumentException("view not defined");
+    }
+    return args[viewIndex];
+  }
+
+  private static double findTickRate(String[] args) {
+    int tickRateIndex = -1;
+    double tickRate = 1;
+
+    for (int i = 0; i < args.length; i++) {
+      if (args[i] == "-speed") {
+        tickRateIndex = i + 1;
+      }
+    }
+    if (tickRateIndex == -1 || tickRateIndex > args.length - 1) {
+      return tickRate;
+    }
+    return Double.parseDouble(args[tickRateIndex]);
+  }
+
+  private static Appendable findOut(String[] args) throws IOException {
+    int outIndex = -1;
+    Appendable out = System.out;
+
+    for (int i = 0; i < args.length; i++) {
+      if (args[i] == "-out") {
+        outIndex = i + 1;
+      }
+    }
+    if (outIndex == -1 || outIndex > args.length - 1) {
+      return out;
+    }
+    return new FileWriter(args[outIndex]);
+  }
+
+  private static String findIn(String[] args) throws IOException {
+    int inIndex = -1;
+
+    for (int i = 0; i < args.length; i++) {
+      if (args[i] == "-in") {
+        inIndex = i + 1;
+      }
+    }
+    if (inIndex == -1 || inIndex > args.length - 1) {
+      throw new IllegalArgumentException("in file not defined");
+    }
+    return args[inIndex];
+  }
+
 }

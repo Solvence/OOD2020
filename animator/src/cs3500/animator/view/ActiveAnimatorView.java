@@ -18,4 +18,10 @@ public interface ActiveAnimatorView extends AnimatorView{
    * Allows the canvas to be seen.
    */
   void makeVisible();
+
+  /**
+   * Is the animation still occurring?
+   * @return if the animation has been finished.
+   */
+  boolean isActive();
 }

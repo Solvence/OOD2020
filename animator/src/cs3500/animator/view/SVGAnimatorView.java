@@ -14,27 +14,26 @@ import java.util.List;
 /**
  * Represents a view to render an SVG file
  */
-public class SVGAnimatorView implements AnimatorView{
+public class SVGAnimatorView implements AnimatorView {
   private final AnimatorModel model;
-  private final FileWriter file;
+  private final Appendable file;
   private final double tickRate; // in ticks/seconds
 
   /**
    * creates a view to render an SVG file
    * @param model - the model that will support this view's animation
-   * @param file - the filewriter which this svg will be outputted
    * @param tickRate - the rate of the animation in ticks per second
    */
-  public SVGAnimatorView(AnimatorModel model, FileWriter file, double tickRate) {
+  public SVGAnimatorView(AnimatorModel model, Appendable out, double tickRate) {
     this.model = model;
-    this.file = file;
     this.tickRate = tickRate;
+    this.file = out;
   }
 
   @Override
   public void render() throws IOException {
     Dimension2D canvasSize = model.getCanvasSize();
-    file.write(String.format("<svg width=\"%d\" height=\"%d\" version=\"1.1\""
+    file.append(String.format("<svg width=\"%d\" height=\"%d\" version=\"1.1\""
         + " xmlns=\"http://www.w3.org/2000/svg\">\n", canvasSize.getXDir(),
         canvasSize.getYDir()));
 
@@ -44,23 +43,27 @@ public class SVGAnimatorView implements AnimatorView{
       Shape baseShape = this.model.getShapeAt(name, 0);
       Shape initialShape = commands.get(0).apply(baseShape, firstCommand.getStartTime());
 
-      file.write(new RenderSVGHeader(name).apply(initialShape));
+      file.append(new RenderSVGHeader(name).apply(initialShape));
 
       for (AnimatedObjectCommand command: commands) {
         double startTime = this.translateToTime(command.getStartTime());
         double endTime = this.translateToTime(command.getEndTime());
 
-        file.write(new RenderSVGAnimateTag(command, startTime, endTime).apply(baseShape));
+        file.append(new RenderSVGAnimateTag(command, startTime, endTime).apply(baseShape));
       }
 
-      file.write(new RenderSVGExitTag().apply(baseShape));
+      file.append(new RenderSVGExitTag().apply(baseShape));
 
     }
 
 
-    file.write("</svg>\n");
+    file.append("</svg>\n");
 
-    file.close();
+
+    if (this.file instanceof FileWriter) {
+      FileWriter file = (FileWriter) this.file;
+      file.close();
+    }
 
   }
 
