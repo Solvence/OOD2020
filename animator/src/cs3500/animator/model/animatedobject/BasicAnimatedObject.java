@@ -77,7 +77,6 @@ public class BasicAnimatedObject implements AnimatedObject {
       AnimatedObjectCommand lastCommand = this.commands.get(this.commands.size() - 1);
       Shape endOfLastCommand = lastCommand.apply(this.baseShape, lastCommand.getEndTime());
       Shape startOfNewCommand = command.apply(this.baseShape, command.getStartTime());
-      ;
       if (lastCommand.getEndTime() != command.getStartTime() || !endOfLastCommand
           .equals(startOfNewCommand)) {
         throw new IllegalArgumentException(

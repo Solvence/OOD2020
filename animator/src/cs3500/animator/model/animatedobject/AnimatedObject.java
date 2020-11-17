@@ -1,6 +1,5 @@
 package cs3500.animator.model.animatedobject;
 
-import cs3500.animator.model.dimension2d.Dimension2D;
 import java.util.List;
 import cs3500.animator.model.animatedobjectcommand.AnimatedObjectCommand;
 import cs3500.animator.model.shape.Shape;
@@ -26,7 +25,7 @@ public interface AnimatedObject {
    *
    * @param command command object
    * @throws IllegalArgumentException command is null or if startState of given command doesn't
-   * align with endstate of previous commands if they exist.
+   *        align with endstate of previous commands if they exist.
    */
   void addCommand(AnimatedObjectCommand command) throws IllegalArgumentException;
 
@@ -38,7 +37,7 @@ public interface AnimatedObject {
   List<AnimatedObjectCommand> getCommands();
 
   /**
-   * Returns the base shape that this animatedObject is associated with
+   * Returns the base shape that this animatedObject is associated with.
    *
    * @return - the shape that this animatedObject is tied with
    */

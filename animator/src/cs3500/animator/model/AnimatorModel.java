@@ -2,10 +2,7 @@ package cs3500.animator.model;
 
 import cs3500.animator.model.animatedobjectcommand.AnimatedObjectCommand;
 import cs3500.animator.model.color.Color;
-import java.awt.Dimension;
 import java.util.List;
-import java.util.Map;
-import cs3500.animator.model.animatedobject.AnimatedObject;
 import cs3500.animator.model.dimension2d.Dimension2D;
 import cs3500.animator.model.position2d.Position2D;
 import cs3500.animator.model.shape.Shape;
@@ -35,25 +32,26 @@ public interface AnimatorModel {
    * @param name name of shape to get state of.
    * @return a version of a shape after a given time of animation has elapsed.
    * @throws IllegalArgumentException if time is negative or if shape with given name doesn't exist
-   * @throws IllegalStateException if canvas is not initialized
+   * @throws IllegalStateException    if canvas is not initialized
    */
   Shape getShapeAt(String name, int time) throws IllegalArgumentException, IllegalStateException;
 
   /**
-   * Add a motion to a shape with a given name that transitions the state of the shape over a
-   * given time interval.
-   * @param name             Name of Shape
-   * @param startTime        Start of time interval
-   * @param endTime          End of time interval
-   * @param startPosition    Start position of shape at beginning of motion
-   * @param endPosition      End position of shape at end of motion
-   * @param startColor       Start Color of shape at beginning of motion
-   * @param endColor         End Color of shape at end of motion
-   * @param startSize        Start Size of shape at beginning of motion
-   * @param endSize          End Size of shape at end of motion
+   * Add a motion to a shape with a given name that transitions the state of the shape over a given
+   * time interval.
+   *
+   * @param name          Name of Shape
+   * @param startTime     Start of time interval
+   * @param endTime       End of time interval
+   * @param startPosition Start position of shape at beginning of motion
+   * @param endPosition   End position of shape at end of motion
+   * @param startColor    Start Color of shape at beginning of motion
+   * @param endColor      End Color of shape at end of motion
+   * @param startSize     Start Size of shape at beginning of motion
+   * @param endSize       End Size of shape at end of motion
    * @throws IllegalArgumentException if no shape with given name exits or if any field is null or
    *                                  if time interval is invalid.
-   * @throws IllegalStateException if the canvas has not yet been initialized
+   * @throws IllegalStateException    if the canvas has not yet been initialized
    */
   void addMotion(String name, int startTime, int endTime, Position2D startPosition,
       Position2D endPosition, Color startColor, Color endColor, Dimension2D startSize,
@@ -73,7 +71,7 @@ public interface AnimatorModel {
    * @param name name of shape
    * @return all commands for shape with given name
    * @throws IllegalArgumentException if animated shape with given name doesn't exist.
-   * @throws IllegalStateException if the canvas has not yet been initialized
+   * @throws IllegalStateException    if the canvas has not yet been initialized
    */
   List<AnimatedObjectCommand> getCommandsForShape(String name) throws IllegalArgumentException,
       IllegalStateException;
@@ -81,16 +79,18 @@ public interface AnimatorModel {
 
   /**
    * Initialize the fields of the models canvas, if they haven't have been already.
+   *
    * @param pos  Position of top left corner of canvas
    * @param size Dimensions of canvas.
-   * @throws IllegalArgumentException  either field is null
-   * @throws IllegalStateException if canvas has already been initialized.
+   * @throws IllegalArgumentException either field is null
+   * @throws IllegalStateException    if canvas has already been initialized.
    */
   void initCanvas(Position2D pos, Dimension2D size) throws IllegalArgumentException,
       IllegalStateException;
 
   /**
    * Get position of the models canvas.
+   *
    * @return position of the models canvas.
    * @throws IllegalStateException if position of canvas hasn't been initialized.
    */
@@ -98,11 +98,11 @@ public interface AnimatorModel {
 
   /**
    * Get size of the models canvas.
+   *
    * @return size of the models canvas.
    * @throws IllegalStateException if size of canvas hasn't been initialized.
    */
   Dimension2D getCanvasSize() throws IllegalStateException;
-
 
 
 }

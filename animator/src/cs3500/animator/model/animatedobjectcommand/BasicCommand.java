@@ -23,17 +23,18 @@ public class BasicCommand implements AnimatedObjectCommand {
   private final Color endColor;
 
   /**
-   * Constructs a motion command
-   * @param startTime - the starting time of this motion command
-   * @param endTime - the ending time of this motion command
+   * Constructs a motion command.
+   *
+   * @param startTime     - the starting time of this motion command
+   * @param endTime       - the ending time of this motion command
    * @param startPosition - the starting position of this motion command
-   * @param endPosition - the ending position of this motion command
-   * @param startSize - the starting size of this motion command
-   * @param endSize - the ending size of this motion command
-   * @param startColor - the starting color of this motion command
-   * @param endColor - the ending color of this motion command
+   * @param endPosition   - the ending position of this motion command
+   * @param startSize     - the starting size of this motion command
+   * @param endSize       - the ending size of this motion command
+   * @param startColor    - the starting color of this motion command
+   * @param endColor      - the ending color of this motion command
    * @throws IllegalArgumentException - if the start time is not positive, endTime < startTime, or
-   *         any of the fields are null
+   *                                  any of the fields are null
    */
   public BasicCommand(int startTime, int endTime, Position2D startPosition,
       Position2D endPosition, Dimension2D startSize,
@@ -43,7 +44,8 @@ public class BasicCommand implements AnimatedObjectCommand {
         || endColor == null) {
       throw new IllegalArgumentException("invalid inputs");
     }
-    if (startTime == endTime && (!startPosition.equals(endPosition) || !startColor.equals(endColor) || !startSize.equals(endSize))) {
+    if (startTime == endTime && (!startPosition.equals(endPosition)
+        || !startColor.equals(endColor) || !startSize.equals(endSize))) {
       throw new IllegalArgumentException("KeyFrames can't teleport objects");
     }
     this.startTime = startTime;

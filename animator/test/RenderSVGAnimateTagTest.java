@@ -44,10 +44,10 @@ public class RenderSVGAnimateTagTest {
   @Test
   public void testVisitRectangle() {
     assertEquals(visiter1.visitRectangle(rect),
-        "<set attributeName=\"visibility\" from=\"hidden\"    to=\"visible\" "
+        "<set attributeName=\"visibility\"    to=\"visible\" "
             + "begin=\"1.000000ms\" dur=\"14.000000ms\" fill=\"remove\"/>\n"
             + "<animate attributeType=\"xml\" begin=\"1.000000ms\" dur=\"14.000000ms\" "
-            + "attributeName=\"x\" from=\"0\" to=\"10\" fill=\"freeze\" visibility=\"visible\" />\n"
+            + "attributeName=\"x\" from=\"0\" to=\"10\" fill=\"freeze\" />\n"
             + "<animate attributeType=\"xml\" begin=\"1.000000ms\" dur=\"14.000000ms\" "
             + "attributeName=\"y\" from=\"0\" to=\"10\" fill=\"freeze\" />\n"
             + "<animate attributeType=\"xml\" begin=\"1.000000ms\" dur=\"14.000000ms\" "
@@ -57,11 +57,11 @@ public class RenderSVGAnimateTagTest {
             + "<animate attributeType=\"xml\" begin=\"1.000000ms\" dur=\"14.000000ms\" "
             + "attributeName=\"fill\" from=\"rgb(10,10,10)\" to=\"rgb(11,10,155)\" fill=\"freeze\" "
             + "/>\n");
-    assertEquals(visiter2.visitRectangle(rect), "<set attributeName=\"visibility\" "
-        + "from=\"hidden\"    to=\"visible\" begin=\"15.000000ms\" dur=\"15.000000ms\" "
+    assertEquals(visiter2.visitRectangle(rect), "<set attributeName=\"visibility\""
+        + "    to=\"visible\" begin=\"15.000000ms\" dur=\"15.000000ms\" "
         + "fill=\"remove\"/>\n"
         + "<animate attributeType=\"xml\" begin=\"15.000000ms\" dur=\"15.000000ms\" "
-        + "attributeName=\"x\" from=\"10\" to=\"25\" fill=\"freeze\" visibility=\"visible\" />\n"
+        + "attributeName=\"x\" from=\"10\" to=\"25\" fill=\"freeze\" />\n"
         + "<animate attributeType=\"xml\" begin=\"15.000000ms\" dur=\"15.000000ms\" "
         + "attributeName=\"y\" from=\"10\" to=\"10\" fill=\"freeze\" />\n"
         + "<animate attributeType=\"xml\" begin=\"15.000000ms\" dur=\"15.000000ms\" "
@@ -77,79 +77,79 @@ public class RenderSVGAnimateTagTest {
   @Test
   public void testVisitEllipse() {
     assertEquals(visiter1.visitEllipse(ellipse),
-        "<set attributeName=\"visibility\" from=\"hidden\"    to=\"visible\" "
+        "<set attributeName=\"visibility\"    to=\"visible\" "
             + "begin=\"1.000000ms\" dur=\"14.000000ms\" fill=\"remove\"/>\n"
             + "<animate attributeType=\"xml\" begin=\"1.000000ms\" dur=\"14.000000ms\" "
-            + "attributeName=\"cx\" from=\"0\" to=\"10\" fill=\"freeze\" visibility=\"visible\" "
+            + "attributeName=\"cx\" from=\"0\" to=\"10\" fill=\"freeze\" "
             + "/>\n"
             + "<animate attributeType=\"xml\" begin=\"1.000000ms\" dur=\"14.000000ms\""
-            + " attributeName=\"cy\" from=\"0\" to=\"10\" fill=\"freeze\" visibility=\"visible\" "
+            + " attributeName=\"cy\" from=\"0\" to=\"10\" fill=\"freeze\" "
             + "/>\n"
             + "<animate attributeType=\"xml\" begin=\"1.000000ms\" dur=\"14.000000ms\" "
-            + "attributeName=\"rx\" from=\"1\" to=\"10\" fill=\"freeze\" visibility=\"visible\" "
+            + "attributeName=\"rx\" from=\"1\" to=\"10\" fill=\"freeze\" "
             + "/>\n"
             + "<animate attributeType=\"xml\" begin=\"1.000000ms\" dur=\"14.000000ms\" "
-            + "attributeName=\"ry\" from=\"1\" to=\"10\" fill=\"freeze\" visibility=\"visible\" />"
+            + "attributeName=\"ry\" from=\"1\" to=\"10\" fill=\"freeze\" />"
             + "\n"
             + "<animate attributeType=\"xml\" begin=\"1.000000ms\" dur=\"14.000000ms\" "
-            + "attributeName=\"fill\" from=\"rgb(10,10,10)\" to=\"rgb(11,10,155)\" fill=\"freeze\" "
-            + "visibility=\"visible\" />\n");
+            + "attributeName=\"fill\" from=\"rgb(10,10,10)\" to=\"rgb(11,10,155)\" fill=\"freeze\""
+            + " />\n");
     assertEquals(visiter2.visitEllipse(ellipse),
-        "<set attributeName=\"visibility\" from=\"hidden\"    to=\"visible\" "
+        "<set attributeName=\"visibility\"    to=\"visible\" "
             + "begin=\"15.000000ms\" dur=\"15.000000ms\" fill=\"remove\"/>\n"
             + "<animate attributeType=\"xml\" begin=\"15.000000ms\" dur=\"15.000000ms\" "
-            + "attributeName=\"cx\" from=\"10\" to=\"25\" fill=\"freeze\" visibility=\"visible\" "
+            + "attributeName=\"cx\" from=\"10\" to=\"25\" fill=\"freeze\" "
             + "/>\n"
             + "<animate attributeType=\"xml\" begin=\"15.000000ms\" dur=\"15.000000ms\" "
-            + "attributeName=\"cy\" from=\"10\" to=\"10\" fill=\"freeze\" visibility=\"visible\" "
+            + "attributeName=\"cy\" from=\"10\" to=\"10\" fill=\"freeze\" "
             + "/>\n"
             + "<animate attributeType=\"xml\" begin=\"15.000000ms\" dur=\"15.000000ms\" "
-            + "attributeName=\"rx\" from=\"10\" to=\"10\" fill=\"freeze\" visibility=\"visible\" "
+            + "attributeName=\"rx\" from=\"10\" to=\"10\" fill=\"freeze\" "
             + "/>\n"
             + "<animate attributeType=\"xml\" begin=\"15.000000ms\" dur=\"15.000000ms\" "
-            + "attributeName=\"ry\" from=\"10\" to=\"40\" fill=\"freeze\" visibility=\"visible\" "
+            + "attributeName=\"ry\" from=\"10\" to=\"40\" fill=\"freeze\" "
             + "/>\n"
             + "<animate attributeType=\"xml\" begin=\"15.000000ms\" dur=\"15.000000ms\" "
             + "attributeName=\"fill\" from=\"rgb(11,10,155)\" to=\"rgb(11,11,11)\" fill=\"freeze\" "
-            + "visibility=\"visible\" />\n");
+            + "/>\n");
   }
 
   // test apply
   // test visitEllipse.
   @Test
   public void testApply() {
-    assertEquals(visiter1.apply(ellipse1), "<set attributeName=\"visibility\" from=\"hidden\""
+    assertEquals(visiter1.apply(ellipse1), "<set attributeName=\"visibility\""
         + "    to=\"visible\" begin=\"1.000000ms\" dur=\"14.000000ms\" fill=\"remove\"/>\n"
         + "<animate attributeType=\"xml\" begin=\"1.000000ms\" dur=\"14.000000ms\" "
-        + "attributeName=\"cx\" from=\"0\" to=\"10\" fill=\"freeze\" visibility=\"visible\" />\n"
+        + "attributeName=\"cx\" from=\"0\" to=\"10\" fill=\"freeze\" />\n"
         + "<animate attributeType=\"xml\" begin=\"1.000000ms\" dur=\"14.000000ms\" "
-        + "attributeName=\"cy\" from=\"0\" to=\"10\" fill=\"freeze\" visibility=\"visible\" />\n"
+        + "attributeName=\"cy\" from=\"0\" to=\"10\" fill=\"freeze\" />\n"
         + "<animate attributeType=\"xml\" begin=\"1.000000ms\" dur=\"14.000000ms\" "
-        + "attributeName=\"rx\" from=\"1\" to=\"10\" fill=\"freeze\" visibility=\"visible\" />\n"
+        + "attributeName=\"rx\" from=\"1\" to=\"10\" fill=\"freeze\" />\n"
         + "<animate attributeType=\"xml\" begin=\"1.000000ms\" dur=\"14.000000ms\" "
-        + "attributeName=\"ry\" from=\"1\" to=\"10\" fill=\"freeze\" visibility=\"visible\" />\n"
+        + "attributeName=\"ry\" from=\"1\" to=\"10\" fill=\"freeze\" />\n"
         + "<animate attributeType=\"xml\" begin=\"1.000000ms\" dur=\"14.000000ms\" "
-        + "attributeName=\"fill\" from=\"rgb(10,10,10)\" to=\"rgb(11,10,155)\" fill=\"freeze\" "
-        + "visibility=\"visible\" />\n");
-    assertEquals(visiter1.apply(ellipse), "<set attributeName=\"visibility\" from=\"hidden\""
+        + "attributeName=\"fill\" from=\"rgb(10,10,10)\" to=\"rgb(11,10,155)\" fill=\"freeze\""
+        + " />\n");
+    assertEquals(visiter1.apply(ellipse), "<set attributeName=\"visibility\""
         + "    to=\"visible\" begin=\"1.000000ms\" dur=\"14.000000ms\" fill=\"remove\"/>\n"
         + "<animate attributeType=\"xml\" begin=\"1.000000ms\" dur=\"14.000000ms\" "
-        + "attributeName=\"cx\" from=\"0\" to=\"10\" fill=\"freeze\" visibility=\"visible\" />\n"
+        + "attributeName=\"cx\" from=\"0\" to=\"10\" fill=\"freeze\" />\n"
         + "<animate attributeType=\"xml\" begin=\"1.000000ms\" dur=\"14.000000ms\" "
-        + "attributeName=\"cy\" from=\"0\" to=\"10\" fill=\"freeze\" visibility=\"visible\" />\n"
+        + "attributeName=\"cy\" from=\"0\" to=\"10\" fill=\"freeze\" />\n"
         + "<animate attributeType=\"xml\" begin=\"1.000000ms\" dur=\"14.000000ms\" "
-        + "attributeName=\"rx\" from=\"1\" to=\"10\" fill=\"freeze\" visibility=\"visible\" />\n"
+        + "attributeName=\"rx\" from=\"1\" to=\"10\" fill=\"freeze\" />\n"
         + "<animate attributeType=\"xml\" begin=\"1.000000ms\" dur=\"14.000000ms\" "
-        + "attributeName=\"ry\" from=\"1\" to=\"10\" fill=\"freeze\" visibility=\"visible\" />\n"
+        + "attributeName=\"ry\" from=\"1\" to=\"10\" fill=\"freeze\" />\n"
         + "<animate attributeType=\"xml\" begin=\"1.000000ms\" dur=\"14.000000ms\" "
         + "attributeName=\"fill\" from=\"rgb(10,10,10)\" to=\"rgb(11,10,155)\" fill=\"freeze\" "
-        + "visibility=\"visible\" />\n");
+        + "/>\n");
     assertEquals(visiter1.apply(ellipse1), visiter1.apply(ellipse));
 
-    assertEquals(visiter1.apply(rect1), "<set attributeName=\"visibility\" from=\"hidden\"   "
+    assertEquals(visiter1.apply(rect1), "<set attributeName=\"visibility\"   "
         + " to=\"visible\" begin=\"1.000000ms\" dur=\"14.000000ms\" fill=\"remove\"/>\n"
         + "<animate attributeType=\"xml\" begin=\"1.000000ms\" dur=\"14.000000ms\" "
-        + "attributeName=\"x\" from=\"0\" to=\"10\" fill=\"freeze\" visibility=\"visible\" />\n"
+        + "attributeName=\"x\" from=\"0\" to=\"10\" fill=\"freeze\" />\n"
         + "<animate attributeType=\"xml\" begin=\"1.000000ms\" dur=\"14.000000ms\" "
         + "attributeName=\"y\" from=\"0\" to=\"10\" fill=\"freeze\" />\n"
         + "<animate attributeType=\"xml\" begin=\"1.000000ms\" dur=\"14.000000ms\" "
@@ -159,10 +159,10 @@ public class RenderSVGAnimateTagTest {
         + "<animate attributeType=\"xml\" begin=\"1.000000ms\" dur=\"14.000000ms\" "
         + "attributeName=\"fill\" from=\"rgb(10,10,10)\" to=\"rgb(11,10,155)\" fill=\"freeze\" "
         + "/>\n");
-    assertEquals(visiter1.apply(rect), "<set attributeName=\"visibility\" from=\"hidden\"   "
+    assertEquals(visiter1.apply(rect), "<set attributeName=\"visibility\"   "
         + " to=\"visible\" begin=\"1.000000ms\" dur=\"14.000000ms\" fill=\"remove\"/>\n"
         + "<animate attributeType=\"xml\" begin=\"1.000000ms\" dur=\"14.000000ms\" "
-        + "attributeName=\"x\" from=\"0\" to=\"10\" fill=\"freeze\" visibility=\"visible\" />\n"
+        + "attributeName=\"x\" from=\"0\" to=\"10\" fill=\"freeze\" />\n"
         + "<animate attributeType=\"xml\" begin=\"1.000000ms\" dur=\"14.000000ms\" "
         + "attributeName=\"y\" from=\"0\" to=\"10\" fill=\"freeze\" />\n"
         + "<animate attributeType=\"xml\" begin=\"1.000000ms\" dur=\"14.000000ms\" "

@@ -7,12 +7,13 @@ import cs3500.animator.model.position2d.Position2D;
  * Represents the physical components of a canvas for which shapes can be drawn on.
  */
 public class Canvas {
+
   private Dimension2D size;
   private Position2D pos;
 
 
   /**
-   * Default Constructor
+   * Default Constructor.
    */
   public Canvas() {
     this.size = null;
@@ -21,24 +22,26 @@ public class Canvas {
 
   /**
    * Set the fields of this Canvas if possible.
-   * @param size   init dimensions of canvas
-   * @param pos    init pos of top left corner of canvas
+   *
+   * @param size init dimensions of canvas
+   * @param pos  init pos of top left corner of canvas
    * @throws IllegalArgumentException if either input is null
-   * @throws IllegalStateException if fields have already been initialized
+   * @throws IllegalStateException    if fields have already been initialized
    */
-  public void initFields(Dimension2D size, Position2D pos) throws IllegalArgumentException, IllegalStateException {
+  public void initFields(Dimension2D size, Position2D pos)
+      throws IllegalArgumentException, IllegalStateException {
     if (size == null || pos == null) {
       throw new IllegalArgumentException("Invalid fields");
-    }
-    else if (this.size != null || this.pos != null) {
+    } else if (this.size != null || this.pos != null) {
       throw new IllegalStateException("Cant reinitialize fields of a stateful canvas");
     }
     this.pos = pos;
     this.size = size;
-   }
+  }
 
   /**
    * Get a copy of the size of this canvas if it has been initialized.
+   *
    * @return a copy of the size of this canvas if it has been initialized
    * @throws IllegalStateException if fields has not been initialized
    */
@@ -51,6 +54,7 @@ public class Canvas {
 
   /**
    * Get a copy of the position of this canvas if it has been initialized.
+   *
    * @return a copy of the position of this canvas if it has been initialized
    * @throws IllegalStateException if field has not been initialized
    */

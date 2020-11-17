@@ -14,11 +14,11 @@ import static org.junit.Assert.fail;
  */
 public class RectangleTest {
 
-  private Rectangle r1 = new Rectangle(7, 4, Color.BLUE,
+  private Rectangle r1 = new Rectangle(7, 4, new Color(255, 0, 0),
       new Position2D(50, 75));
-  private Rectangle r2 = new Rectangle(0, 4, Color.WHITE,
+  private Rectangle r2 = new Rectangle(0, 4, new Color(255, 255, 255),
       new Position2D(-50, 75));
-  private Rectangle r3 = new Rectangle(7, 0, Color.ORANGE,
+  private Rectangle r3 = new Rectangle(7, 0, new Color(255, 255, 0),
       new Position2D(50, -75));
   private Rectangle r4 = new Rectangle(0, 0, new Color(200, 150, 133),
       new Position2D(-50, -75));
@@ -30,13 +30,15 @@ public class RectangleTest {
   @Test
   public void testConstructorInvalidInputs() {
     try {
-      Rectangle r5 = new Rectangle(-7, 4, Color.BLUE, new Position2D(50, 75));
+      Rectangle r5 = new Rectangle(-7, 4, new Color(255, 0, 0),
+          new Position2D(50, 75));
       fail();
     } catch (IllegalArgumentException e) {
       // pass!
     }
     try {
-      Rectangle r6 = new Rectangle(7, -4, Color.BLUE, new Position2D(50, 75));
+      Rectangle r6 = new Rectangle(7, -4, new Color(255, 0, 0),
+          new Position2D(50, 75));
       fail();
     } catch (IllegalArgumentException e) {
       // pass!
@@ -48,7 +50,7 @@ public class RectangleTest {
       // pass!
     }
     try {
-      Rectangle r8 = new Rectangle(7, 4, Color.BLUE, null);
+      Rectangle r8 = new Rectangle(7, 4, new Color(255, 0, 0), null);
       fail();
     } catch (IllegalArgumentException e) {
       // pass!
@@ -66,12 +68,12 @@ public class RectangleTest {
    */
   @Test
   public void testBuild() {
-    assertEquals(r1.build(new Position2D(21, 42), Color.CYAN,
-        new Dimension2D(100, 20)), new Rectangle(100, 20, Color.CYAN,
+    assertEquals(r1.build(new Position2D(21, 42), new Color(255, 0, 0),
+        new Dimension2D(100, 20)), new Rectangle(100, 20, new Color(255, 0, 0),
         new Position2D(21, 42)));
 
-    assertEquals(r1.build(new Position2D(-28, 0), Color.WHITE,
-        new Dimension2D(4, 0)), new Rectangle(4, 0, Color.WHITE,
+    assertEquals(r1.build(new Position2D(-28, 0), new Color(255, 255, 255),
+        new Dimension2D(4, 0)), new Rectangle(4, 0, new Color(255, 255, 255),
         new Position2D(-28, 0)));
   }
 
@@ -91,9 +93,9 @@ public class RectangleTest {
    */
   @Test
   public void testGetColor() {
-    assertEquals(r1.getColor(), Color.BLUE);
-    assertEquals(r2.getColor(), Color.WHITE);
-    assertEquals(r3.getColor(), Color.ORANGE);
+    assertEquals(r1.getColor(), new Color(255, 0, 0));
+    assertEquals(r2.getColor(), new Color(255, 255, 255));
+    assertEquals(r3.getColor(), new Color(255, 255, 0));
     assertEquals(r4.getColor(), new Color(200, 150, 133));
   }
 
@@ -113,10 +115,10 @@ public class RectangleTest {
    */
   @Test
   public void testEqualsTrue() {
-    Rectangle r5 = new Rectangle(7, 4, Color.BLUE, new Position2D(50, 75));
+    Rectangle r5 = new Rectangle(7, 4, new Color(255, 0, 0), new Position2D(50, 75));
     Rectangle r6 = new Rectangle(0, 4, new Color(255, 255, 255),
         new Position2D(-50, 75));
-    Rectangle r7 = new Rectangle(7, 0, Color.ORANGE, new Position2D(50, -75));
+    Rectangle r7 = new Rectangle(7, 0, new Color(255, 255, 0), new Position2D(50, -75));
     Rectangle r8 = new Rectangle(0, 0, new Color(200, 150, 133),
         new Position2D(-50, -75));
 
@@ -131,15 +133,15 @@ public class RectangleTest {
    */
   @Test
   public void testEqualsFalse() {
-    Rectangle r5 = new Rectangle(7, 5, Color.BLUE, new Position2D(50, 75));
+    Rectangle r5 = new Rectangle(7, 5, new Color(255, 0, 0), new Position2D(50, 75));
     Rectangle r6 = new Rectangle(0, 4, new Color(255, 255, 254),
         new Position2D(-50, 75));
     Rectangle r7 = new Rectangle(0, 4, new Color(255, 155, 255),
         new Position2D(-50, 75));
     Rectangle r8 = new Rectangle(0, 4, new Color(0, 255, 255),
         new Position2D(-50, 75));
-    Rectangle r9 = new Rectangle(7, 0, Color.ORANGE, new Position2D(50, 75));
-    Rectangle r10 = new Rectangle(7, 0, Color.ORANGE, new Position2D(51, -75));
+    Rectangle r9 = new Rectangle(7, 0, new Color(255, 255, 0), new Position2D(50, 75));
+    Rectangle r10 = new Rectangle(7, 0, new Color(255, 255, 0), new Position2D(51, -75));
     Rectangle r11 = new Rectangle(1, 0, new Color(200, 150, 133),
         new Position2D(-50, -75));
     Rectangle r12 = new Rectangle(1, 100, new Color(199, 155, 13),
@@ -160,10 +162,10 @@ public class RectangleTest {
    */
   @Test
   public void testHashCode() {
-    Rectangle r5 = new Rectangle(7, 4, Color.BLUE, new Position2D(50, 75));
+    Rectangle r5 = new Rectangle(7, 4, new Color(255, 0, 0), new Position2D(50, 75));
     Rectangle r6 = new Rectangle(0, 4, new Color(255, 255, 255),
         new Position2D(-50, 75));
-    Rectangle r7 = new Rectangle(7, 0, Color.ORANGE, new Position2D(50, -75));
+    Rectangle r7 = new Rectangle(7, 0, new Color(255, 255, 0), new Position2D(50, -75));
     Rectangle r8 = new Rectangle(0, 0, new Color(200, 150, 133),
         new Position2D(-50, -75));
 

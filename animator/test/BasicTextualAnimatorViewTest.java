@@ -14,6 +14,7 @@ import cs3500.animator.view.AnimatorView;
 import cs3500.animator.view.TextualAnimatorView;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 /**
  * Tests and Examples for the BasicTextualAnimator class.
@@ -135,24 +136,28 @@ public class BasicTextualAnimatorViewTest {
     Appendable ap = new StringBuilder();
     try {
       AnimatorView view = new TextualAnimatorView(model, ap, 0.0);
+      fail();
     } catch (IllegalArgumentException e) {
       //pass!
     }
 
     try {
       AnimatorView view = new TextualAnimatorView(null, ap, 2.0);
+      fail();
     } catch (IllegalArgumentException e) {
       //pass!
     }
 
     try {
       AnimatorView view = new TextualAnimatorView(model, null, 2.0);
+      fail();
     } catch (IllegalArgumentException e) {
       //pass!
     }
 
     try {
       AnimatorView view = new TextualAnimatorView(null, ap, 0.0);
+      fail();
     } catch (IllegalArgumentException e) {
       //pass!
     }

@@ -18,7 +18,20 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Represents the main class with a method that our animation is ran through. When executing the
+ * main method, command line inputs can be inputted, representing what how the user wants the
+ * animation to be made/dsplayed.
+ */
 public class Excellence {
+
+  /**
+   * The main method through which our animation program is run through.
+   *
+   * @param args - the command line arguments specifying how the animation will be made/displayed
+   * @throws InterruptedException - if the process becomes interrupted abruptly
+   * @throws IOException          - if the input/output processes do not function properly
+   */
   public static void main(String[] args) throws InterruptedException, IOException {
     String type = findView(args);
     double tickRate = findTickRate(args);
@@ -46,16 +59,22 @@ public class Excellence {
         } catch (IOException e) {
           e.printStackTrace();
         }
-        sleep((int)(1000/tickRate));
-        tick +=1;
+        sleep((int) (1000 / tickRate));
+        tick += 1;
 
       }
 
-    }else{
+    } else {
       view.render();
     }
   }
 
+  /**
+   * searches the command line arguments for the specified view type.
+   *
+   * @param args - the command line arguments
+   * @return - a String representing the view type
+   */
   private static String findView(String[] args) {
     int viewIndex = -1;
 
@@ -71,6 +90,12 @@ public class Excellence {
     return args[viewIndex];
   }
 
+  /**
+   * searches the command line arguments for the speed.
+   *
+   * @param args - the command line arguments
+   * @return - the tick rate in ticks/sec of the animation (default=1)
+   */
   private static double findTickRate(String[] args) {
     int tickRateIndex = -1;
     double tickRate = 1;
@@ -86,6 +111,13 @@ public class Excellence {
     return Double.parseDouble(args[tickRateIndex]);
   }
 
+  /**
+   * searches the command line arguments for the output file specification.
+   *
+   * @param args - the command line arguments
+   * @return - the output file that the animation will write to (default=System.out), if applicable
+   * @throws IOException - if a process cannot be completed when reading the output file
+   */
   private static Appendable findOut(String[] args) throws IOException {
     int outIndex = -1;
     Appendable out = System.out;
@@ -95,12 +127,19 @@ public class Excellence {
         outIndex = i + 1;
       }
     }
-    if (outIndex == -1 || outIndex > args.length - 1) {
+    if (outIndex == -1 || outIndex > args.length - 1 || args[outIndex].equals("out")) {
       return out;
     }
     return new FileWriter(args[outIndex]);
   }
 
+  /**
+   * Searches the command line arguments to find the input file.
+   *
+   * @param args - the command line arguments
+   * @return - the input file for the animation
+   * @throws IOException - if the process of taking in the input file cannot be completed
+   */
   private static String findIn(String[] args) throws IOException {
     int inIndex = -1;
 
@@ -114,5 +153,4 @@ public class Excellence {
     }
     return args[inIndex];
   }
-
 }

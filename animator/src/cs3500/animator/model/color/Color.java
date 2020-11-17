@@ -6,19 +6,21 @@ import java.util.Objects;
  * Represents a color as an rgb (Red Green Blue) value.
  */
 public class Color {
+
   private final int red;
   private final int green;
   private final int blue;
 
   /**
    * Default Constructor.
-   * @param red       red component of rgb Color
-   * @param green     green component of rgb Color
-   * @param blue      blue component of rgb Color
+   *
+   * @param red   red component of rgb Color
+   * @param green green component of rgb Color
+   * @param blue  blue component of rgb Color
    * @throws IllegalArgumentException if any rgb value are less than zero or greater than 255.
    */
   public Color(int red, int green, int blue) throws IllegalArgumentException {
-    if (red > 255 || red < 0 || green > 255 || green < 0 || blue > 255 || blue < 0 ) {
+    if (red > 255 || red < 0 || green > 255 || green < 0 || blue > 255 || blue < 0) {
       throw new IllegalArgumentException("invalid rgb values");
     }
     this.red = red;
@@ -28,15 +30,17 @@ public class Color {
 
   /**
    * Copy constructor.
-   * @param other   Another color to be copied.
+   *
+   * @param other Another color to be copied.
    * @throws NullPointerException if other is null.
    */
-  public Color(Color other) throws NullPointerException{
+  public Color(Color other) throws NullPointerException {
     this(other.getRed(), other.getGreen(), other.getBlue());
   }
 
   /**
    * gets red component of this colors rgb value.
+   *
    * @return red component of this colors rgb value.
    */
   public int getRed() {
@@ -45,6 +49,7 @@ public class Color {
 
   /**
    * gets green component of this colors rgb value.
+   *
    * @return green component of this colors rgb value.
    */
   public int getGreen() {
@@ -53,6 +58,7 @@ public class Color {
 
   /**
    * gets blue component of this colors rgb value.
+   *
    * @return blue component of this colors rgb value.
    */
   public int getBlue() {
