@@ -11,7 +11,7 @@ import org.junit.Test;
 /**
  * Tests and Examples for the RenderSVGExistTag class.
  */
-public class RenderSVGExistTagTest {
+public class RenderSVGExitTagTest {
 
   Rectangle rect;
   Ellipse ellipse;

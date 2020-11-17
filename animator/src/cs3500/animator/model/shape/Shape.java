@@ -6,7 +6,7 @@ import cs3500.animator.model.position2d.Position2D;
 import cs3500.animator.view.shapevisitor.ShapeVisitor;
 
 /**
- * Represents a 2D shape.
+ * Represents a 2D shape with attributes position, color, and size.
  */
 public interface Shape {
 

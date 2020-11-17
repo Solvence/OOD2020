@@ -6,7 +6,7 @@ import cs3500.animator.model.shape.Rectangle;
 import cs3500.animator.model.shape.Shape;
 
 /**
- * Represents a function object to render an animation tag in an SVG view for a given Shape
+ * Represents a function object to render an animation tag in an SVG view for a given Shape.
  */
 public class RenderSVGAnimateTag implements ShapeVisitor<String> {
 

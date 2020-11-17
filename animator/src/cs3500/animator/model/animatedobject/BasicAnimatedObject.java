@@ -7,7 +7,10 @@ import cs3500.animator.model.animatedobjectcommand.AnimatedObjectCommand;
 import cs3500.animator.model.shape.Shape;
 
 /**
- * Represent a Basic implementation of an AnimatedObject.
+ * Represent a Basic implementation of an AnimatedObject. This implementation preserves the state
+ * of the animated object through the base shape, which is held for the purposes of knowing which
+ * Shape to deal with, and a list of commands that correspond to the motions of this animated object
+ * over the animation.
  */
 public class BasicAnimatedObject implements AnimatedObject {
 

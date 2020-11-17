@@ -1,5 +1,3 @@
-package incompletetests;
-
 import cs3500.animator.model.color.Color;
 import cs3500.animator.model.dimension2d.Dimension2D;
 import cs3500.animator.model.position2d.Position2D;

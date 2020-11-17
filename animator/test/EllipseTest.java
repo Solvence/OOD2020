@@ -1,5 +1,3 @@
-package incompletetests;
-
 import cs3500.animator.model.color.Color;
 import cs3500.animator.model.dimension2d.Dimension2D;
 import cs3500.animator.model.position2d.Position2D;
@@ -16,9 +14,9 @@ import static org.junit.Assert.fail;
  */
 public class EllipseTest {
 
-  private Ellipse e1 = new Ellipse(7, 4, Color.BLUE, new Position2D(50, 75));
-  private Ellipse e2 = new Ellipse(0, 4, Color.WHITE, new Position2D(-50, 75));
-  private Ellipse e3 = new Ellipse(7, 0, Color.ORANGE, new Position2D(50, -75));
+  private Ellipse e1 = new Ellipse(7, 4, new Color(255, 0, 0), new Position2D(50, 75));
+  private Ellipse e2 = new Ellipse(0, 4, new Color(255, 255, 255), new Position2D(-50, 75));
+  private Ellipse e3 = new Ellipse(7, 0, new Color(255, 255, 0), new Position2D(50, -75));
   private Ellipse e4 = new Ellipse(0, 0, new Color(200, 150, 133),
       new Position2D(-50, -75));
 
@@ -29,13 +27,13 @@ public class EllipseTest {
   @Test
   public void testConstructorInvalidInputs() {
     try {
-      Ellipse e5 = new Ellipse(-7, 4, Color.BLUE, new Position2D(50, 75));
+      Ellipse e5 = new Ellipse(-7, 4, new Color(255, 0, 0), new Position2D(50, 75));
       fail();
     } catch (IllegalArgumentException e) {
       // pass!
     }
     try {
-      Ellipse e6 = new Ellipse(7, -4, Color.BLUE, new Position2D(50, 75));
+      Ellipse e6 = new Ellipse(7, -4, new Color(255, 0, 0), new Position2D(50, 75));
       fail();
     } catch (IllegalArgumentException e) {
       // pass!
@@ -47,7 +45,7 @@ public class EllipseTest {
       // pass!
     }
     try {
-      Ellipse e8 = new Ellipse(7, 4, Color.BLUE, null);
+      Ellipse e8 = new Ellipse(7, 4, new Color(255, 0, 0), null);
       fail();
     } catch (IllegalArgumentException e) {
       // pass!
@@ -65,12 +63,12 @@ public class EllipseTest {
    */
   @Test
   public void testBuild() {
-    assertEquals(e1.build(new Position2D(21, 42), Color.CYAN,
-        new Dimension2D(100, 20)), new Ellipse(100, 20, Color.CYAN,
+    assertEquals(e1.build(new Position2D(21, 42), new Color(255, 0, 0),
+        new Dimension2D(100, 20)), new Ellipse(100, 20, new Color(255, 0, 0),
         new Position2D(21, 42)));
 
-    assertEquals(e1.build(new Position2D(-28, 0), Color.WHITE,
-        new Dimension2D(4, 0)), new Ellipse(4, 0, Color.WHITE,
+    assertEquals(e1.build(new Position2D(-28, 0), new Color(255, 255, 255),
+        new Dimension2D(4, 0)), new Ellipse(4, 0, new Color(255, 255, 255),
         new Position2D(-28, 0)));
   }
 
@@ -90,9 +88,9 @@ public class EllipseTest {
    */
   @Test
   public void testGetColor() {
-    assertEquals(e1.getColor(), Color.BLUE);
-    assertEquals(e2.getColor(), Color.WHITE);
-    assertEquals(e3.getColor(), Color.ORANGE);
+    assertEquals(e1.getColor(), new Color(255, 0, 0));
+    assertEquals(e2.getColor(), new Color(255, 255, 255));
+    assertEquals(e3.getColor(), new Color(255, 255, 0));
     assertEquals(e4.getColor(), new Color(200, 150, 133));
   }
 
@@ -112,10 +110,10 @@ public class EllipseTest {
    */
   @Test
   public void testEqualsTrue() {
-    Ellipse e5 = new Ellipse(7, 4, Color.BLUE, new Position2D(50, 75));
+    Ellipse e5 = new Ellipse(7, 4, new Color(255, 0, 0), new Position2D(50, 75));
     Ellipse e6 = new Ellipse(0, 4, new Color(255, 255, 255),
         new Position2D(-50, 75));
-    Ellipse e7 = new Ellipse(7, 0, Color.ORANGE, new Position2D(50, -75));
+    Ellipse e7 = new Ellipse(7, 0, new Color(255, 255, 0), new Position2D(50, -75));
     Ellipse e8 = new Ellipse(0, 0, new Color(200, 150, 133),
         new Position2D(-50, -75));
 
@@ -130,15 +128,15 @@ public class EllipseTest {
    */
   @Test
   public void testEqualsFalse() {
-    Ellipse e5 = new Ellipse(7, 5, Color.BLUE, new Position2D(50, 75));
+    Ellipse e5 = new Ellipse(7, 5, new Color(255, 0, 0), new Position2D(50, 75));
     Ellipse e6 = new Ellipse(0, 4, new Color(255, 255, 254),
         new Position2D(-50, 75));
     Ellipse e7 = new Ellipse(0, 4, new Color(255, 155, 255),
         new Position2D(-50, 75));
     Ellipse e8 = new Ellipse(0, 4, new Color(0, 255, 255),
         new Position2D(-50, 75));
-    Ellipse e9 = new Ellipse(7, 0, Color.ORANGE, new Position2D(50, 75));
-    Ellipse e10 = new Ellipse(7, 0, Color.ORANGE, new Position2D(51, -75));
+    Ellipse e9 = new Ellipse(7, 0, new Color(255, 255, 0), new Position2D(50, 75));
+    Ellipse e10 = new Ellipse(7, 0, new Color(255, 255, 0), new Position2D(51, -75));
     Ellipse e11 = new Ellipse(1, 0, new Color(200, 150, 133),
         new Position2D(-50, -75));
     Ellipse e12 = new Ellipse(1, 100, new Color(199, 155, 13),
@@ -159,10 +157,10 @@ public class EllipseTest {
    */
   @Test
   public void testHashCode() {
-    Ellipse e5 = new Ellipse(7, 4, Color.BLUE, new Position2D(50, 75));
+    Ellipse e5 = new Ellipse(7, 4, new Color(255, 0, 0), new Position2D(50, 75));
     Ellipse e6 = new Ellipse(0, 4, new Color(255, 255, 255),
         new Position2D(-50, 75));
-    Ellipse e7 = new Ellipse(7, 0, Color.ORANGE, new Position2D(50, -75));
+    Ellipse e7 = new Ellipse(7, 0, new Color(255, 255, 0), new Position2D(50, -75));
     Ellipse e8 = new Ellipse(0, 0, new Color(200, 150, 133),
         new Position2D(-50, -75));
 
