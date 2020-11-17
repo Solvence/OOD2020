@@ -57,10 +57,20 @@ public class Ellipse extends AbstractShape {
    */
   @Override
   public boolean equals(Object other) {
-    return other instanceof Ellipse
-        && this.size.equals(((Ellipse) other).getSize())
-        && this.color.equals(((Ellipse) other).getColor())
-        && this.position.equals(((Ellipse) other).getPosition());
+    if (this == other) {
+      return true;
+    } else if (!(other instanceof Ellipse)) {
+      return false;
+    }
+    Ellipse that = (Ellipse) other;
+    if (this.size == null && that.size == null && this.color == null && that.color == null
+        && this.position == null && that.position == null) {
+      return true;
+    } else {
+      return this.size.equals(that.size)
+          && this.color.equals(that.color)
+          && this.position.equals(that.position);
+    }
   }
 
   @Override

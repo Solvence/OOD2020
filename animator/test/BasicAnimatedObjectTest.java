@@ -169,6 +169,7 @@ public class BasicAnimatedObjectTest {
 
     assertEquals(ao1.getShape(0), s1);
     assertEquals(ao1.getShape(1), s1);
+    System.out.println(String.format());
     assertEquals(ao1.getShape(5),
         new Rectangle(15, 104, new Color(10, 10, 10), new Position2D(4, 4)));
     assertEquals(ao1.getShape(10),
