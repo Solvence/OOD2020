@@ -26,7 +26,7 @@ public class Ellipse extends AbstractShape {
   }
 
   /**
-   * Default Constructor
+   * Default Constructor.
    */
   public Ellipse() {
     super();

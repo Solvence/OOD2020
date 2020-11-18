@@ -14,7 +14,7 @@ public abstract class AbstractShape implements Shape {
   protected final Dimension2D size;
 
   /**
-   * Default constructor.
+   * Constructor with all fields.
    * @param width      width of bounding box of shape.
    * @param height     height of bounding box of shape.
    * @param color      Color of shape.
@@ -31,7 +31,7 @@ public abstract class AbstractShape implements Shape {
   }
 
   /**
-   * Default Constructor
+   * Default Constructor.
    */
   AbstractShape() {
     this.size = null;

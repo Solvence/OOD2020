@@ -16,7 +16,7 @@ public class VisualAnimatorView extends JFrame implements ActiveAnimatorView {
   VisualAnimatorPanel visualPanel;
 
   /**
-   * Default Constructor
+   * Default Constructor.
    * @param canvasTopLeft top left relative position of canvas
    * @param canvasSize dimensions of canvas
    */

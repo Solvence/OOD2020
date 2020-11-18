@@ -15,7 +15,8 @@ public class RenderSVGAnimateTag implements ShapeVisitor<String> {
   private final double endTime;
 
   /**
-   * Constructs a function object to render the animate tag in an SVG Component for a Shape
+   * Constructs a function object to render the animate tag in an SVG Component for a Shape.
+   *
    * @param command - the command that is tied to this Shape
    */
   public RenderSVGAnimateTag(AnimatedObjectCommand command, double startTime, double endTime) {
@@ -32,11 +33,11 @@ public class RenderSVGAnimateTag implements ShapeVisitor<String> {
     StringBuilder sb = new StringBuilder();
 
     sb.append(String.format("<set attributeName=\"visibility\""
-        + "    to=\"visible\" begin=\"%fms\" dur=\"%fms\" fill=\"remove\"/>\n", this.startTime,
+            + "    to=\"visible\" begin=\"%fms\" dur=\"%fms\" fill=\"remove\"/>\n", this.startTime,
         Math.max(this.endTime - this.startTime, 1.0)));
 
     sb.append(String.format("<animate attributeType=\"xml\" begin=\"%fms\" dur=\"%fms\" "
-        + "attributeName=\"cx\" from=\"%d\" to=\"%d\" fill=\"freeze\" />\n",
+            + "attributeName=\"cx\" from=\"%d\" to=\"%d\" fill=\"freeze\" />\n",
         this.startTime, this.endTime - this.startTime, initialShape.getPosition().getX(),
         finalShape.getPosition().getX()));
 
@@ -56,7 +57,8 @@ public class RenderSVGAnimateTag implements ShapeVisitor<String> {
         finalShape.getSize().getYDir()));
 
     sb.append(String.format("<animate attributeType=\"xml\" begin=\"%fms\" dur=\"%fms\" "
-            + "attributeName=\"fill\" from=\"rgb(%d,%d,%d)\" to=\"rgb(%d,%d,%d)\" fill=\"freeze\" />\n",
+            + "attributeName=\"fill\" from=\"rgb(%d,%d,%d)\" to=\"rgb(%d,%d,%d)\" "
+            + "fill=\"freeze\" />\n",
         this.startTime, this.endTime - this.startTime, initialShape.getColor().getRed(),
         initialShape.getColor().getGreen(), initialShape.getColor().getBlue(),
         finalShape.getColor().getRed(), finalShape.getColor().getGreen(),
@@ -73,7 +75,7 @@ public class RenderSVGAnimateTag implements ShapeVisitor<String> {
     StringBuilder sb = new StringBuilder();
 
     sb.append(String.format("<set attributeName=\"visibility\""
-        + "    to=\"visible\" begin=\"%fms\" dur=\"%fms\" fill=\"remove\"/>\n", this.startTime,
+            + "    to=\"visible\" begin=\"%fms\" dur=\"%fms\" fill=\"remove\"/>\n", this.startTime,
         Math.max(this.endTime - this.startTime, 1.0)));
 
     sb.append(String.format("<animate attributeType=\"xml\" begin=\"%fms\" dur=\"%fms\" "
@@ -97,7 +99,8 @@ public class RenderSVGAnimateTag implements ShapeVisitor<String> {
         finalShape.getSize().getYDir()));
 
     sb.append(String.format("<animate attributeType=\"xml\" begin=\"%fms\" dur=\"%fms\" "
-            + "attributeName=\"fill\" from=\"rgb(%d,%d,%d)\" to=\"rgb(%d,%d,%d)\" fill=\"freeze\" />\n",
+            + "attributeName=\"fill\" from=\"rgb(%d,%d,%d)\" to=\"rgb(%d,%d,%d)\" "
+            + "fill=\"freeze\" />\n",
         this.startTime, this.endTime - this.startTime, initialShape.getColor().getRed(),
         initialShape.getColor().getGreen(), initialShape.getColor().getBlue(),
         finalShape.getColor().getRed(), finalShape.getColor().getGreen(),

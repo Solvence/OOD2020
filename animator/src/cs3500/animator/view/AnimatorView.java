@@ -1,6 +1,5 @@
 package cs3500.animator.view;
 
-import java.io.FileWriter;
 import java.io.IOException;
 
 /**

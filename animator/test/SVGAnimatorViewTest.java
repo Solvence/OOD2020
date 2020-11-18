@@ -19,6 +19,7 @@ import org.junit.Test;
  * Tests and Examples for the SVGAnimatorView class.
  */
 public class SVGAnimatorViewTest {
+
   AnimatorModel model;
   AnimatorView view1;
   AnimatedObjectCommand c1;
@@ -28,7 +29,7 @@ public class SVGAnimatorViewTest {
 
   @Before
   public void setUp() {
-    this.model = BasicAnimatorModel.builder().setBounds(0,0, 100, 100).build();
+    this.model = BasicAnimatorModel.builder().setBounds(0, 0, 100, 100).build();
     this.log = new StringBuilder();
     tickRate = 1;
     this.view1 = new SVGAnimatorView(model, log, tickRate);
@@ -90,7 +91,7 @@ public class SVGAnimatorViewTest {
 
     model.addMotion("s", 15, 30, new Position2D(10, 10),
         new Position2D(25, 10), new Color(11, 10, 155),
-        new Color(11, 11, 11),  new Dimension2D(10, 10),
+        new Color(11, 11, 11), new Dimension2D(10, 10),
         new Dimension2D(10, 40));
 
     try {
@@ -137,13 +138,13 @@ public class SVGAnimatorViewTest {
 
     model.addMotion("s", 15, 30, new Position2D(10, 10),
         new Position2D(25, 10), new Color(11, 10, 155),
-        new Color(11, 11, 11),  new Dimension2D(10, 10),
+        new Color(11, 11, 11), new Dimension2D(10, 10),
         new Dimension2D(10, 40));
 
     model.create("e", new Ellipse());
     model.addMotion("e", 15, 30, new Position2D(10, 10),
         new Position2D(25, 10), new Color(11, 10, 155),
-        new Color(11, 11, 11),  new Dimension2D(10, 10),
+        new Color(11, 11, 11), new Dimension2D(10, 10),
         new Dimension2D(10, 40));
 
     try {

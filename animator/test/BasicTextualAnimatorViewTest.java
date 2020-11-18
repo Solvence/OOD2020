@@ -47,7 +47,8 @@ public class BasicTextualAnimatorViewTest {
 
     assertEquals(view.toString(), "Canvas 30 50 100 100\n");
 
-    model.create("My Shape", new Rectangle(20, 10, new Color(0, 255, 0),
+    model.create("My Shape", new Rectangle(20, 10,
+        new Color(0, 255, 0),
         new Position2D(3, 5)));
 
     assertEquals(view.toString(), "Canvas 30 50 100 100\n"
@@ -55,7 +56,8 @@ public class BasicTextualAnimatorViewTest {
   }
 
   /**
-   * Tests that the textual cs3500.animator.view behaves as expected when multiple Shapes are created.
+   * Tests that the textual cs3500.animator.view behaves as expected when multiple Shapes are
+   * created.
    */
   @Test
   public void testCreateMoreToString() {
@@ -66,13 +68,15 @@ public class BasicTextualAnimatorViewTest {
 
     assertEquals(view.toString(), "Canvas 30 50 100 100\n");
 
-    model.create("My Shape", new Rectangle(20, 10, new Color(0, 255, 0),
+    model.create("My Shape", new Rectangle(20, 10,
+        new Color(0, 255, 0),
         new Position2D(3, 5)));
 
     assertEquals(view.toString(), "Canvas 30 50 100 100\n"
         + "Shape - My Shape - Rectangle\n");
 
-    model.create("My Other Shape", new Ellipse(20, 10, new Color(255, 0, 0),
+    model.create("My Other Shape", new Ellipse(20, 10,
+        new Color(255, 0, 0),
         new Position2D(3, 5)));
 
     assertEquals(view.toString(), "Canvas 30 50 100 100\n"
@@ -81,8 +85,8 @@ public class BasicTextualAnimatorViewTest {
   }
 
   /**
-   * Tests that the textual cs3500.animator.view behaves as expected when multiple Shapes are created and multiple
-   * commands are given.
+   * Tests that the textual cs3500.animator.view behaves as expected when multiple Shapes are
+   * created and multiple commands are given.
    */
   @Test
   public void testAllToString() throws IOException { // remove throws later
@@ -91,26 +95,34 @@ public class BasicTextualAnimatorViewTest {
     Appendable ap = new StringBuilder();
     AnimatorView view = new TextualAnimatorView(model, ap, 2.0);
 
-    model.create("My Shape", new Rectangle(20, 10, new Color(1, 1, 199),
+    model.create("My Shape", new Rectangle(20, 10,
+        new Color(1, 1, 199),
         new Position2D(3, 5)));
 
-    model.create("My Other Shape", new Ellipse(15, 12, new Color(100, 0, 0),
+    model.create("My Other Shape", new Ellipse(15, 12,
+        new Color(100, 0, 0),
         new Position2D(7, -3)));
 
     model.addMotion("My Shape", 1, 10, new Position2D(3, 5),
-        new Position2D(10, 11), new Color(1, 1, 199), new Color(1, 1, 199)
-    , new Dimension2D(20, 10), new Dimension2D(10, 40));
+        new Position2D(10, 11), new Color(1, 1, 199),
+        new Color(1, 1, 199)
+        , new Dimension2D(20, 10), new Dimension2D(10, 40));
 
     model.addMotion("My Other Shape", 3, 12, new Position2D(7, -3),
-        new Position2D(-10, 0), new Color(100, 0, 0), new Color(0, 255, 0),
+        new Position2D(-10, 0), new Color(100, 0, 0),
+        new Color(0, 255, 0),
         new Dimension2D(15, 12), new Dimension2D(15, 40));
 
     model.addMotion("My Shape", 10, 20, new Position2D(10, 11),
-        new Position2D(10, 18), new Color(1, 1, 199), new Color(9, 1, 9)
+        new Position2D(10, 18), new Color(1, 1, 199),
+        new Color(9, 1, 9)
         , new Dimension2D(10, 40), new Dimension2D(10, 90));
 
-    model.addMotion("My Shape", 20, 27, new Position2D(10, 18), new Position2D(50, 60), new Color(9, 1, 9),
-        new Color(255, 0, 0), new Dimension2D(10, 90), new Dimension2D(40, 30));
+    model.addMotion("My Shape", 20, 27, new Position2D(10, 18),
+        new Position2D(50, 60),
+        new Color(9, 1, 9),
+        new Color(255, 0, 0), new Dimension2D(10, 90),
+        new Dimension2D(40, 30));
     List<Shape> shapes = new ArrayList<Shape>();
     for (String s : model.getAllShapeName()) {
       shapes.add(model.getShapeAt(s, 3));
@@ -126,8 +138,8 @@ public class BasicTextualAnimatorViewTest {
   }
 
   /**
-   * Tests that the constructor for the textual view properly throws an exception when it's
-   * supposed to
+   * Tests that the constructor for the textual view properly throws an exception when it's supposed
+   * to.
    */
   @Test
   public void testConstructorException() {
@@ -164,7 +176,7 @@ public class BasicTextualAnimatorViewTest {
   }
 
   /**
-   * Tests that the render method functions properly
+   * Tests that the render method functions properly.
    */
   @Test
   public void testRender() throws IOException {
@@ -173,26 +185,34 @@ public class BasicTextualAnimatorViewTest {
     Appendable ap = new StringBuilder();
     AnimatorView view = new TextualAnimatorView(model, ap, 2.0);
 
-    model.create("My Shape", new Rectangle(20, 10, new Color(1, 1, 199),
+    model.create("My Shape", new Rectangle(20, 10,
+        new Color(1, 1, 199),
         new Position2D(3, 5)));
 
-    model.create("My Other Shape", new Ellipse(15, 12, new Color(100, 0, 0),
+    model.create("My Other Shape", new Ellipse(15, 12,
+        new Color(100, 0, 0),
         new Position2D(7, -3)));
 
     model.addMotion("My Shape", 1, 10, new Position2D(3, 5),
-        new Position2D(10, 11), new Color(1, 1, 199), new Color(1, 1, 199)
+        new Position2D(10, 11), new Color(1, 1, 199),
+        new Color(1, 1, 199)
         , new Dimension2D(20, 10), new Dimension2D(10, 40));
 
     model.addMotion("My Other Shape", 3, 12, new Position2D(7, -3),
-        new Position2D(-10, 0), new Color(100, 0, 0), new Color(0, 255, 0),
+        new Position2D(-10, 0), new Color(100, 0, 0),
+        new Color(0, 255, 0),
         new Dimension2D(15, 12), new Dimension2D(15, 40));
 
     model.addMotion("My Shape", 10, 20, new Position2D(10, 11),
-        new Position2D(10, 18), new Color(1, 1, 199), new Color(9, 1, 9)
+        new Position2D(10, 18), new Color(1, 1, 199),
+        new Color(9, 1, 9)
         , new Dimension2D(10, 40), new Dimension2D(10, 90));
 
-    model.addMotion("My Shape", 20, 27, new Position2D(10, 18), new Position2D(50, 60), new Color(9, 1, 9),
-        new Color(255, 0, 0), new Dimension2D(10, 90), new Dimension2D(40, 30));
+    model.addMotion("My Shape", 20, 27, new Position2D(10, 18),
+        new Position2D(50, 60),
+        new Color(9, 1, 9),
+        new Color(255, 0, 0), new Dimension2D(10, 90),
+        new Dimension2D(40, 30));
     List<Shape> shapes = new ArrayList<Shape>();
     for (String s : model.getAllShapeName()) {
       shapes.add(model.getShapeAt(s, 3));
@@ -212,7 +232,7 @@ public class BasicTextualAnimatorViewTest {
   }
 
   /**
-   * Tests that the translateToTime method functions properly
+   * Tests that the translateToTime method functions properly.
    */
   @Test
   public void testTranslateToTime() {

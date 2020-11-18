@@ -104,7 +104,8 @@ public class BasicAnimatedObjectTest {
   // test add command throws exception if command intervals aren't butt to butt.
   @Test(expected = IllegalArgumentException.class)
   public void testAddCommandInvalidSameCommandTypeNotButtToButt() {
-    AnimatedObjectCommand c1 = new BasicCommand(1, 15, new Position2D(0, 0), new Position2D(10, 10),
+    AnimatedObjectCommand c1 = new BasicCommand(1, 15, new Position2D(0, 0),
+        new Position2D(10, 10),
         new Dimension2D(1, 1), new Dimension2D(10, 10), new Color(10, 10, 10),
         new Color(11, 10, 155));
     AnimatedObjectCommand c2 = new BasicCommand(16, 30, new Position2D(10, 10),
@@ -125,7 +126,8 @@ public class BasicAnimatedObjectTest {
   // test addCommand works correctly.
   @Test
   public void testAddCommand() {
-    AnimatedObjectCommand c1 = new BasicCommand(1, 15, new Position2D(0, 0), new Position2D(10, 10),
+    AnimatedObjectCommand c1 = new BasicCommand(1, 15, new Position2D(0, 0),
+        new Position2D(10, 10),
         new Dimension2D(1, 1), new Dimension2D(10, 10), new Color(10, 10, 10),
         new Color(11, 10, 155));
     AnimatedObjectCommand c2 = new BasicCommand(15, 30, new Position2D(10, 10),
@@ -165,7 +167,8 @@ public class BasicAnimatedObjectTest {
   // test getShapeAt().
   @Test
   public void testGetShapeAt() {
-    AnimatedObjectCommand c1 = new BasicCommand(2, 15, new Position2D(0, 0), new Position2D(10, 10),
+    AnimatedObjectCommand c1 = new BasicCommand(2, 15, new Position2D(0, 0),
+        new Position2D(10, 10),
         new Dimension2D(1, 1), new Dimension2D(10, 10), new Color(10, 10, 10),
         new Color(11, 10, 155));
     AnimatedObjectCommand c2 = new BasicCommand(15, 30, new Position2D(10, 10),
@@ -199,18 +202,25 @@ public class BasicAnimatedObjectTest {
     assertEquals(ao1.getShape(45),
         new Rectangle(80, 40, new Color(1, 1, 1), new Position2D(200, 10)));
 
-    AnimatedObjectCommand c4 = new BasicCommand(45, 50, new Position2D(25, 10),
+    AnimatedObjectCommand c4 = new BasicCommand(45, 50,
+        new Position2D(25, 10),
         new Position2D(200, 10),
-        new Dimension2D(10, 40), new Dimension2D(80, 40), new Color(22, 11, 11),
+        new Dimension2D(10, 40), new Dimension2D(80, 40),
+        new Color(22, 11, 11),
         new Color(1, 1, 1));
     ao2.addCommand(c4);
     assertEquals(ao2.getShape(0), s2);
     assertEquals(ao2.getShape(5), s2);
     assertEquals(ao2.getShape(10), s2);
-    assertEquals(ao2.getShape(47), new Ellipse(38, 40, new Color(14, 7, 7), new Position2D(95, 10)));
-    assertEquals(ao2.getShape(50), new Ellipse(80, 40, new Color(1, 1, 1), new Position2D(200, 10)));
+    assertEquals(ao2.getShape(47),
+        new Ellipse(38, 40, new Color(14, 7, 7),
+            new Position2D(95, 10)));
+    assertEquals(ao2.getShape(50),
+        new Ellipse(80, 40, new Color(1, 1, 1),
+            new Position2D(200, 10)));
     assertEquals(ao2.getShape(45),
-        new Ellipse(10, 40, new Color(22, 11, 11), new Position2D(25, 10)));
+        new Ellipse(10, 40, new Color(22, 11, 11),
+            new Position2D(25, 10)));
     assertEquals(ao2.getShape(5), s2);
     assertEquals(ao2.getShape(0), s2);
   }
@@ -225,7 +235,8 @@ public class BasicAnimatedObjectTest {
   // test get commands.
   @Test
   public void testGetCommands() {
-    AnimatedObjectCommand c1 = new BasicCommand(1, 15, new Position2D(0, 0), new Position2D(10, 10),
+    AnimatedObjectCommand c1 = new BasicCommand(1, 15, new Position2D(0, 0),
+        new Position2D(10, 10),
         new Dimension2D(1, 1), new Dimension2D(10, 10), new Color(10, 10, 10),
         new Color(11, 10, 155));
     AnimatedObjectCommand c2 = new BasicCommand(15, 30, new Position2D(10, 10),

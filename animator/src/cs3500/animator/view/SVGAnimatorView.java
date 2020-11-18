@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * Represents a view to render an SVG file
+ * Represents a view to render an SVG file.
  */
 public class SVGAnimatorView implements AnimatorView {
   private final AnimatorModel model;
@@ -21,7 +21,7 @@ public class SVGAnimatorView implements AnimatorView {
   private final double tickRate; // in ticks/seconds
 
   /**
-   * creates a view to render an SVG file
+   * creates a view to render an SVG file.
    * @param model - the model that will support this view's animation
    * @param tickRate - the rate of the animation in ticks per second
    */
@@ -74,7 +74,7 @@ public class SVGAnimatorView implements AnimatorView {
   }
 
   /**
-   * returns the time in milliseconds
+   * returns the time in milliseconds.
    */
   @Override
   public double translateToTime(int tick) {

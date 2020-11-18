@@ -25,7 +25,7 @@ public class Rectangle extends AbstractShape {
   }
 
   /**
-   * Default Constructor
+   * Default Constructor.
    */
   public Rectangle() {
     super();
