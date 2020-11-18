@@ -46,9 +46,12 @@ public class Excellence {
 
     if (type.equals("visual")) {
       int tick = 0;
+
       ActiveAnimatorView newView = (ActiveAnimatorView) view;
       newView.makeVisible();
       while (newView.isActive()) {
+        System.out.print(tick);
+
         List<Shape> shapes = new ArrayList<Shape>();
         for (String s : model.getAllShapeName()) {
           shapes.add(model.getShapeAt(s, tick));
