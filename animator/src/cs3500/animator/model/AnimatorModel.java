@@ -105,7 +105,7 @@ public interface AnimatorModel {
   Dimension2D getCanvasSize() throws IllegalStateException;
 
   /**
-   * Removes a shape from this model
+   * Removes a shape from this model.
    * @param name - the name of the shape to be removed
    * @throws IllegalArgumentException - if the specified Shape name doesn't exist
    */
