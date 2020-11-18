@@ -63,7 +63,7 @@ public class BasicAnimatorModelTest {
 
   /**
    * Tests that the create method works as intended when proper inputs are given. Also tests
-   * getAnimatedObjects works as intended (since this method must be called if we wish to test the
+   * getAllShapeNames works as intended (since this method must be called if we wish to test the
    * the expected changes from create occurred).
    */
   @Test
@@ -85,6 +85,58 @@ public class BasicAnimatorModelTest {
     assertEquals("Wow",
         model.getAllShapeName().get(1));
 
+
+  }
+
+  /**
+   * Tests that the remove method in the model functions correctly and throws an exception when
+   * appropriate.
+   */
+  @Test
+  public void testRemove() {
+    AnimatorModel model = BasicAnimatorModel.builder()
+        .setBounds(10, 20, 50, 50).build();
+
+    assertEquals(new ArrayList<String>(), model.getAllShapeName());
+
+    model.create("Pog", new Ellipse(20, 15, new Color(255, 0, 0),
+        new Position2D(6, 4)));
+
+    model.create("Wow", new Rectangle(22, 0, new Color(255, 0, 0),
+        new Position2D(-6, -4)));
+
+    assertEquals("Pog",
+        model.getAllShapeName().get(0));
+
+    assertEquals("Wow",
+        model.getAllShapeName().get(1));
+
+    assertEquals(2, model.getAllShapeName().size());
+
+    try {
+      model.remove("Wow2");
+      fail();
+    } catch (IllegalArgumentException e) {
+      //pass!
+    }
+
+    model.remove("Pog");
+
+    assertEquals("Wow",
+        model.getAllShapeName().get(0));
+
+    assertEquals(1, model.getAllShapeName().size());
+
+    model.remove("Wow");
+
+    assertEquals(0, model.getAllShapeName().size());
+
+    try {
+      model.remove("Wow");
+      fail();
+    } catch (IllegalArgumentException e) {
+      //pass!
+    }
 
   }
 

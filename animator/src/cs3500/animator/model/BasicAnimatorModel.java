@@ -114,6 +114,14 @@ public class BasicAnimatorModel implements AnimatorModel {
     return new Dimension2D(this.canvas.getSize());
   }
 
+  @Override
+  public void remove(String name) {
+    if (!this.animatedObjects.containsKey(name)) {
+      throw new IllegalArgumentException("Shape not found");
+    }
+    this.animatedObjects.remove(name);
+  }
+
   /**
    * Constructs a builder for configuring and then creating an animator model instance.
    *
