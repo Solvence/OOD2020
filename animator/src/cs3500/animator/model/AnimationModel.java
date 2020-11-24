@@ -14,7 +14,7 @@ import cs3500.animator.model.shape.Shape;
  * perform. The cs3500.animator.model then processes these operations and maintains the state of the
  * animation.
  */
-public interface AnimatorModel {
+public interface AnimationModel {
 
   /**
    * Adds a new shape with a given name to our animator.

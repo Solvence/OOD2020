@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 /**
  * A AnimatorView that is capable of telling if user input has been preformed.
  */
-public interface ActionableAnimatorView extends ActiveAnimatorView{
+public interface ActionableAnimationView extends ActiveAnimationView {
 
   /**
    * Adds a Listener to a component, so we may know when an action has been preformed on it.

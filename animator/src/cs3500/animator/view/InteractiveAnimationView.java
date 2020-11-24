@@ -7,13 +7,16 @@ import java.awt.FlowLayout;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.JToggleButton;
 
 /**
  * Represents an interactive animator view implementation that has a number of buttons to support
- * functionality such as Pausing, speeding up, slowing down, and resetting the animation.
+ * functionality such as pausing, playing, speeding up, slowing down, looping, and resetting
+ * the animation.
  */
-public class InteractiveAnimatorView extends VisualAnimatorView implements ActionableAnimatorView {
-  private JButton pauseButton, speedUpButton, slowDownButton, resetButton;
+public class InteractiveAnimationView extends VisualAnimationView implements ActionableAnimationView {
+  private JButton pauseButton, playButton, speedUpButton, slowDownButton, resetButton;
+  private JToggleButton loopButton;
   private JPanel buttonPanel;
 
   /**
@@ -21,7 +24,7 @@ public class InteractiveAnimatorView extends VisualAnimatorView implements Actio
    * @param canvasPos - the top left position of the viewable canvas
    * @param canvasSize - the width and height of the viewable canvas
    */
-  public InteractiveAnimatorView(Position2D canvasPos, Dimension2D canvasSize) {
+  public InteractiveAnimationView(Position2D canvasPos, Dimension2D canvasSize) {
     super(canvasPos, canvasSize);
 
     //button panel
@@ -30,6 +33,10 @@ public class InteractiveAnimatorView extends VisualAnimatorView implements Actio
     this.add(buttonPanel, BorderLayout.SOUTH);
 
     //buttons
+    playButton = new JButton("Play");
+    playButton.setActionCommand("Play Button");
+    buttonPanel.add(playButton);
+
     pauseButton = new JButton("Pause");
     pauseButton.setActionCommand("Pause Button");
     buttonPanel.add(pauseButton);
@@ -46,14 +53,20 @@ public class InteractiveAnimatorView extends VisualAnimatorView implements Actio
     resetButton.setActionCommand("Reset Button");
     buttonPanel.add(resetButton);
 
+    loopButton = new JToggleButton("Loop");
+    loopButton.setActionCommand("Loop Button");
+    buttonPanel.add(loopButton);
+
     this.pack();
   }
 
   @Override
   public void setListener(ActionListener listener) {
+    playButton.addActionListener(listener);
     pauseButton.addActionListener(listener);
     speedUpButton.addActionListener(listener);
     slowDownButton.addActionListener(listener);
     resetButton.addActionListener(listener);
+    loopButton.addActionListener(listener);
   }
 }

@@ -12,15 +12,15 @@ import javax.swing.JFrame;
 /**
  * Represents a visual frame by frame translation of an animation using JFrame.
  */
-public class VisualAnimatorView extends JFrame implements ActiveAnimatorView {
-  VisualAnimatorPanel visualPanel;
+public class VisualAnimationView extends JFrame implements ActiveAnimationView {
+  VisualAnimationPanel visualPanel;
 
   /**
    * Default Constructor.
    * @param canvasTopLeft top left relative position of canvas
    * @param canvasSize dimensions of canvas
    */
-  public VisualAnimatorView(Position2D canvasTopLeft, Dimension2D canvasSize) {
+  public VisualAnimationView(Position2D canvasTopLeft, Dimension2D canvasSize) {
     super();
     this.setTitle("Visual View");
     this.setSize(canvasSize.getXDir(), canvasSize.getYDir());
@@ -28,7 +28,7 @@ public class VisualAnimatorView extends JFrame implements ActiveAnimatorView {
 
     // visual panel
     this.setLayout(new BorderLayout());
-    visualPanel = new VisualAnimatorPanel(canvasTopLeft);
+    visualPanel = new VisualAnimationPanel(canvasTopLeft);
     visualPanel.setPreferredSize(new Dimension(canvasSize.getXDir(), canvasSize.getYDir()));
     this.add(visualPanel, BorderLayout.CENTER);
 

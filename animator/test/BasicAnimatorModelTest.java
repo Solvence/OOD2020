@@ -4,8 +4,8 @@ import static org.junit.Assert.fail;
 import cs3500.animator.model.animatedobjectcommand.BasicCommand;
 import cs3500.animator.model.color.Color;
 import java.util.ArrayList;
-import cs3500.animator.model.AnimatorModel;
-import cs3500.animator.model.BasicAnimatorModel;
+import cs3500.animator.model.AnimationModel;
+import cs3500.animator.model.BasicAnimationModel;
 import cs3500.animator.model.dimension2d.Dimension2D;
 import cs3500.animator.model.position2d.Position2D;
 import cs3500.animator.model.shape.Ellipse;
@@ -23,7 +23,7 @@ public class BasicAnimatorModelTest {
    */
   @Test
   public void testCreateException() {
-    AnimatorModel model = BasicAnimatorModel.builder()
+    AnimationModel model = BasicAnimationModel.builder()
         .setBounds(10, 20, 50, 50).build();
 
     try {
@@ -68,7 +68,7 @@ public class BasicAnimatorModelTest {
    */
   @Test
   public void testCreate() {
-    AnimatorModel model = BasicAnimatorModel.builder()
+    AnimationModel model = BasicAnimationModel.builder()
         .setBounds(10, 20, 50, 50).build();
 
     assertEquals(new ArrayList<String>(), model.getAllShapeName());
@@ -94,7 +94,7 @@ public class BasicAnimatorModelTest {
    */
   @Test
   public void testRemove() {
-    AnimatorModel model = BasicAnimatorModel.builder()
+    AnimationModel model = BasicAnimationModel.builder()
         .setBounds(10, 20, 50, 50).build();
 
     assertEquals(new ArrayList<String>(), model.getAllShapeName());
@@ -145,7 +145,7 @@ public class BasicAnimatorModelTest {
    */
   @Test
   public void testAddMotion() {
-    AnimatorModel model = BasicAnimatorModel.builder()
+    AnimationModel model = BasicAnimationModel.builder()
         .setBounds(10, 20, 50, 50).build();
 
     model.create("Pog", new Ellipse(20, 15, new Color(255, 0, 0),
@@ -176,10 +176,10 @@ public class BasicAnimatorModelTest {
    */
   @Test
   public void testMotionException() {
-    AnimatorModel model = BasicAnimatorModel.builder()
+    AnimationModel model = BasicAnimationModel.builder()
         .setBounds(10, 20, 50, 50).build();
 
-    AnimatorModel model2 = BasicAnimatorModel.builder().build();
+    AnimationModel model2 = BasicAnimationModel.builder().build();
 
     model.create("Pog", new Ellipse(20, 15, new Color(255, 0, 0),
         new Position2D(6, 4)));

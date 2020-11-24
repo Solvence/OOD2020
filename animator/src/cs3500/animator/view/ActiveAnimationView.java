@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * View that can deal with visualizing individual frames of an animation.
  */
-public interface ActiveAnimatorView extends AnimatorView {
+public interface ActiveAnimationView extends AnimationView {
 
   /**
    * Set the shapes to be displayed in this frame.

@@ -4,7 +4,7 @@ import cs3500.animator.model.color.Color;
 import cs3500.animator.model.position2d.Position2D;
 import java.io.FileWriter;
 import java.io.IOException;
-import cs3500.animator.model.AnimatorModel;
+import cs3500.animator.model.AnimationModel;
 import cs3500.animator.model.animatedobjectcommand.AnimatedObjectCommand;
 import cs3500.animator.model.dimension2d.Dimension2D;
 import cs3500.animator.model.shape.Shape;
@@ -12,9 +12,9 @@ import cs3500.animator.model.shape.Shape;
 /**
  * Represents a textual translation of an animation.
  */
-public class TextualAnimatorView implements AnimatorView {
+public class TextualAnimationView implements AnimationView {
 
-  private final AnimatorModel model;
+  private final AnimationModel model;
   private final Appendable log;
   private final double ticksPerSecond;
 
@@ -26,7 +26,7 @@ public class TextualAnimatorView implements AnimatorView {
    * @param ticksPerSecond - the number of ticks that the animation goes through per second
    * @throws IllegalArgumentException - if ticksPerSecond is nonpositive, or model/log is null
    */
-  public TextualAnimatorView(AnimatorModel model, Appendable log, double ticksPerSecond)
+  public TextualAnimationView(AnimationModel model, Appendable log, double ticksPerSecond)
       throws IllegalArgumentException {
     if (ticksPerSecond <= 0 || model == null || log == null) {
       throw new IllegalArgumentException("model/log can't be null and ticksPerSecond must "

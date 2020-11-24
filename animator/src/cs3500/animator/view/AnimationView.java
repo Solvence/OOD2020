@@ -5,7 +5,7 @@ import java.io.IOException;
 /**
  * Represents the cs3500.animator.view component for a animation that animates shapes.
  */
-public interface AnimatorView {
+public interface AnimationView {
 
   /**
    * Renders current state of cs3500.animator.model.

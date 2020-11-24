@@ -1,6 +1,6 @@
 import cs3500.animator.model.color.Color;
-import cs3500.animator.model.AnimatorModel;
-import cs3500.animator.model.BasicAnimatorModel;
+import cs3500.animator.model.AnimationModel;
+import cs3500.animator.model.BasicAnimationModel;
 import cs3500.animator.model.dimension2d.Dimension2D;
 import cs3500.animator.model.position2d.Position2D;
 import cs3500.animator.model.shape.Ellipse;
@@ -10,8 +10,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.Test;
-import cs3500.animator.view.AnimatorView;
-import cs3500.animator.view.TextualAnimatorView;
+import cs3500.animator.view.AnimationView;
+import cs3500.animator.view.TextualAnimationView;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
@@ -27,10 +27,10 @@ public class BasicTextualAnimatorViewTest {
    */
   @Test
   public void testStartToString() {
-    AnimatorModel model = BasicAnimatorModel.builder()
+    AnimationModel model = BasicAnimationModel.builder()
         .setBounds(30, 50, 100, 100).build();
     Appendable ap = new StringBuilder();
-    AnimatorView view = new TextualAnimatorView(model, ap, 2.0);
+    AnimationView view = new TextualAnimationView(model, ap, 2.0);
 
     assertEquals("Canvas 30 50 100 100\n", view.toString());
   }
@@ -40,10 +40,10 @@ public class BasicTextualAnimatorViewTest {
    */
   @Test
   public void testCreateOneToString() {
-    AnimatorModel model = BasicAnimatorModel.builder()
+    AnimationModel model = BasicAnimationModel.builder()
         .setBounds(30, 50, 100, 100).build();
     Appendable ap = new StringBuilder();
-    AnimatorView view = new TextualAnimatorView(model, ap, 2.0);
+    AnimationView view = new TextualAnimationView(model, ap, 2.0);
 
     assertEquals(view.toString(), "Canvas 30 50 100 100\n");
 
@@ -61,10 +61,10 @@ public class BasicTextualAnimatorViewTest {
    */
   @Test
   public void testCreateMoreToString() {
-    AnimatorModel model = BasicAnimatorModel.builder()
+    AnimationModel model = BasicAnimationModel.builder()
         .setBounds(30, 50, 100, 100).build();
     Appendable ap = new StringBuilder();
-    AnimatorView view = new TextualAnimatorView(model, ap, 2.0);
+    AnimationView view = new TextualAnimationView(model, ap, 2.0);
 
     assertEquals(view.toString(), "Canvas 30 50 100 100\n");
 
@@ -90,10 +90,10 @@ public class BasicTextualAnimatorViewTest {
    */
   @Test
   public void testAllToString() throws IOException { // remove throws later
-    AnimatorModel model = BasicAnimatorModel.builder()
+    AnimationModel model = BasicAnimationModel.builder()
         .setBounds(30, 50, 100, 100).build();
     Appendable ap = new StringBuilder();
-    AnimatorView view = new TextualAnimatorView(model, ap, 2.0);
+    AnimationView view = new TextualAnimationView(model, ap, 2.0);
 
     model.create("My Shape", new Rectangle(20, 10,
         new Color(1, 1, 199),
@@ -143,32 +143,32 @@ public class BasicTextualAnimatorViewTest {
    */
   @Test
   public void testConstructorException() {
-    AnimatorModel model = BasicAnimatorModel.builder()
+    AnimationModel model = BasicAnimationModel.builder()
         .setBounds(30, 50, 100, 100).build();
     Appendable ap = new StringBuilder();
     try {
-      AnimatorView view = new TextualAnimatorView(model, ap, 0.0);
+      AnimationView view = new TextualAnimationView(model, ap, 0.0);
       fail();
     } catch (IllegalArgumentException e) {
       //pass!
     }
 
     try {
-      AnimatorView view = new TextualAnimatorView(null, ap, 2.0);
+      AnimationView view = new TextualAnimationView(null, ap, 2.0);
       fail();
     } catch (IllegalArgumentException e) {
       //pass!
     }
 
     try {
-      AnimatorView view = new TextualAnimatorView(model, null, 2.0);
+      AnimationView view = new TextualAnimationView(model, null, 2.0);
       fail();
     } catch (IllegalArgumentException e) {
       //pass!
     }
 
     try {
-      AnimatorView view = new TextualAnimatorView(null, ap, 0.0);
+      AnimationView view = new TextualAnimationView(null, ap, 0.0);
       fail();
     } catch (IllegalArgumentException e) {
       //pass!
@@ -180,10 +180,10 @@ public class BasicTextualAnimatorViewTest {
    */
   @Test
   public void testRender() throws IOException {
-    AnimatorModel model = BasicAnimatorModel.builder()
+    AnimationModel model = BasicAnimationModel.builder()
         .setBounds(30, 50, 100, 100).build();
     Appendable ap = new StringBuilder();
-    AnimatorView view = new TextualAnimatorView(model, ap, 2.0);
+    AnimationView view = new TextualAnimationView(model, ap, 2.0);
 
     model.create("My Shape", new Rectangle(20, 10,
         new Color(1, 1, 199),
@@ -236,10 +236,10 @@ public class BasicTextualAnimatorViewTest {
    */
   @Test
   public void testTranslateToTime() {
-    AnimatorModel model = BasicAnimatorModel.builder()
+    AnimationModel model = BasicAnimationModel.builder()
         .setBounds(30, 50, 100, 100).build();
     Appendable ap = new StringBuilder();
-    AnimatorView view = new TextualAnimatorView(model, ap, 3.0);
+    AnimationView view = new TextualAnimationView(model, ap, 3.0);
 
     assertEquals(3.0, view.translateToTime(9), .0001);
     assertEquals(1.0, view.translateToTime(3), .0001);

@@ -2,13 +2,15 @@ package cs3500.animator;
 
 import static java.lang.Thread.sleep;
 
-import cs3500.animator.model.AnimatorModel;
-import cs3500.animator.model.BasicAnimatorModel;
+import cs3500.animator.controller.AnimationController;
+import cs3500.animator.controller.ControllerFactory;
+import cs3500.animator.model.AnimationModel;
+import cs3500.animator.model.BasicAnimationModel;
 import cs3500.animator.model.shape.Shape;
 import cs3500.animator.util.AnimationReader;
-import cs3500.animator.view.ActiveAnimatorView;
+import cs3500.animator.view.ActiveAnimationView;
 
-import cs3500.animator.view.AnimatorView;
+import cs3500.animator.view.AnimationView;
 import cs3500.animator.view.ViewFactory;
 
 import java.io.File;
@@ -39,37 +41,14 @@ public class Excellence {
     String in = findIn(args);
 
     AnimationReader reader = new AnimationReader();
-    AnimatorModel model = reader.parseFile(new FileReader(new File(in)),
-        BasicAnimatorModel.builder());
+    AnimationModel model = reader.parseFile(new FileReader(new File(in)),
+        BasicAnimationModel.builder());
 
-    AnimatorView view = ViewFactory.build(type, model, tickRate, out);
+    AnimationView view = ViewFactory.build(type, model, tickRate, out);
 
-    if (type.equals("visual")) {
-      int tick = 0;
+    AnimationController controller = ControllerFactory.build(type, model, tickRate, view);
 
-      ActiveAnimatorView newView = (ActiveAnimatorView) view;
-      newView.makeVisible();
-      while (newView.isActive()) {
-        System.out.print(tick);
-
-        List<Shape> shapes = new ArrayList<Shape>();
-        for (String s : model.getAllShapeName()) {
-          shapes.add(model.getShapeAt(s, tick));
-        }
-        newView.setShapes(shapes);
-        try {
-          newView.render();
-        } catch (IOException e) {
-          e.printStackTrace();
-        }
-        sleep((int) (1000 / tickRate));
-        tick += 1;
-
-      }
-
-    } else {
-      view.render();
-    }
+    controller.go();
   }
 
   /**

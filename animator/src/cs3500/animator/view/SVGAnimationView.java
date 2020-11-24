@@ -1,6 +1,6 @@
 package cs3500.animator.view;
 
-import cs3500.animator.model.AnimatorModel;
+import cs3500.animator.model.AnimationModel;
 import cs3500.animator.model.animatedobjectcommand.AnimatedObjectCommand;
 import cs3500.animator.model.dimension2d.Dimension2D;
 import cs3500.animator.model.position2d.Position2D;
@@ -15,8 +15,8 @@ import java.util.List;
 /**
  * Represents a view to render an SVG file.
  */
-public class SVGAnimatorView implements AnimatorView {
-  private final AnimatorModel model;
+public class SVGAnimationView implements AnimationView {
+  private final AnimationModel model;
   private final Appendable file;
   private final double tickRate; // in ticks/seconds
 
@@ -25,7 +25,7 @@ public class SVGAnimatorView implements AnimatorView {
    * @param model - the model that will support this view's animation
    * @param tickRate - the rate of the animation in ticks per second
    */
-  public SVGAnimatorView(AnimatorModel model, Appendable out, double tickRate) {
+  public SVGAnimationView(AnimationModel model, Appendable out, double tickRate) {
     this.model = model;
     this.tickRate = tickRate;
     this.file = out;

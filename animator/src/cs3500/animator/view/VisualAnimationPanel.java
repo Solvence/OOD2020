@@ -14,7 +14,7 @@ import javax.swing.JPanel;
 /**
  * Represents the object that draws shapes onto a canvas.
  */
-public class VisualAnimatorPanel extends JPanel {
+public class VisualAnimationPanel extends JPanel {
   private List<Shape> shapes;
   private final Position2D topLeftCanvasCorner;
 
@@ -22,7 +22,7 @@ public class VisualAnimatorPanel extends JPanel {
    * Default Constructor.
    * @param topLeftCanvasCorner top left position of canvas
    */
-  public VisualAnimatorPanel(Position2D topLeftCanvasCorner) {
+  public VisualAnimationPanel(Position2D topLeftCanvasCorner) {
     super();
     this.shapes = new ArrayList<Shape>();
     this.setBackground(Color.white);

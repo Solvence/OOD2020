@@ -1,6 +1,6 @@
 package cs3500.animator.view;
 
-import cs3500.animator.model.AnimatorModel;
+import cs3500.animator.model.AnimationModel;
 
 /**
  * Represents a factory class to help construct Views given the name of the type of view.
@@ -18,19 +18,21 @@ public class ViewFactory {
    * @throws IllegalArgumentException - if invalid arguments are passed, or the specified view type
    *                                  is not found
    */
-  public static AnimatorView build(String type, AnimatorModel model, double tickRate,
+  public static AnimationView build(String type, AnimationModel model, double tickRate,
       Appendable out) throws IllegalArgumentException {
-    if (type == null || model == null || out == null || tickRate <= 0 || out == null) {
+    if (type == null || model == null || out == null || tickRate <= 0) {
       throw new IllegalArgumentException("Invalid arguments. Inputs cannot be null and tickRate "
           + "must be positive");
     }
     switch (type) {
       case "visual":
-        return new VisualAnimatorView(model.getCanvasPosition(), model.getCanvasSize());
+        return new VisualAnimationView(model.getCanvasPosition(), model.getCanvasSize());
       case "text":
-        return new TextualAnimatorView(model, out, tickRate);
+        return new TextualAnimationView(model, out, tickRate);
       case "svg":
-        return new SVGAnimatorView(model, out, tickRate);
+        return new SVGAnimationView(model, out, tickRate);
+      case "interactive":
+        return new InteractiveAnimationView(model.getCanvasPosition(), model.getCanvasSize());
       default:
         throw new IllegalArgumentException("invalid view type");
     }

@@ -22,7 +22,7 @@ import cs3500.animator.model.canvas.Canvas;
  * Shape and its corresponding motions. The state is also preserved through a Canvas in which
  * the animation as a whole will be drawn upon.
  */
-public class BasicAnimatorModel implements AnimatorModel {
+public class BasicAnimationModel implements AnimationModel {
 
   private final Map<String, AnimatedObject> animatedObjects;
   private final Canvas canvas;
@@ -32,7 +32,7 @@ public class BasicAnimatorModel implements AnimatorModel {
    * objects with the same name key. INVARIANT: animatedObjects can't be null INVARIANT: Canvas must
    * be initialized using initCanvas before any shapes are initialized
    */
-  private BasicAnimatorModel() {
+  private BasicAnimationModel() {
     this.animatedObjects = new LinkedHashMap<>();
     this.canvas = new Canvas();
   }
@@ -134,35 +134,35 @@ public class BasicAnimatorModel implements AnimatorModel {
   /**
    * Represents a Builder class to assist with constructing objects of this model.
    */
-  public static final class Builder implements AnimationBuilder<AnimatorModel> {
-    private AnimatorModel model;
+  public static final class Builder implements AnimationBuilder<AnimationModel> {
+    private AnimationModel model;
 
     /**
      * constructs a Builder.
      */
     public Builder() {
-      model = new BasicAnimatorModel();
+      model = new BasicAnimationModel();
     }
 
     @Override
-    public AnimatorModel build() {
+    public AnimationModel build() {
       return this.model;
     }
 
     @Override
-    public AnimationBuilder<AnimatorModel> setBounds(int x, int y, int width, int height) {
+    public AnimationBuilder<AnimationModel> setBounds(int x, int y, int width, int height) {
       this.model.initCanvas(new Position2D(x, y), new Dimension2D(width, height));
       return this;
     }
 
     @Override
-    public AnimationBuilder<AnimatorModel> declareShape(String name, String type) {
+    public AnimationBuilder<AnimationModel> declareShape(String name, String type) {
       this.model.create(name, ShapeFactory.build(type));
       return this;
     }
 
     @Override
-    public AnimationBuilder<AnimatorModel> addMotion(String name, int t1, int x1, int y1, int w1,
+    public AnimationBuilder<AnimationModel> addMotion(String name, int t1, int x1, int y1, int w1,
         int h1, int r1, int g1, int b1, int t2, int x2, int y2, int w2, int h2, int r2, int g2,
         int b2) {
       this.model.addMotion(name, t1, t2, new Position2D(x1, y1), new Position2D(x2, y2),

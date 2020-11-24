@@ -1,7 +1,7 @@
 import static org.junit.Assert.assertEquals;
 
-import cs3500.animator.model.AnimatorModel;
-import cs3500.animator.model.BasicAnimatorModel;
+import cs3500.animator.model.AnimationModel;
+import cs3500.animator.model.BasicAnimationModel;
 import cs3500.animator.model.animatedobjectcommand.AnimatedObjectCommand;
 import cs3500.animator.model.animatedobjectcommand.BasicCommand;
 import cs3500.animator.model.color.Color;
@@ -9,8 +9,8 @@ import cs3500.animator.model.dimension2d.Dimension2D;
 import cs3500.animator.model.position2d.Position2D;
 import cs3500.animator.model.shape.Ellipse;
 import cs3500.animator.model.shape.Rectangle;
-import cs3500.animator.view.AnimatorView;
-import cs3500.animator.view.SVGAnimatorView;
+import cs3500.animator.view.AnimationView;
+import cs3500.animator.view.SVGAnimationView;
 import java.io.IOException;
 import org.junit.Before;
 import org.junit.Test;
@@ -20,8 +20,8 @@ import org.junit.Test;
  */
 public class SVGAnimatorViewTest {
 
-  AnimatorModel model;
-  AnimatorView view1;
+  AnimationModel model;
+  AnimationView view1;
   AnimatedObjectCommand c1;
   AnimatedObjectCommand c2;
   Appendable log;
@@ -29,10 +29,10 @@ public class SVGAnimatorViewTest {
 
   @Before
   public void setUp() {
-    this.model = BasicAnimatorModel.builder().setBounds(0, 0, 100, 100).build();
+    this.model = BasicAnimationModel.builder().setBounds(0, 0, 100, 100).build();
     this.log = new StringBuilder();
     tickRate = 1;
-    this.view1 = new SVGAnimatorView(model, log, tickRate);
+    this.view1 = new SVGAnimationView(model, log, tickRate);
     this.c1 = new BasicCommand(1, 15, new Position2D(0, 0), new Position2D(10, 10),
         new Dimension2D(1, 1), new Dimension2D(10, 10), new Color(10, 10, 10),
         new Color(11, 10, 155));
@@ -208,7 +208,7 @@ public class SVGAnimatorViewTest {
     assertEquals(view1.translateToTime(100), 100000.0, 0.01);
 
     tickRate = 5;
-    view1 = new SVGAnimatorView(model, log, tickRate);
+    view1 = new SVGAnimationView(model, log, tickRate);
     assertEquals(view1.translateToTime(1), 200.0, 0.01);
     assertEquals(view1.translateToTime(2), 400.0, 0.01);
     assertEquals(view1.translateToTime(100), 20000.0, 0.01);
