@@ -1,9 +1,8 @@
-package cs3500.bubblesort;
+package cs3500.animator.bubblesort;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.List;
 import java.util.Random;
 
 public class BubbleSort {

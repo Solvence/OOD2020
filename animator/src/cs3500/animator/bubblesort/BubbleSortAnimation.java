@@ -1,8 +1,7 @@
-package cs3500.bubblesort;
+package cs3500.animator.bubblesort;
 
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Arrays;
 
 public class BubbleSortAnimation {
   static int TICKS_PER_SWAP = 15;
@@ -30,7 +29,6 @@ public class BubbleSortAnimation {
       for (int i=0; i < previousArray.length; i++) {
         int currElement = previousArray[i];
         int nextIndexOfElement = findIndex(currentArray, currElement);
-        System.out.println(nextIndexOfElement);
 
         out.append(String.format("motion R%d %d %d %d %d %d %d %d %d ",
             currElement, currentTick, i*widthPerRectangle, 1000-currElement*heightPerUnit,
