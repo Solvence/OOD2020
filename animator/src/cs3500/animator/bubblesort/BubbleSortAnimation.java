@@ -41,10 +41,13 @@ public class BubbleSortAnimation {
       currentTick += TICKS_PER_SWAP;
     }
 
-    //while loop while(notComplete)
+    if (out instanceof FileWriter) {
+      FileWriter file = (FileWriter) out;
+      file.close();
+    }
   }
 
-  public static int findIndex(int arr[], int t)
+  public static int findIndex(int[] arr, int t)
   {
 
     // if array is Null

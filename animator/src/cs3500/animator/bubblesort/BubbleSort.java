@@ -6,25 +6,34 @@ import java.util.Collections;
 import java.util.Random;
 
 public class BubbleSort {
-  private int[] arr;
+  private final int[] arr;
   private int currIndex;
   private int roundNum;
 
-  BubbleSort(int length) {
+
+  public BubbleSort(Random r, int length) {
+    if (length < 0) {
+      throw new IllegalArgumentException("Array length can not be less than 0");
+    }
     arr = new int[length];
-    Random r = new Random();
     ArrayList<Integer> arrList = new ArrayList<>();
     for(int i=0; i<length; i++) {
       arrList.add(i+1);
     }
-    Collections.shuffle(arrList);
+    Collections.shuffle(arrList,r);
     for(int i = 0; i< arrList.size(); i++) {
       arr[i] = arrList.get(i);
     }
 
     currIndex = 0;
     roundNum = 0;
+
   }
+
+  public BubbleSort(int length) throws IllegalArgumentException {
+    this(new Random(), length);
+  }
+
 
   public int[] getCurrentArray() {
     return Arrays.copyOf(arr, arr.length);
