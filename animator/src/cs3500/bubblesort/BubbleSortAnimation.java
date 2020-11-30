@@ -1,23 +1,39 @@
-package cs3500.animator.bubblesort;
+package cs3500.bubblesort;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Random;
 
+/**
+ * Represents a programatically generated animation that displays the motions of Bubble Sort on an
+ * array.
+ */
 public class BubbleSortAnimation {
   static int TICKS_PER_SWAP = 15;
+  static int SCREEN_SIZE = 800;
 
+  /**
+   * main method. Generates the full animation in a text file.
+   * @param args - "-out" specifies the destination file to which the animation text will be
+   *             outputted.
+   *             "-length" is optional and specifies the number of elements to be sorted
+   *             (1<length<31)
+   * @throws IOException - if a problem occurs with the Appendable.
+   */
   public static void main(String[] args) throws IOException {
     int listLength = initializeLength(args);
     Appendable out = findOut(args);
+    Random seed = findSeed(args);
     int heightPerUnit;
-    int widthPerRectangle = 1000 / listLength;
+    int widthPerRectangle = SCREEN_SIZE / listLength;
 
 
-    BubbleSort bbsort = new BubbleSort(listLength);
+    BubbleSort bbsort = new BubbleSort(seed, listLength);
 
-    out.append("canvas 0 0 1000 1000\n");
+    out.append("canvas 0 0 ").append(String.valueOf(SCREEN_SIZE)).append(" ")
+        .append(String.valueOf(SCREEN_SIZE)).append("\n");
 
-    heightPerUnit = 1000 / initializeRectangles(bbsort.getCurrentArray(), out);
+    heightPerUnit = SCREEN_SIZE / initializeRectangles(bbsort.getCurrentArray(), out);
 
     int currentTick = 1;
 
@@ -31,11 +47,11 @@ public class BubbleSortAnimation {
         int nextIndexOfElement = findIndex(currentArray, currElement);
 
         out.append(String.format("motion R%d %d %d %d %d %d %d %d %d ",
-            currElement, currentTick, i*widthPerRectangle, 1000-currElement*heightPerUnit,
+            currElement, currentTick, i*widthPerRectangle, SCREEN_SIZE-currElement*heightPerUnit,
             widthPerRectangle, currElement*heightPerUnit, 0, 0, 0));
 
         out.append(String.format("%d %d %d %d %d %d %d %d\n",
-            currentTick + TICKS_PER_SWAP, nextIndexOfElement*widthPerRectangle, 1000-currElement*heightPerUnit,
+            currentTick + TICKS_PER_SWAP, nextIndexOfElement*widthPerRectangle, SCREEN_SIZE-currElement*heightPerUnit,
             widthPerRectangle, currElement*heightPerUnit, 0, 0, 0));
       }
       currentTick += TICKS_PER_SWAP;
@@ -47,6 +63,12 @@ public class BubbleSortAnimation {
     }
   }
 
+  /**
+   * finds the index of an integer in an array of integers.
+   * @param arr - the array to be searched
+   * @param t - the element to be found
+   * @return - the index of the specifies integer, or -1 if the array does not contain it.
+   */
   public static int findIndex(int[] arr, int t)
   {
 
@@ -74,6 +96,14 @@ public class BubbleSortAnimation {
     return -1;
   }
 
+  /**
+   * appends statements to the output signifying initialization of the necessary shapes for this
+   * animation. Returns the max element in the array.
+   * @param currArray - the array of integers that is being sorted
+   * @param out - the output
+   * @return - the maximum integer in the array to be sorted
+   * @throws IOException - if Appendable fails
+   */
   private static int initializeRectangles(int[] currArray, Appendable out) throws IOException {
     int maxValue = -1;
     for (int i = 0; i < currArray.length; i++) {
@@ -83,6 +113,12 @@ public class BubbleSortAnimation {
     return maxValue;
   }
 
+  /**
+   * searches the command line arguments for the array length specification.
+   *
+   * @param args - the command line arguments
+   * @return - the length of the array to be sorted
+   */
   private static int initializeLength(String[] args) {
     int lengthIndex = -1;
 
@@ -93,7 +129,7 @@ public class BubbleSortAnimation {
     }
 
     if (lengthIndex == -1 || lengthIndex > args.length - 1
-        || Integer.parseInt(args[lengthIndex]) <= 1) {
+        || Integer.parseInt(args[lengthIndex]) <= 0) {
       return 10;
     }
     return Integer.parseInt(args[lengthIndex]) <= 30 ? Integer.parseInt(args[lengthIndex]) : 30;
@@ -119,5 +155,26 @@ public class BubbleSortAnimation {
       return out;
     }
     return new FileWriter(args[outIndex]);
+  }
+
+  /**
+   * searches command line arguments for a random seed specification.
+   * @param args - the command line arguments
+   * @return - the seeded random if input has been found, a unseeded otherwise
+   * @throws NumberFormatException if -seed isn't followed by an integer
+   */
+  private static Random findSeed(String[] args) throws NumberFormatException {
+    int outIndex = -1;
+    Random out = new Random();
+
+    for (int i = 0; i < args.length; i++) {
+      if (args[i].equals("-seed")) {
+        outIndex = i + 1;
+      }
+    }
+    if (outIndex == -1 || outIndex > args.length - 1 || args[outIndex].equals("out")) {
+      return out;
+    }
+    return new Random(Integer.parseInt(args[outIndex]));
   }
 }
