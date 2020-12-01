@@ -1,7 +1,6 @@
 # HW 07 #
 ### Interactive View/Controller Implementation
 
-##Changes from Assignment 6:
 New Design:
     
     - Created new interface "ActionableAnimationView" that extends ActiveAnimationView and is 
