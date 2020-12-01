@@ -11,10 +11,14 @@ public class StaticAnimationController implements AnimationController {
   private final AnimationView view;
 
   /**
-   * Constructs an animation controller for static views
+   * Constructs an animation controller for static views.
    * @param view - the view to be rendered
+   * @throws IllegalArgumentException - if view does not exist
    */
-  public StaticAnimationController(AnimationView view) {
+  public StaticAnimationController(AnimationView view) throws IllegalArgumentException {
+    if (view == null) {
+      throw new IllegalArgumentException("view must exist");
+    }
     this.view = view;
   }
 

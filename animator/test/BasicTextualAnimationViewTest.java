@@ -19,7 +19,7 @@ import static org.junit.Assert.fail;
 /**
  * Tests and Examples for the BasicTextualAnimator class.
  */
-public class BasicTextualAnimatorViewTest {
+public class BasicTextualAnimationViewTest {
 
 
   /**

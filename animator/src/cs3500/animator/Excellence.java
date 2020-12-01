@@ -1,14 +1,10 @@
 package cs3500.animator;
 
-import static java.lang.Thread.sleep;
-
 import cs3500.animator.controller.AnimationController;
 import cs3500.animator.controller.ControllerFactory;
 import cs3500.animator.model.AnimationModel;
 import cs3500.animator.model.BasicAnimationModel;
-import cs3500.animator.model.shape.Shape;
 import cs3500.animator.util.AnimationReader;
-import cs3500.animator.view.ActiveAnimationView;
 
 import cs3500.animator.view.AnimationView;
 import cs3500.animator.view.ViewFactory;
@@ -17,8 +13,6 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Represents the main class with a method that our animation is ran through. When executing the
@@ -35,20 +29,26 @@ public class Excellence {
    * @throws IOException          - if the input/output processes do not function properly
    */
   public static void main(String[] args) throws InterruptedException, IOException {
-    String type = findView(args);
-    double tickRate = findTickRate(args);
-    Appendable out = findOut(args);
-    String in = findIn(args);
+    try {
+      String type = findView(args);
+      double tickRate = findTickRate(args);
+      Appendable out = findOut(args);
+      String in = findIn(args);
 
-    AnimationReader reader = new AnimationReader();
-    AnimationModel model = reader.parseFile(new FileReader(new File(in)),
-        BasicAnimationModel.builder());
+      AnimationReader reader = new AnimationReader();
+      AnimationModel model = reader.parseFile(new FileReader(new File(in)),
+          BasicAnimationModel.builder());
 
-    AnimationView view = ViewFactory.build(type, model, tickRate, out);
+      AnimationView view = ViewFactory.build(type, model, tickRate, out);
 
-    AnimationController controller = ControllerFactory.build(type, model, tickRate, view);
+      AnimationController controller = ControllerFactory.build(type, model, tickRate, view);
 
-    controller.go();
+      controller.go();
+    } catch (IllegalArgumentException | IOException | IllegalStateException
+        | NullPointerException e) {
+      System.out.println(e.getMessage());
+    }
+
   }
 
   /**

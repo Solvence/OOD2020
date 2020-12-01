@@ -9,8 +9,8 @@ import java.util.Random;
  * array.
  */
 public class BubbleSortAnimation {
-  static int TICKS_PER_SWAP = 15;
-  static int SCREEN_SIZE = 800;
+  private static final int TICKS_PER_SWAP = 15;
+  private static final int SCREEN_SIZE = 800;
 
   /**
    * main method. Generates the full animation in a text file.

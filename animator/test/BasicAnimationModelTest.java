@@ -15,7 +15,7 @@ import org.junit.Test;
 /**
  * Examples and tests for the BasicAnimatorModel class.
  */
-public class BasicAnimatorModelTest {
+public class BasicAnimationModelTest {
 
   /**
    * Tests that the create method throws an exception if null inputs are given or the given name
