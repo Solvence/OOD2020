@@ -67,11 +67,11 @@ public abstract class AbstractShape implements Shape {
   }
 
   @Override
-  abstract public <R> R accept(ShapeVisitor<R> visitor);
+  public abstract <R> R accept(ShapeVisitor<R> visitor);
 
-  abstract public int hashCode();
+  public abstract int hashCode();
 
-  abstract public boolean equals(Object other);
+  public abstract boolean equals(Object other);
 
-  abstract public String toString();
+  public abstract String toString();
 }

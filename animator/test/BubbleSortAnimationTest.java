@@ -7,6 +7,9 @@ import java.io.PrintStream;
 import org.junit.Before;
 import org.junit.Test;
 
+/**
+ * Tests the BubbleSortAnimation class.
+ */
 public class BubbleSortAnimationTest {
 
   Appendable a;

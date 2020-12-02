@@ -43,7 +43,7 @@ public class Excellence {
 
       AnimationController controller = ControllerFactory.build(type, model, tickRate, view);
 
-      controller.go();
+      controller.start();
     } catch (IllegalArgumentException | IOException | IllegalStateException
         | NullPointerException e) {
       System.out.println(e.getMessage());

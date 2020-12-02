@@ -9,15 +9,16 @@ import java.util.Random;
  * array.
  */
 public class BubbleSortAnimation {
+
   private static final int TICKS_PER_SWAP = 15;
   private static final int SCREEN_SIZE = 800;
 
   /**
    * main method. Generates the full animation in a text file.
+   *
    * @param args - "-out" specifies the destination file to which the animation text will be
-   *             outputted.
-   *             "-length" is optional and specifies the number of elements to be sorted
-   *             (1<length<31)
+   *             outputted. "-length" is optional and specifies the number of elements to be sorted
+   *             (1 less than "length" less than 31).
    * @throws IOException - if a problem occurs with the Appendable.
    */
   public static void main(String[] args) throws IOException {
@@ -26,7 +27,6 @@ public class BubbleSortAnimation {
     Random seed = findSeed(args);
     int heightPerUnit;
     int widthPerRectangle = SCREEN_SIZE / listLength;
-
 
     BubbleSort bbsort = new BubbleSort(seed, listLength);
 
@@ -37,22 +37,24 @@ public class BubbleSortAnimation {
 
     int currentTick = 1;
 
-    while(!bbsort.finished()) {
+    while (!bbsort.finished()) {
       int[] previousArray = bbsort.getCurrentArray();
       bbsort.nextStep();
       int[] currentArray = bbsort.getCurrentArray();
 
-      for (int i=0; i < previousArray.length; i++) {
+      for (int i = 0; i < previousArray.length; i++) {
         int currElement = previousArray[i];
         int nextIndexOfElement = findIndex(currentArray, currElement);
 
         out.append(String.format("motion R%d %d %d %d %d %d %d %d %d ",
-            currElement, currentTick, i*widthPerRectangle, SCREEN_SIZE-currElement*heightPerUnit,
-            widthPerRectangle, currElement*heightPerUnit, 0, 0, 0));
+            currElement, currentTick, i * widthPerRectangle,
+            SCREEN_SIZE - currElement * heightPerUnit,
+            widthPerRectangle, currElement * heightPerUnit, 0, 0, 0));
 
         out.append(String.format("%d %d %d %d %d %d %d %d\n",
-            currentTick + TICKS_PER_SWAP, nextIndexOfElement*widthPerRectangle, SCREEN_SIZE-currElement*heightPerUnit,
-            widthPerRectangle, currElement*heightPerUnit, 0, 0, 0));
+            currentTick + TICKS_PER_SWAP, nextIndexOfElement * widthPerRectangle,
+            SCREEN_SIZE - currElement * heightPerUnit,
+            widthPerRectangle, currElement * heightPerUnit, 0, 0, 0));
       }
       currentTick += TICKS_PER_SWAP;
     }
@@ -65,12 +67,12 @@ public class BubbleSortAnimation {
 
   /**
    * finds the index of an integer in an array of integers.
+   *
    * @param arr - the array to be searched
-   * @param t - the element to be found
+   * @param t   - the element to be found
    * @return - the index of the specifies integer, or -1 if the array does not contain it.
    */
-  public static int findIndex(int[] arr, int t)
-  {
+  public static int findIndex(int[] arr, int t) {
 
     // if array is Null
     if (arr == null) {
@@ -88,8 +90,7 @@ public class BubbleSortAnimation {
       // then return the index
       if (arr[i] == t) {
         return i;
-      }
-      else {
+      } else {
         i = i + 1;
       }
     }
@@ -99,8 +100,9 @@ public class BubbleSortAnimation {
   /**
    * appends statements to the output signifying initialization of the necessary shapes for this
    * animation. Returns the max element in the array.
+   *
    * @param currArray - the array of integers that is being sorted
-   * @param out - the output
+   * @param out       - the output
    * @return - the maximum integer in the array to be sorted
    * @throws IOException - if Appendable fails
    */
@@ -159,6 +161,7 @@ public class BubbleSortAnimation {
 
   /**
    * searches command line arguments for a random seed specification.
+   *
    * @param args - the command line arguments
    * @return - the seeded random if input has been found, a unseeded otherwise
    * @throws NumberFormatException if -seed isn't followed by an integer

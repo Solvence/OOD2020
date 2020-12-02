@@ -105,8 +105,8 @@ public class BasicTextualAnimationViewTest {
 
     model.addMotion("My Shape", 1, 10, new Position2D(3, 5),
         new Position2D(10, 11), new Color(1, 1, 199),
-        new Color(1, 1, 199)
-        , new Dimension2D(20, 10), new Dimension2D(10, 40));
+        new Color(1, 1, 199),
+        new Dimension2D(20, 10), new Dimension2D(10, 40));
 
     model.addMotion("My Other Shape", 3, 12, new Position2D(7, -3),
         new Position2D(-10, 0), new Color(100, 0, 0),
@@ -115,8 +115,8 @@ public class BasicTextualAnimationViewTest {
 
     model.addMotion("My Shape", 10, 20, new Position2D(10, 11),
         new Position2D(10, 18), new Color(1, 1, 199),
-        new Color(9, 1, 9)
-        , new Dimension2D(10, 40), new Dimension2D(10, 90));
+        new Color(9, 1, 9),
+        new Dimension2D(10, 40), new Dimension2D(10, 90));
 
     model.addMotion("My Shape", 20, 27, new Position2D(10, 18),
         new Position2D(50, 60),
@@ -195,8 +195,8 @@ public class BasicTextualAnimationViewTest {
 
     model.addMotion("My Shape", 1, 10, new Position2D(3, 5),
         new Position2D(10, 11), new Color(1, 1, 199),
-        new Color(1, 1, 199)
-        , new Dimension2D(20, 10), new Dimension2D(10, 40));
+        new Color(1, 1, 199),
+        new Dimension2D(20, 10), new Dimension2D(10, 40));
 
     model.addMotion("My Other Shape", 3, 12, new Position2D(7, -3),
         new Position2D(-10, 0), new Color(100, 0, 0),
@@ -205,8 +205,8 @@ public class BasicTextualAnimationViewTest {
 
     model.addMotion("My Shape", 10, 20, new Position2D(10, 11),
         new Position2D(10, 18), new Color(1, 1, 199),
-        new Color(9, 1, 9)
-        , new Dimension2D(10, 40), new Dimension2D(10, 90));
+        new Color(9, 1, 9),
+        new Dimension2D(10, 40), new Dimension2D(10, 90));
 
     model.addMotion("My Shape", 20, 27, new Position2D(10, 18),
         new Position2D(50, 60),

@@ -6,7 +6,7 @@ package cs3500.animator.controller;
 public interface AnimationController {
 
   /**
-   * Begins the animation
+   * Begins the animation; starts handling potential user input and deciding when to render.
    */
-  void go();
+  void start();
 }

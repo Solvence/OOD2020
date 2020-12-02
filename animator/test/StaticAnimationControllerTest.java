@@ -67,7 +67,7 @@ public class StaticAnimationControllerTest {
 
     assertEquals(sb.toString(), "");
 
-    controller1.go();
+    controller1.start();
 
     assertEquals(sb.toString(), "Canvas 20 20 200 200\n"
         + "Shape - Bob - Rectangle\n"

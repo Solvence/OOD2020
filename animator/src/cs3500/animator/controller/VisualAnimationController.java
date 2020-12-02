@@ -15,20 +15,22 @@ import java.util.Objects;
  * Represents a controller that plays through an animation frame by frame once.
  */
 public class VisualAnimationController implements AnimationController {
+
   private final ActiveAnimationView view;
   private final AnimationModel model;
   private final double initialTickRate;
 
   /**
    * Constructs an animation controller for visual views.
-   * @param view - the view to be rendered
-   * @param model - the model that this animation operates under
+   *
+   * @param view            - the view to be rendered
+   * @param model           - the model that this animation operates under
    * @param initialTickRate - the tick rate of this visual animation
    * @throws IllegalArgumentException - if the view given is not supported by this controller, or
-   *                                    the tick rate is not positive
+   *                                  the tick rate is not positive
    */
   public VisualAnimationController(AnimationView view, AnimationModel model, double initialTickRate)
-      throws IllegalArgumentException{
+      throws IllegalArgumentException {
     Objects.requireNonNull(view);
     Objects.requireNonNull(model);
     if (!(view instanceof ActiveAnimationView)) {
@@ -43,7 +45,7 @@ public class VisualAnimationController implements AnimationController {
   }
 
   @Override
-  public void go() {
+  public void start() {
     try {
       int tick = 0;
       view.makeVisible();

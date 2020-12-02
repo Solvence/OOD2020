@@ -11,7 +11,11 @@ import java.util.Random;
 import org.junit.Before;
 import org.junit.Test;
 
+/**
+ * Tests the BubbleSort class.
+ */
 public class BubbleSortTest {
+
   BubbleSort s1;
   BubbleSort s2;
   BubbleSort s3;
@@ -19,7 +23,7 @@ public class BubbleSortTest {
 
   @Before
   public void setup() {
-    s1 = new BubbleSort(new Random(1),4);
+    s1 = new BubbleSort(new Random(1), 4);
     s2 = new BubbleSort(3);
     s3 = new BubbleSort(0);
     s4 = new BubbleSort(1);
@@ -34,8 +38,8 @@ public class BubbleSortTest {
   // test if constructor shuffle works.
   @Test
   public void testConstructorShuffle() {
-    int[] base = {1,2,3,4};
-    int[] real = {4,1,2,3};
+    int[] base = {1, 2, 3, 4};
+    int[] real = {4, 1, 2, 3};
     assertNotSame(base, s1.getCurrentArray());
     assertArrayEquals(real, s1.getCurrentArray());
 
@@ -45,20 +49,24 @@ public class BubbleSortTest {
   @Test
   public void testNoDuplicatesConstructor() {
     for (int i = 0; i < this.s2.getCurrentArray().length; i++) {
-      assertEquals(Collections.frequency(Arrays.asList(this.s2.getCurrentArray()), this.s2.getCurrentArray()[i]), 0);
+      assertEquals(Collections
+          .frequency(Arrays.asList(this.s2.getCurrentArray()), this.s2.getCurrentArray()[i]),
+          0);
     }
     for (int i = 0; i < this.s1.getCurrentArray().length; i++) {
-      assertEquals(Collections.frequency(Arrays.asList(this.s1.getCurrentArray()), this.s1.getCurrentArray()[i]), 0);
+      assertEquals(Collections
+          .frequency(Arrays.asList(this.s1.getCurrentArray()), this.s1.getCurrentArray()[i]),
+          0);
     }
   }
 
   // testGetCurrentArray().
   @Test
   public void testGetCurrentArray() {
-    int[] real = {4,1,2,3};
+    int[] real = {4, 1, 2, 3};
     assertArrayEquals(real, s1.getCurrentArray());
     s1.nextStep();
-    real = new int[]{1,4,2,3};
+    real = new int[]{1, 4, 2, 3};
     assertArrayEquals(real, s1.getCurrentArray());
 
     assertArrayEquals(new int[0], s3.getCurrentArray());
@@ -68,16 +76,16 @@ public class BubbleSortTest {
   // testNextStep().
   @Test
   public void testNextStep() {
-    int[] real = {4,1,2,3};
+    int[] real = {4, 1, 2, 3};
     assertArrayEquals(real, s1.getCurrentArray());
     s1.nextStep();
-    real = new int[]{1,4,2,3};
+    real = new int[]{1, 4, 2, 3};
     assertArrayEquals(real, s1.getCurrentArray());
     s1.nextStep();
-    real = new int[]{1,2,4,3};
+    real = new int[]{1, 2, 4, 3};
     assertArrayEquals(real, s1.getCurrentArray());
     s1.nextStep();
-    real = new int[]{1,2,3,4};
+    real = new int[]{1, 2, 3, 4};
     assertArrayEquals(real, s1.getCurrentArray());
     s1.nextStep();
     assertArrayEquals(real, s1.getCurrentArray());
@@ -85,19 +93,19 @@ public class BubbleSortTest {
     assertArrayEquals(real, s1.getCurrentArray());
 
     s1 = new BubbleSort(new Random(2), 4);
-    real = new int[]{4,2,1,3};
+    real = new int[]{4, 2, 1, 3};
     assertArrayEquals(real, s1.getCurrentArray());
     s1.nextStep();
-    real = new int[]{2,4,1,3};
+    real = new int[]{2, 4, 1, 3};
     assertArrayEquals(real, s1.getCurrentArray());
     s1.nextStep();
-    real = new int[]{2,1,4,3};
+    real = new int[]{2, 1, 4, 3};
     assertArrayEquals(real, s1.getCurrentArray());
     s1.nextStep();
-    real = new int[]{2,1,3,4};
+    real = new int[]{2, 1, 3, 4};
     assertArrayEquals(real, s1.getCurrentArray());
     s1.nextStep();
-    real = new int[]{1,2,3,4};
+    real = new int[]{1, 2, 3, 4};
     assertArrayEquals(real, s1.getCurrentArray());
     s1.nextStep();
     assertArrayEquals(real, s1.getCurrentArray());
@@ -124,9 +132,6 @@ public class BubbleSortTest {
     s1.nextStep();
     assertTrue(s1.finished());
   }
-
-
-
 
 
 }
