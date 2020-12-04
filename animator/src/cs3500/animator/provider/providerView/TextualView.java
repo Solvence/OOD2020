@@ -1,7 +1,7 @@
 package cs3500.animator.provider.providerView;
 
+import cs3500.animator.provider.providerModel.MotionAnimation;
 import cs3500.model.Model;
-import cs3500.model.MotionAnimation;
 import cs3500.model.Shape2D;
 import java.awt.event.ActionListener;
 import java.io.IOException;

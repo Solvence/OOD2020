@@ -1,7 +1,7 @@
 package cs3500.animator.provider.providerModel;
 
-import cs3500.model.Position2D;
-import java.awt.Color;
+import cs3500.animator.model.position2d.*;
+import cs3500.animator.model.color.*;
 
 /**
  * A class that represents a singular motion on a shape. It has fields to represent all the shape
@@ -78,7 +78,7 @@ public interface MotionAnimation {
    *
    * @return returns starting position of shape
    */
-  cs3500.model.Position2D getStartPosition();
+  Position2D getStartPosition();
 
   /**
    * Returns the ending position of a shape at the end of a motion.
