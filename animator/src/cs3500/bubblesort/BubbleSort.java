@@ -10,15 +10,17 @@ import java.util.Random;
  * individual steps of swapping elements of an array, until the array is finally sorted.
  */
 public class BubbleSort {
+
   private final int[] arr;
   private int currIndex;
   private int roundNum;
 
   /**
    * Constructs a bubble sorting algorithm with elements in random order.
+   *
    * @param r      - random for seeding collection
-   * @param length - the length of the list to be sorted. Elements in the list will be between
-   *               1 and length.
+   * @param length - the length of the list to be sorted. Elements in the list will be between 1 and
+   *               length.
    * @throws IllegalArgumentException if given length is less than 0 or if Random is null
    */
   public BubbleSort(Random r, int length) throws IllegalArgumentException {
@@ -27,11 +29,11 @@ public class BubbleSort {
     }
     arr = new int[length];
     ArrayList<Integer> arrList = new ArrayList<>();
-    for(int i=0; i<length; i++) {
-      arrList.add(i+1);
+    for (int i = 0; i < length; i++) {
+      arrList.add(i + 1);
     }
-    Collections.shuffle(arrList,r);
-    for(int i = 0; i< arrList.size(); i++) {
+    Collections.shuffle(arrList, r);
+    for (int i = 0; i < arrList.size(); i++) {
       arr[i] = arrList.get(i);
     }
 
@@ -41,6 +43,7 @@ public class BubbleSort {
 
   /**
    * Default constructor.
+   *
    * @param length length of base array to be sorted.
    * @throws IllegalArgumentException if length is less than 0.
    */
@@ -50,6 +53,7 @@ public class BubbleSort {
 
   /**
    * Returns a copy of the current array being sorted.
+   *
    * @return - a copy of the current array being sorted
    */
   public int[] getCurrentArray() {
@@ -57,8 +61,8 @@ public class BubbleSort {
   }
 
   /**
-   * Executes the next step/swap in the bubble sorting algorithm. If the list is already sorted,
-   * do nothing.
+   * Executes the next step/swap in the bubble sorting algorithm. If the list is already sorted, do
+   * nothing.
    */
   public void nextStep() {
     while (roundNum != arr.length) {
@@ -80,7 +84,8 @@ public class BubbleSort {
   }
 
   /**
-   * Is the sorting algorithm finished? Is the array properly sorted?
+   * Is the sorting algorithm finished. Is the array properly sorted.
+   *
    * @return - true if the array is sorted, false if not.
    */
   public boolean finished() {

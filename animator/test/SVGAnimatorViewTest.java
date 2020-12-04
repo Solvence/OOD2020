@@ -55,8 +55,9 @@ public class SVGAnimatorViewTest {
 
     setUp();
     model.create("s", new Rectangle());
-    model.addMotion("s", 1, 15, new Position2D(0, 0), new Position2D(10, 10)
-        , new Color(10, 10, 10), new Color(11, 10, 155),
+    model.addMotion("s", 1, 15, new Position2D(0, 0),
+        new Position2D(10, 10),
+        new Color(10, 10, 10), new Color(11, 10, 155),
         new Dimension2D(1, 1), new Dimension2D(10, 10));
 
     try {
@@ -85,8 +86,9 @@ public class SVGAnimatorViewTest {
 
     setUp();
     model.create("s", new Rectangle());
-    model.addMotion("s", 1, 15, new Position2D(0, 0), new Position2D(10, 10)
-        , new Color(10, 10, 10), new Color(11, 10, 155),
+    model.addMotion("s", 1, 15, new Position2D(0, 0),
+        new Position2D(10, 10),
+        new Color(10, 10, 10), new Color(11, 10, 155),
         new Dimension2D(1, 1), new Dimension2D(10, 10));
 
     model.addMotion("s", 15, 30, new Position2D(10, 10),
@@ -132,8 +134,9 @@ public class SVGAnimatorViewTest {
 
     setUp();
     model.create("s", new Rectangle());
-    model.addMotion("s", 1, 15, new Position2D(0, 0), new Position2D(10, 10)
-        , new Color(10, 10, 10), new Color(11, 10, 155),
+    model.addMotion("s", 1, 15, new Position2D(0, 0),
+        new Position2D(10, 10),
+        new Color(10, 10, 10), new Color(11, 10, 155),
         new Dimension2D(1, 1), new Dimension2D(10, 10));
 
     model.addMotion("s", 15, 30, new Position2D(10, 10),

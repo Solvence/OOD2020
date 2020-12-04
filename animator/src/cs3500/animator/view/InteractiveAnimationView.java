@@ -11,21 +11,30 @@ import javax.swing.JToggleButton;
 
 /**
  * Represents an interactive animator view implementation that has a number of buttons to support
- * functionality such as pausing, playing, speeding up, slowing down, looping, and resetting
- * the animation.
+ * functionality such as pausing, playing, speeding up, slowing down, looping, and resetting the
+ * animation.
  */
-public class InteractiveAnimationView extends VisualAnimationView implements ActionableAnimationView {
-  private JButton pauseButton, playButton, speedUpButton, slowDownButton, resetButton;
+public class InteractiveAnimationView extends VisualAnimationView implements
+    ActionableAnimationView {
+
+  private JButton pauseButton;
+  private JButton playButton;
+  private JButton speedUpButton;
+  private JButton slowDownButton;
+  private JButton resetButton;
+
   private JToggleButton loopButton;
-  private JPanel buttonPanel;
 
   /**
    * Constructs an interactive animator view given the canvas arguments.
-   * @param canvasPos - the top left position of the viewable canvas
+   *
+   * @param canvasPos  - the top left position of the viewable canvas
    * @param canvasSize - the width and height of the viewable canvas
    */
   public InteractiveAnimationView(Position2D canvasPos, Dimension2D canvasSize) {
     super(canvasPos, canvasSize);
+
+    JPanel buttonPanel;
 
     //button panel
     buttonPanel = new JPanel();

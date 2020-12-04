@@ -23,7 +23,7 @@ public class StaticAnimationController implements AnimationController {
   }
 
   @Override
-  public void go() {
+  public void start() {
     try {
       view.render();
     } catch (IOException e) {
