@@ -7,7 +7,7 @@ import java.util.List;
  * Interface to represent a shape. Has methods to return all the fields of a shape,
  * to add motions to a shape, get it's state at a certain tick, and a toString.
  */
-public interface Shape {
+public interface ProviderShape {
 
   /**
    * State of a shape at a given tick, and returns the state of the shape at a given moment
