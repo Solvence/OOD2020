@@ -23,7 +23,7 @@ public class TextualView implements IView {
 
   /**
    * Constructor for an instance of Textual view.
-   *
+   *getShapeColor
    * @param model the model to be used
    * @param ap    the appendable object
    * @param tempo the tempo

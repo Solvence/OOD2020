@@ -1,7 +1,7 @@
 package cs3500.animator.provider.providerModel;
 
 import cs3500.animator.model.position2d.*;
-import cs3500.animator.model.color.*;
+import java.awt.Color;
 
 /**
  * A class that represents a singular motion on a shape. It has fields to represent all the shape

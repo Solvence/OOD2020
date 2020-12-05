@@ -17,14 +17,14 @@ public interface Model {
    * @throws IllegalArgumentException if any parameters are null, if any of a shapes motions are
    *                                  invalid, ...
    */
-  void startAnimation(int heightBoard, int widthBoard, Shape2D... shapes);
+  void startAnimation(int heightBoard, int widthBoard, ProviderShape... shapes);
 
   /**
    * Adds a shape to the animation.
    *
    * @param shape the shape to be added
    */
-  void addShapes(Shape2D shape);
+  void addShapes(ProviderShape shape);
 
   /**
    * Removes a shape from the animation.
@@ -32,14 +32,14 @@ public interface Model {
    * @param shape the shape to be removed
    * @throws IllegalArgumentException if the shape does not exist in the model
    */
-  void removeShapes(Shape2D shape);
+  void removeShapes(ProviderShape shape);
 
   /**
    * Returns the list of all the shapes in the model.
    *
    * @return a list of shapes
    */
-  List<Shape2D> getShapes();
+  List<ProviderShape> getShapes();
 
 
   /**
@@ -83,7 +83,7 @@ public interface Model {
    * @param motion the motion to be removed
    * @param shape  the index of the motion to be removed
    */
-  void addMotion(cs3500.model.MotionAnimation motion, Shape2D shape);
+  void addMotion(MotionAnimation motion, ProviderShape shape);
 
   /**
    * Removes a motion from a certain shapes list of motions.
@@ -91,7 +91,7 @@ public interface Model {
    * @param motion the motion to be removed
    * @param shape  the index of the motion to be removed
    */
-  void removeMotion(MotionAnimation motion, Shape2D shape);
+  void removeMotion(MotionAnimation motion, ProviderShape shape);
 
 
   /**
