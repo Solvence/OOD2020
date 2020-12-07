@@ -7,9 +7,17 @@ import cs3500.animator.model.dimension2d.Dimension2D;
 import cs3500.animator.model.shape.Shape;
 import cs3500.animator.provider.providerModel.MotionAnimation;
 
+/**
+ * Translates a MotionAnimation object to a AnimatedObjectCommand by using getter methods to
+ * construct an instance of a AnimatedObjectCommand with the fields of the MotionCommand.
+ */
 public class MotionAnimationToBasicCommandAdapter implements AnimatedObjectCommand {
   private final AnimatedObjectCommand translator;
 
+  /**
+   * Constructor / translator.
+   * @param ma - MotionAnimation to be translated.
+   */
   public MotionAnimationToBasicCommandAdapter(MotionAnimation ma) {
     java.awt.Color startColor = ma.getStartColor();
     java.awt.Color endColor = ma.getEndColor();

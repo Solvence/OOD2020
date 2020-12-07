@@ -1,7 +1,6 @@
 package cs3500.animator.provider.adapters;
 
 import cs3500.animator.model.animatedobject.AnimatedObject;
-import cs3500.animator.model.animatedobjectcommand.AnimatedObjectCommand;
 import cs3500.animator.model.position2d.Position2D;
 import cs3500.animator.provider.providerModel.MotionAnimation;
 import cs3500.animator.provider.providerModel.Shape;
@@ -10,10 +9,20 @@ import java.awt.Color;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * An adapter object that uses a delegate of our definition of AnimatedObject to fulfills the tasks
+ * asked upon a instance of our providers Shape object.
+ */
 public class AnimObjToPShapeAdapter implements Shape {
   private final AnimatedObject adaptee;
   private final String name;
 
+  /**
+   * Constructor.
+   * @param adaptee - an instance of our AnimatedObject used to adapt functionality of providers
+   *                  Shape interface.
+   * @param name - name of shape that undergoes animation commands.
+   */
   public AnimObjToPShapeAdapter(AnimatedObject adaptee, String name) {
     this.adaptee = adaptee;
     this.name = name;

@@ -17,9 +17,18 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+/**
+ * This is an Adapter, which contains a delegate of a AnimationModel and translated calls to
+ * a Model to work on a any Object that uses our Providers Model.
+ */
 public class AnimModelToPModelAdapter implements Model {
   private final AnimationModel adaptee;
 
+  /**
+   * Default Constructor for our adapter.
+   * @param adaptee - instance of our model (should be prebuilt, but also can be mutated by methods
+   *                implemented). Used as base for all operations.
+   */
   public AnimModelToPModelAdapter(AnimationModel adaptee) {
     Objects.requireNonNull(adaptee);
     this.adaptee = adaptee;
@@ -27,7 +36,6 @@ public class AnimModelToPModelAdapter implements Model {
 
   @Override
   public void startAnimation(int heightBoard, int widthBoard, Shape... shapes) {
-    // adaptee.initCanvas(new Position2D(0, 0), new Dimension2D(widthBoard, heightBoard));
     for(Shape s : shapes) {
       adaptee.create(s.getName(), ShapeFactory.build(s.getForm().toLowerCase()));
     }

@@ -18,7 +18,7 @@ public class InteractiveViewListener implements ActionListener {
   private boolean pause;
 
   /**
-   * Defualt constructor for making a listener.
+   * Default constructor for making a listener.
    * @param view - view to listen to.
    */
   public InteractiveViewListener(InteractiveView view) {
