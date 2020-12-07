@@ -2,7 +2,9 @@ package cs3500.animator.view;
 
 import cs3500.animator.model.AnimationModel;
 import cs3500.animator.provider.adapters.AnimModelToPModelAdapter;
+import cs3500.animator.provider.adapters.InteractiveViewAdapterFromProvider;
 import cs3500.animator.provider.adapters.TextualViewAdapterFromProvider;
+import cs3500.animator.provider.providerView.InteractiveView;
 import cs3500.animator.provider.providerView.TextualView;
 
 /**
@@ -36,9 +38,12 @@ public class ViewFactory {
         return new SVGAnimationView(model, out, tickRate);
       case "interactive":
         return new InteractiveAnimationView(model.getCanvasPosition(), model.getCanvasSize());
-      case "provider":
+      case "provider-text":
         return new TextualViewAdapterFromProvider(
             new TextualView(new AnimModelToPModelAdapter(model), out, (int) tickRate), out);
+      case "provider":
+        return new InteractiveViewAdapterFromProvider(
+            new InteractiveView(new AnimModelToPModelAdapter(model), (int) tickRate));
       default:
         throw new IllegalArgumentException("invalid view type");
     }

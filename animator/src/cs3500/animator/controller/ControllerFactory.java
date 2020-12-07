@@ -32,6 +32,7 @@ public class ControllerFactory {
       case "text":
       case "svg":
       case "provider":
+      case "provider-text":
         return new StaticAnimationController(view);
       case "interactive":
         return new InteractiveAnimationController(view, model, tickRate);
