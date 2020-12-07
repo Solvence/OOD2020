@@ -1,5 +1,6 @@
 package cs3500.animator.provider.providerModel;
 
+import cs3500.animator.model.position2d.Position2D;
 import java.awt.Color;
 import java.util.List;
 
@@ -7,7 +8,7 @@ import java.util.List;
  * Interface to represent a shape. Has methods to return all the fields of a shape,
  * to add motions to a shape, get it's state at a certain tick, and a toString.
  */
-public interface ProviderShape {
+public interface Shape {
 
   /**
    * State of a shape at a given tick, and returns the state of the shape at a given moment
@@ -26,7 +27,7 @@ public interface ProviderShape {
    *                                  shape has (if it overlaps, starts or ends at the same time as
    *                                  another motion, etc)
    */
-  void addMotionsToShape(cs3500.model.MotionAnimation newMotion);
+  void addMotionsToShape(MotionAnimation newMotion);
 
   /**
    * Getter method to return the color of a shape.

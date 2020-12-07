@@ -1,9 +1,10 @@
 package cs3500.animator.provider.providerView;
 
+import cs3500.animator.provider.providerModel.Model;
 import cs3500.animator.provider.providerModel.MotionAnimation;
-import cs3500.model.Model;
-import cs3500.model.Shape2D;
+import cs3500.animator.provider.providerModel.Shape;
 import java.awt.event.ActionListener;
+import java.io.FileWriter;
 import java.io.IOException;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -56,7 +57,7 @@ public class TextualView implements IView {
     finalString = finalString +
         "canvas " + model.getX() + " " + model.getY() + " " + model
         .getHeightBoard() + " " + model.getWidthBoard() + "\n";
-    for (Shape2D shape : model.getShapes()) {
+    for (Shape shape : model.getShapes()) {
       finalString =
           finalString + "shape " + shape.getName() + " " + shape.getForm().toString() + "\n";
 

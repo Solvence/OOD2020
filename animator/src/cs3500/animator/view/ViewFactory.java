@@ -1,6 +1,9 @@
 package cs3500.animator.view;
 
 import cs3500.animator.model.AnimationModel;
+import cs3500.animator.provider.adapters.AnimModelToPModelAdapter;
+import cs3500.animator.provider.adapters.TextualViewAdapterFromProvider;
+import cs3500.animator.provider.providerView.TextualView;
 
 /**
  * Represents a factory class to help construct Views given the name of the type of view.
@@ -33,6 +36,9 @@ public class ViewFactory {
         return new SVGAnimationView(model, out, tickRate);
       case "interactive":
         return new InteractiveAnimationView(model.getCanvasPosition(), model.getCanvasSize());
+      case "provider":
+        return new TextualViewAdapterFromProvider(
+            new TextualView(new AnimModelToPModelAdapter(model), out, (int) tickRate), out);
       default:
         throw new IllegalArgumentException("invalid view type");
     }

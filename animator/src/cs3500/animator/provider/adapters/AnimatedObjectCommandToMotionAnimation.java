@@ -49,13 +49,15 @@ public class AnimatedObjectCommandToMotionAnimation implements MotionAnimation {
   }
 
   @Override
-  public Color getStartColor() {
-    return this.startShape.getColor();
+  public java.awt.Color getStartColor() {
+    Color startColor = this.startShape.getColor();
+    return new java.awt.Color(startColor.getRed(), startColor.getGreen(), startColor.getBlue());
   }
 
   @Override
-  public Color getEndColor() {
-    return this.endShape.getColor();
+  public java.awt.Color getEndColor() {
+    Color startColor = this.endShape.getColor();
+    return new java.awt.Color(startColor.getRed(), startColor.getGreen(), startColor.getBlue());
   }
 
   @Override
@@ -94,7 +96,7 @@ public class AnimatedObjectCommandToMotionAnimation implements MotionAnimation {
     Position2D startPos = this.getStartPosition();
     int startWidth = this.getStartWidth();
     int startHeight = this.getStartHeight();
-    Color startColor = this.getStartColor();
+    java.awt.Color startColor = this.getStartColor();
     s.append(String.format("%d %d %d %d %d %d %d",
         startPos.getX(),
         startPos.getY(),
@@ -109,7 +111,7 @@ public class AnimatedObjectCommandToMotionAnimation implements MotionAnimation {
     Position2D endPos = this.getEndPosition();
     int endWidth = this.getEndWidth();
     int endHeight = this.getEndHeight();
-    Color endColor = this.getEndColor();
+    java.awt.Color endColor = this.getEndColor();
     s.append(String.format("%d %d %d %d %d %d %d",
         endPos.getX(),
         endPos.getY(),
