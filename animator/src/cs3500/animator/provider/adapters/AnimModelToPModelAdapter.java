@@ -124,7 +124,7 @@ public class AnimModelToPModelAdapter implements Model {
   @Override
   public List<StateofShape> stateofShapesTick(int tick) {
     return this.getShapes().stream()
-        .map((item) -> item.getStateofShapeTick(tick)).collect(Collectors.toList());
+        .map((item) -> item.getStateofShapeTick(tick)).filter(Objects::nonNull).collect(Collectors.toList());
   }
 
   @Override

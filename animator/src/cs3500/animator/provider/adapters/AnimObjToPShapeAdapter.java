@@ -33,7 +33,10 @@ public class AnimObjToPShapeAdapter implements Shape {
   public StateofShape getStateofShapeTick(int tick) {
     cs3500.animator.model.shape.Shape shapeAtTick = adaptee.getShape(tick);
     cs3500.animator.model.color.Color colorAtTick = shapeAtTick.getColor();
-    return new StateofShape(adaptee.getBaseShape().toString(), shapeAtTick.getPosition().getX(),
+    if (shapeAtTick.getPosition() == null || shapeAtTick.getSize() == null || shapeAtTick.getColor() == null ) {
+      return null;
+    }
+    return new StateofShape(adaptee.getBaseShape().toString().toLowerCase(), shapeAtTick.getPosition().getX(),
         shapeAtTick.getPosition().getY(), shapeAtTick.getSize().getXDir(),
         shapeAtTick.getSize().getYDir(),
         new Color(colorAtTick.getRed(), colorAtTick.getGreen(), colorAtTick.getBlue()));
@@ -82,7 +85,7 @@ public class AnimObjToPShapeAdapter implements Shape {
 
   @Override
   public String getForm() {
-    return adaptee.getBaseShape().toString();
+    return adaptee.getBaseShape().toString().toLowerCase();
   }
 
   @Override

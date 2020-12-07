@@ -44,7 +44,7 @@ public class VisualView extends JFrame implements IView {
           "The tempo is less than 1, and the speed cannot be less than 1tick/second");
     }
     this.model = model;
-    this.animationPanel = new AnimationPanel();
+    this.animationPanel = new AnimationPanel(model);
 
     //this.g = this.animationPanel.getGraphics();
     this.tempo = tempo;
