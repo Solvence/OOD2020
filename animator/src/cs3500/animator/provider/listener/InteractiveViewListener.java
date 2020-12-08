@@ -52,6 +52,10 @@ public class InteractiveViewListener implements ActionListener {
           break;
         case "loop":
           view.setLoopMode(view.getLoopButton().isSelected());
+          if (!view.getTimer().isRunning()) {
+            this.view.setTick();
+            this.view.getTimer().start();
+          }
           break;
         default:
           throw new IllegalStateException("event doesn't exist");
