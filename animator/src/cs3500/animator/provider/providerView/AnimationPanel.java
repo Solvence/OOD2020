@@ -23,11 +23,10 @@ public class AnimationPanel extends JPanel { //implements ActionListener {
   /**
    * A default no argument constructor for an animation panel.
    */
-  public AnimationPanel() {
+  public AnimationPanel(Model model) {
     super();
     this.setBackground(Color.WHITE);
-    this.model = new AnimatorModel(700, 500, new ArrayList<Shape2D>());
-    setSize(700, 500);
+    this.model = model;
     this.tempo = tempo;
     listofStates = new ArrayList<>();
     setLayout(new BorderLayout());

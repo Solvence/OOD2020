@@ -32,8 +32,8 @@ public class InteractiveViewListener implements ActionListener {
       switch (e.getActionCommand()) {
         case "speed":
           int newTempo = Integer.parseInt(view.getSpeedChange());
-          view.changeTempo(newTempo);
-          view.setTick();
+          System.out.println(newTempo);
+          this.view.getTimer().setDelay(1000/newTempo);
           break;
         case "start":
           view.goAnimation();
@@ -57,7 +57,7 @@ public class InteractiveViewListener implements ActionListener {
           throw new IllegalStateException("event doesn't exist");
       }
     } catch (NumberFormatException e1) {
-      e1.printStackTrace();
+      System.out.println(e1.getMessage());
     }
   }
 }

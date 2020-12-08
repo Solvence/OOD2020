@@ -30,6 +30,7 @@ public class InteractiveViewAdapterFromProvider implements AnimationView {
   @Override
   public void render() throws IOException {
     this.adaptee.setButtonListener(this.listener);
+    this.adaptee.setTextListener(this.listener);
     this.adaptee.display();
   }
 
